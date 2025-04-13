@@ -1,45 +1,40 @@
 {
   "name": "back",
-  "version": "1.0.0",
-  "description": "backend",
-  "main": "src/index.ts",
-  "author": "ed.dufrein",
-  "license": "ISC",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "ts-node-dev --env-file=.env.development --respawn --transpile-only --exit-child -r tsconfig-paths/register ./src/index.ts",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "chalk": "^4.1.2",
-    "connect-mongo": "^5.1.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "express-fileupload": "^1.5.1",
-    "express-session": "^1.18.1",
-    "helmet": "^8.0.0",
-    "mongodb": "^6.10.0",
-    "mongoose": "^8.8.0",
-    "morgan": "^1.10.0"
+    "@strapi/plugin-cloud": "5.12.4",
+    "@strapi/plugin-users-permissions": "5.12.4",
+    "@strapi/strapi": "5.12.4",
+    "better-sqlite3": "11.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.7",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/express-fileupload": "^1.5.1",
-    "@types/express-session": "^1.18.0",
-    "@types/morgan": "^1.9.9",
-    "@types/node": "^22.10.2",
-    "@types/nodemailer": "^6.4.17",
-    "nodemon": "^3.1.9",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "tsc-alias": "^1.8.11",
-    "tsconfig-paths": "^4.2.0",
-    "tslib": "^2.8.1",
-    "typescript": "^5.7"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "6f6f36c3-fbb2-4964-8475-b2c73131f74a"
   }
 }

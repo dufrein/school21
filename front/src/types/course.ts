@@ -4,14 +4,13 @@ export interface Course {
   id: string;
   name: string;
   description: string;
-  tariffId: string;
+  tariffsIds: string[];
   topics: Topic[];
   lessonsIds: string[];
   complexity: Complexity;
 }
 
 export interface Topic {
-  id: string;
   title: string;
   description: string;
 }

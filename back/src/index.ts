@@ -1,30 +1,20 @@
-import { app } from "./server";
-import { normalizePort } from "./utils/normalize";
-import dotenv from "dotenv";
-import https from "https";
-import http from "http";
-import { mongoStart,onServerError } from "./helpers";
-import * as fs from "fs";
- 
+// import type { Core } from '@strapi/strapi';
 
-dotenv.config();
-const { HTTP_PORT, CERT_KEY_DEVELOP_PATH, CERT_DEVELOP_PATH } = process.env;
-var options = {
-  key: fs.readFileSync(CERT_KEY_DEVELOP_PATH || ""),
-  cert: fs.readFileSync(CERT_DEVELOP_PATH || ""),
+export default {
+  /**
+   * An asynchronous register function that runs before
+   * your application is initialized.
+   *
+   * This gives you an opportunity to extend code.
+   */
+  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+
+  /**
+   * An asynchronous bootstrap function that runs before
+   * your application gets started.
+   *
+   * This gives you an opportunity to set up your data model,
+   * run jobs, or perform some special logic.
+   */
+  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
 };
-
-const httpServer = http.createServer(app);
-const httpPort = normalizePort(HTTP_PORT || "80");
-
-(async () => {
-  try {
-    await mongoStart();
-    httpServer.listen(httpPort, async function () {
-      console.log("Express http server listening on port " + httpPort);
-    });
-    httpServer.on("error", onServerError);
-  } catch (err) {
-    console.log(err);
-  }
-})();

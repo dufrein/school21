@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "tariffsIds": {
+      "type": "json"
+    },
+    "topics": {
+      "type": "json"
+    },
+    "lessonsIds": {
+      "type": "json"
+    },
+    "complexity": {
+      "type": "enumeration",
+      "enum": [
+        "'basic'",
+        "'medium'",
+        "'advanced'",
+        "'professional'"
+      ]
+    }
+  }
+}
