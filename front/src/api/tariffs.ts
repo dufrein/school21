@@ -1,17 +1,21 @@
-const API_BASE_URL = '/api';
+import { Tariff } from "@types";
 
 export const getTariffs = async () => {
-  const response = await fetch(`${API_BASE_URL}/tariffs`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs`);
   if (!response.ok) {
-    throw new Error('Failed to fetch tariffs');
+    throw new Error("Failed to fetch tariffs");
   }
-  return response.json();
+  const data: { data: Tariff[] } = await response.json();
+
+  return data.data;
 };
 
 export const getTariffById = async (tariffId: string) => {
-  const response = await fetch(`${API_BASE_URL}/tariffs/${tariffId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs/${tariffId}`);
   if (!response.ok) {
-    throw new Error('Failed to fetch tariff');
+    throw new Error("Failed to fetch tariff");
   }
-  return response.json();
-}; 
+  const data: { data: Tariff } = await response.json();
+
+  return data.data;
+};

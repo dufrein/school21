@@ -1,12 +1,15 @@
 import { Complexity } from "@constants";
+import { Lesson } from "./lesson";
+import { Tariff } from "./tariff";
 
 export interface Course {
   id: string;
   name: string;
-  description: string;
-  tariffsIds: string[];
   topics: Topic[];
-  lessonsIds: string[];
+  tariffs: Tariff[];
+  lessons: Lesson[];
+  documentId: string;
+  description: string;
   complexity: Complexity;
 }
 

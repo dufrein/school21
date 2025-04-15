@@ -1,37 +1,28 @@
 {
   "kind": "collectionType",
-  "collectionName": "courses",
+  "collectionName": "lessons",
   "info": {
-    "singularName": "course",
-    "pluralName": "courses",
-    "displayName": "Course",
+    "singularName": "lesson",
+    "pluralName": "lessons",
+    "displayName": "Lesson",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "name": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "string",
+    "theory": {
+      "type": "blocks",
       "required": true
     },
-    "topics": {
-      "type": "json"
-    },
-    "tariffs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tariff.tariff",
-      "inversedBy": "courses"
-    },
-    "lessons": {
+    "questions": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::lesson.lesson"
+      "target": "api::question.question"
     },
     "complexity": {
       "type": "enumeration",

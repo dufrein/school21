@@ -27,6 +27,12 @@
     "features": {
       "type": "json",
       "required": true
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "mappedBy": "tariffs"
     }
   }
 }

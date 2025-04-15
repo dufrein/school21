@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "answers": {
+      "type": "json",
+      "required": true
+    },
+    "complexity": {
+      "type": "enumeration",
+      "enum": [
+        "basic",
+        "medium",
+        "advanced",
+        "professional"
+      ]
+    }
+  }
+}

@@ -1,29 +1,28 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import styles from './styles.module.scss'
-import { Lesson } from '@types'
-import { Course } from '@types'
-import { useEffect, useState } from 'react'
-import { getCourseById, getLessons, getUserProgress } from '@api'
-import { useParams } from 'next/navigation'
-
+import Link from "next/link";
+import styles from "./styles.module.scss";
+import { Lesson } from "@types";
+import { Course } from "@types";
+import { useEffect, useState } from "react";
+import { getCourseById, getLessons, getUserProgress } from "@api";
+import { useParams } from "next/navigation";
 
 export function CourseContent() {
-  const [course,setCourse] = useState<Course | null>(null)
-  const [lessons,setLessons] = useState<Lesson[]>([])
-  const [completedLessons,setCompletedLessons] = useState<string[]>([])
+  const [course, setCourse] = useState<Course | null>(null);
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [completedLessons, setCompletedLessons] = useState<string[]>([]);
 
-  const {courseId} = useParams()
+  const { id } = useParams();
 
   useEffect(() => {
-    getCourseById(courseId as string).then((course) => setCourse(course))
-    getLessons(courseId as string).then((lessons) => setLessons(lessons))
-    getUserProgress().then((progress) => setCompletedLessons(progress))
-  }, [courseId])
+    getCourseById(id as string).then((course) => setCourse(course));
+    getLessons(id as string).then((lessons) => setLessons(lessons));
+    getUserProgress().then((progress) => setCompletedLessons(progress));
+  }, [id]);
 
   if (!course) {
-    return null
+    return null;
   }
 
   return (
@@ -35,10 +34,10 @@ export function CourseContent() {
 
       <div className={styles.topicsList}>
         {course.topics.map((topic) => (
-          <div key={topic.id} className={styles.topicCard}>
+          <div key={topic.title} className={styles.topicCard}>
             <h2 className={styles.topicTitle}>{topic.title}</h2>
             <p className={styles.topicDescription}>{topic.description}</p>
-            
+
             <div className={styles.lessonsSection}>
               <h3 className={styles.lessonsTitle}>Уроки</h3>
               <ul className={styles.lessonsList}>
@@ -73,10 +72,7 @@ export function CourseContent() {
                         />
                       </svg>
                     )}
-                    <Link
-                      href={`/lesson/${lesson.id}`}
-                      className={styles.lessonLink}
-                    >
+                    <Link href={`/lesson/${lesson.id}`} className={styles.lessonLink}>
                       {lesson.title}
                     </Link>
                   </li>
@@ -87,5 +83,5 @@ export function CourseContent() {
         ))}
       </div>
     </div>
-  )
-} 
+  );
+}

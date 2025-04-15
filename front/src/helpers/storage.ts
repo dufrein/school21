@@ -1,4 +1,4 @@
-import { User, UserLessonsProgress } from "@types";
+import { User } from "@types";
 
 // Helper functions for localStorage operations
 export const getItem = <T>(key: string): T | null => {
@@ -13,8 +13,3 @@ export const setItem = <T>(key: string, value: T): void => {
 
 export const getUser = (): User | null => getItem<User>("user") || null;
 export const setUser = (user: User): void => setItem("user", user);
-
-export const getUserProgress = (): UserLessonsProgress =>
-  getItem<UserLessonsProgress>("userLessonsProgress") || [];
-export const setUserProgress = (progress: UserLessonsProgress): void =>
-  setItem("userLessonsProgress", progress);

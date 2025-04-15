@@ -1,9 +1,11 @@
-const API_BASE_URL = '/api';
+import { Lesson } from "@types";
 
 export const getLessons = async (courseId: string) => {
-  const response = await fetch(`${API_BASE_URL}/lessons?courseId=${courseId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/lessons?courseId=${courseId}`);
   if (!response.ok) {
     throw new Error('Failed to fetch course lessons');
   }
-  return response.json();
+  const data: { data: Lesson[] } = await response.json();
+
+  return data.data;
 }; 

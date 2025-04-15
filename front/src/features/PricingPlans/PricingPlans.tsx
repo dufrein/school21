@@ -1,19 +1,13 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import styles from './styles.module.scss'
-import { useEffect, useState } from 'react'
-import { Tariff } from '@types'
-import { getTariffs } from '@api'  
-
+import Link from "next/link";
+import styles from "./styles.module.scss";
+import { useContext } from "react";
+import { AppContext } from "@context/AppContext";
 
 export function PricingPlans() {
-  const [tariffs, setTariffs] = useState<Tariff[]>([])
-
-  useEffect(() => {
-    getTariffs().then((tariffs) => setTariffs(tariffs))
-  }, [])
-
+  const { tariffs } = useContext(AppContext);
+  console.log("tariffs", tariffs);
   return (
     <div className={styles.plansGrid}>
       {tariffs.map((tariff) => (
@@ -42,14 +36,11 @@ export function PricingPlans() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/dashboard"
-            className={  styles.btnPrimary }
-          >
-            {'Выбрать'}
+          <Link href="/dashboard" className={styles.btnPrimary}>
+            {"Выбрать"}
           </Link>
         </div>
       ))}
     </div>
-  )
-} 
+  );
+}

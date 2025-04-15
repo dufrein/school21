@@ -1,22 +1,11 @@
 import { Complexity } from "@constants";
+import { Question } from "@types";
 
 export interface Lesson {
   id: string;
   title: string;
   theory: string;
-  courseId: string;
+  documentId: string;
   questions: Question[];
   complexity: Complexity;
-}
-
-export interface Question {
-  id: string;
-  text: string;
-  lessonId: string;
-  answers: Answer[];
-}
-
-export interface Answer {
-  text: string;
-  isCorrect: boolean;
 }

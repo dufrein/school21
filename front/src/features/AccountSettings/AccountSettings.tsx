@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './styles.module.scss'
+import { AppContext } from '@context/AppContext'
 
 export function AccountSettings() {
   const [userSettings, setUserSettings] = useState({
@@ -10,6 +11,9 @@ export function AccountSettings() {
     plan: 'Простой',
   })
 
+ const {tariffs} = useContext(AppContext);
+  console.log('tariffs',tariffs);
+  
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.settingsTitle}>Настройки аккаунта</h2>
