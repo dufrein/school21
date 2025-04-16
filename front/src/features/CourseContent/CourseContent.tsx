@@ -34,8 +34,8 @@ export function CourseContent() {
 
       <div className={styles.topicsList}>
         {course.topics.map((topic) => (
-          <div key={topic.title} className={styles.topicCard}>
-            <h2 className={styles.topicTitle}>{topic.title}</h2>
+          <div key={topic.name} className={styles.topicCard}>
+            <h2 className={styles.topicTitle}>{topic.name}</h2>
             <p className={styles.topicDescription}>{topic.description}</p>
 
             <div className={styles.lessonsSection}>
@@ -72,7 +72,7 @@ export function CourseContent() {
                         />
                       </svg>
                     )}
-                    <Link href={`/lesson/${lesson.id}`} className={styles.lessonLink}>
+                    <Link href={`/lesson/${lesson.documentId}`} className={styles.lessonLink}>
                       {lesson.title}
                     </Link>
                   </li>

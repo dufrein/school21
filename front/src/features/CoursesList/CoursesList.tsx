@@ -18,7 +18,7 @@ export function CoursesList() {
   useEffect(() => {
     Promise.all([getCourses(true), getUserProgress()]).then(
       ([courses, progress]: [Course[], UserLessonsProgress]) => {
-        console.log('courses',courses);
+        console.log("courses", courses);
         const coursesWithProgress = courses.map((course: Course) => ({
           ...course,
           progress: Math.round(
@@ -31,7 +31,7 @@ export function CoursesList() {
       }
     );
   }, []);
-  
+
   return (
     <div className={styles.coursesSection}>
       <h2 className={styles.coursesTitle}>Мои курсы</h2>
@@ -48,8 +48,8 @@ export function CoursesList() {
             <div className={styles.topicsSection}>
               <h4 className={styles.topicsTitle}>Темы</h4>
               <ul className={styles.topicsList}>
-                {course.lessons.map((lessonItem, index) => (
-                  <li key={lessonItem.id} className={styles.topicItem}>
+                {course.topics.map((topicItem) => (
+                  <li key={topicItem.name} className={styles.topicItem}>
                     <svg
                       className={styles.clockIcon}
                       fill="none"
@@ -63,7 +63,9 @@ export function CoursesList() {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span className={styles.topicText}>Урок {index + 1}</span>
+                    <p className={styles.topicText}>
+                      <b>{topicItem.name}</b>
+                    </p>
                   </li>
                 ))}
               </ul>

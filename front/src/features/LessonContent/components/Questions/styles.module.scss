@@ -1,0 +1,65 @@
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+.questionsList {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.questionText {
+  color: #374151;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.radio {
+  width: 1rem;
+  height: 1rem;
+  color: #2563eb;
+  border-color: #d1d5db;
+  border-radius: 9999px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+}
+
+.optionText {
+  margin-left: 0.5rem;
+  color: #4b5563;
+}
+
+.result {
+  font-size: 0.875rem;
+}
+
+.correct {
+  color: #059669;
+}
+
+.incorrect {
+  color: #dc2626;
+}

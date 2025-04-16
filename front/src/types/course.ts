@@ -14,7 +14,7 @@ export interface Course {
 }
 
 export interface Topic {
-  title: string;
+  name: string;
   description: string;
 }
 

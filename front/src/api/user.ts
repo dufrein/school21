@@ -1,9 +1,7 @@
 import { User, UserLessonsProgress } from '../types/user';
 
-const API_BASE_URL = '/api';
-
 export const getUser = async (): Promise<User> => {
-  const response = await fetch(`${API_BASE_URL}/user`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/user`);
   if (!response.ok) {
     throw new Error('Failed to fetch user data');
   }
@@ -11,7 +9,10 @@ export const getUser = async (): Promise<User> => {
 };
 
 export const getUserProgress = async (): Promise<UserLessonsProgress> => {
-  const response = await fetch(`${API_BASE_URL}/user/progress`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/user/progress`);
+
+  return [];
+
   if (!response.ok) {
     throw new Error('Failed to fetch user progress');
   }
