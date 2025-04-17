@@ -1,4 +1,4 @@
-import { CourseContent } from '../../../features/CourseContent'
+import { CourseContent } from '@features/CourseContent'
 
 export default function Course() {
   return (

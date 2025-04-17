@@ -19,19 +19,11 @@
       "type": "string",
       "required": true
     },
-    "topics": {
-      "type": "json"
-    },
     "tariffs": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tariff.tariff",
       "inversedBy": "courses"
-    },
-    "lessons": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::lesson.lesson"
     },
     "complexity": {
       "type": "enumeration",
@@ -41,6 +33,12 @@
         "advanced",
         "professional"
       ]
+    },
+    "topics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
+      "inversedBy": "courses"
     }
   }
 }

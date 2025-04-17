@@ -7,4 +7,4 @@ export interface User {
   tariffId: string;
 }
 
-export type UserLessonsProgress =string[]
+export type UserLessonsProgress = string[];

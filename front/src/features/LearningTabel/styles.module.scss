@@ -1,0 +1,14 @@
+.tabel {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 200px;
+  border-right: 1px solid #ddd;
+}
+
+.lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 10px 0 10px 10px;
+}

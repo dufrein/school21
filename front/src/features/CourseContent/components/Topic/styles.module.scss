@@ -1,0 +1,34 @@
+.lessonItem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.lessonsTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.lessonsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lessonItem:last-child {
+  border-bottom: none;
+}
+
+.topicLink {
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: #1d4ed8;
+  }
+}
