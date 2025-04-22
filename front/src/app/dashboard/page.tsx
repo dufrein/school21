@@ -1,4 +1,4 @@
-import { AccountSettings } from "../../features/AccountSettings";
+import { AccountSettings } from "@features/AccountSettings";
 import styles from "./page.module.scss";
 
 export default function Dashboard() {

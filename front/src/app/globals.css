@@ -1,36 +1,14 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
+  --header-height: 70px;
+  --footer-height: 70px;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   margin: 0;
-}
-
-.btn-primary {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #1d4ed8;
-}
-
-.btn-secondary {
-  background-color: #f3f4f6;
-  color: #374151;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.btn-secondary:hover {
-  background-color: #e5e7eb;
 }
 
 .card {
@@ -60,4 +38,77 @@ a {
 
 a:active {
   color: #2563eb;
+}
+
+.button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.btnPrimary {
+  background: #007bff;
+  color: white;
+}
+
+.btnPrimary:hover {
+  background: #0056b3;
+}
+
+.btnSecondary {
+  background: #4d7cad;
+  color: white;
+}
+
+.btnSecondary:hover {
+  background: #4486cc;
+}
+
+.btnDisabled {
+  background: #ddd;
+}
+
+.btnDisabled:hover {
+  background: #ddd;
+}
+
+.btnTetriary {
+  background: #636d6d;
+  color: white;
+}
+
+.btnTetriary:hover {
+  background: #848f8f;
+}
+
+.input-error {
+  font-size: 12px;
+  margin: 0;
+  color: rgb(253, 116, 116);
+
+  p {
+    margin: 0;
+  }
+}
+
+.input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.input-label {
+  font-size: 14px;
+  color: #666;
 }

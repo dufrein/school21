@@ -48,9 +48,15 @@ export function LessonContent() {
     <div className={styles.content}>
       <h2 className={styles.title}>{lesson.title}</h2>
 
-      {/* Theory Section */}
       <div className={styles.card}>
         <h3 className={styles.cardTitle}>Теория</h3>
+        {lesson.image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={`${process.env.NEXT_PUBLIC_URL}${lesson.image?.formats.small?.url}`}
+            alt={"изображение урока"}
+          />
+        )}
         <div className={styles.theoryContent}>
           <BlocksRenderer content={lesson.theory} />
         </div>

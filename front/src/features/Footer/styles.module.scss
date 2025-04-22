@@ -1,11 +1,13 @@
 .footer {
   background-color: #e5eef8;
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
 }
 
 .footerContent {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 10px;
 }
 
 .footerText {

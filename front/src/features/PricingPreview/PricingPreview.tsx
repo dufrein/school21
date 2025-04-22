@@ -18,7 +18,7 @@ export function PricingPreview() {
               <div className={styles.card} key={tariffItem.documentId}>
                 <h3 className={styles.cardTitle}>{tariffItem.name}</h3>
                 <p className={styles.cardText}>{tariffItem.description}</p>
-                <p className={styles.cardText}>{tariffItem.price}</p>
+                <p className={styles.cardText}>{tariffItem.price} рублей в год</p>
                 <Link href="/pricing" className={styles.btnPrimary}>
                   Узнать больше
                 </Link>

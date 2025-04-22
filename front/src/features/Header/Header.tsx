@@ -16,6 +16,7 @@ export const Header: React.FC = () => {
             <NavLink href="/learning">Учиться</NavLink>
             <NavLink href="/pricing">Тарифы</NavLink>
             <NavLink href="/dashboard">Личный кабинет</NavLink>
+            <NavLink href="/login">Войти</NavLink>
           </div>
         </div>
       </div>
