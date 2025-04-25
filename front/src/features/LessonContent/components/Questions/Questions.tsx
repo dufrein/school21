@@ -19,7 +19,7 @@ export const Questions: React.FC<QuestionsProps> = (props) => {
       <div className={styles.questionsList}>
         {questions.map((questionItem) => (
           <div key={questionItem.id} className={styles.question}>
-            <p className={styles.questionText}>{questionItem.name}</p>
+            <h4 className={styles.questionText}>{questionItem.name}</h4>
             <p className={styles.questionText}>{questionItem.text}</p>
             <div className={styles.optionsList}>
               {questionItem.answers.map((option) => (

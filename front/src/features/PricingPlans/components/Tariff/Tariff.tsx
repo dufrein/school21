@@ -10,7 +10,7 @@ export const Tariff: React.FC<TariffProps> = (props) => {
     <div key={tariff.name} className={styles.card}>
       <h3 className={styles.cardTitle}>{tariff.name}</h3>
       <div className={styles.priceContainer}>
-        <span className={styles.price}>{tariff.price}</span>
+        <span className={styles.price}>{tariff.price} рублей</span>
       </div>
       <ul className={styles.featuresList}>
         {tariff.features.map((feature) => (
@@ -28,7 +28,7 @@ export const Tariff: React.FC<TariffProps> = (props) => {
         ))}
       </ul>
       <Link href="/dashboard" className={styles.btnPrimary}>
-        {"Выбрать"}
+        Выбрать
       </Link>
     </div>
   );

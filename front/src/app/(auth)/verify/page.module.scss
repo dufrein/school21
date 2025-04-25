@@ -1,8 +1,15 @@
 .container {
-  padding: 20px;
+}
+
+.verified {
+  margin: 10px 0;
+}
+
+.buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 

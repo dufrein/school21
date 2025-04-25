@@ -511,7 +511,6 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       }>;
     password: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 9;
       }>;

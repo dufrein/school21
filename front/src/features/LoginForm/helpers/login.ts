@@ -1,5 +1,10 @@
+"use server";
+
 import { getStudentByEmail } from "@api/student";
 import { loginFormSchema } from "../schema";
+import bcrypt from "bcryptjs";
+import { createSession } from "@actions/session";
+import { redirect } from "next/navigation";
 
 export const login = async (state: unknown, formData: FormData) => {
   try {
@@ -15,10 +20,7 @@ export const login = async (state: unknown, formData: FormData) => {
       };
     }
 
-    const students = await getStudentByEmail(validatedFields.data.email);
-    const checkedStudent = students && students[0];
-
-    console.log("checkedStudent", checkedStudent);
+    const checkedStudent = await getStudentByEmail(validatedFields.data.email);
 
     if (!checkedStudent) {
       return {
@@ -29,8 +31,19 @@ export const login = async (state: unknown, formData: FormData) => {
       };
     }
 
-    return { data: checkedStudent };
+    const result = await bcrypt.compare(validatedFields.data.password, checkedStudent.password);
+
+    if (result) {
+      await createSession(checkedStudent.documentId);
+    } else {
+      return {
+        errors: {
+          password: "Неверный пароль",
+        },
+      };
+    }
   } catch (err) {
     console.error(err);
   }
+  redirect("/learning");
 };

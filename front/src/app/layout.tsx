@@ -5,6 +5,9 @@ import styles from "./layout.module.scss";
 import { AppContextProvider } from "@context/AppContext/AppContext";
 import { Header } from "@features/Header";
 import { Footer } from "@features/Footer";
+import { UserContextProvider } from "@context/UserContext";
+import { verifySession } from "@actions/session";
+import { getStudent } from "@api/student";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -18,16 +21,25 @@ export const metadata: Metadata = {
   description: "Изучайте языки с нашими профессиональными курсами",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await verifySession();
+  const user = session?.userId && (await getStudent(session?.userId as string));
+  const userInfo = user ? {
+    ...user,
+    password: '',
+  } : null;
+
   return (
     <html lang="ru">
       <body className={`${inter.className} ${poppins.variable} ${styles.body}`}>
         <AppContextProvider>
-          <Header />
+          <UserContextProvider user={userInfo}>
+            <Header userId={session?.userId as string | null} />
 
-          <main className={styles.main}>{children}</main>
+            <main className={styles.main}>{children}</main>
 
-          <Footer />
+            <Footer />
+          </UserContextProvider>
         </AppContextProvider>
       </body>
     </html>

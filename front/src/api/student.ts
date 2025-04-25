@@ -1,4 +1,8 @@
+"use server";
+
 import { StudentType } from "@types";
+import { strapiClient } from "@utils/strapiClient/strapiClient";
+const studentsCollection = strapiClient.collection("students");
 
 export const getStudent = async (studentId: string) => {
   try {
@@ -11,20 +15,21 @@ export const getStudent = async (studentId: string) => {
     return data.data;
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 
-export const getStudentByEmail = async (studentEmail: string) => {
+export const getStudentByEmail = async (studentEmail: string): Promise<StudentType | undefined> => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/students?email=${studentEmail}?populate=*`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch student data by email");
-    }
-    const data: { data: StudentType[] } = await response.json();
+    const students = await studentsCollection.find({
+      filters: {
+        email: {
+          $eq: studentEmail,
+        },
+      },
+    });
 
-    return data.data;
+    return students.data[0] as unknown as StudentType;
   } catch (err) {
     console.error(err);
   }
@@ -33,26 +38,19 @@ export const getStudentByEmail = async (studentEmail: string) => {
 export const updateStudent = async (studentId: string, newStudent: StudentType) => {
   try {
     const { tariff } = newStudent;
-    const tariffInfo = tariff
-      ? {
-          name: tariff?.name,
-          description: tariff?.description,
-          price: tariff?.price,
-          features: tariff?.features,
-        }
-      : null;
+
     const updatedStudent = {
       name: newStudent.name,
       surname: newStudent.surname,
       email: newStudent.email,
       isActive: newStudent.isActive,
       finishedLessonsIds: [],
-      tariff: tariffInfo,
+      tariff: tariff ? tariff.documentId : null,
       phone: newStudent.phone,
       verifyTimestamp: newStudent.verifyTimestamp,
       password: newStudent.password, //тут уже хэшированный пароль
     };
-
+    console.log("updatedStudent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", updatedStudent);
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/students/${studentId}`, {
       method: "PUT",
       body: JSON.stringify({ data: updatedStudent }),
@@ -60,7 +58,6 @@ export const updateStudent = async (studentId: string, newStudent: StudentType) 
         "Content-Type": "application/json",
       },
     });
-    console.log("response!", response);
     if (!response.ok) {
       throw new Error("Failed to update user data");
     }

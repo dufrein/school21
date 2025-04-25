@@ -2,17 +2,26 @@
 
 import { useContext, useState } from 'react'
 import styles from './styles.module.scss'
-import { AppContext } from '@context/AppContext'
+// import { AppContext } from '@context/AppContext'
+import { UserContext } from '@context/UserContext'
+import { AccountSettingsProps } from './types'
+import { StudentType } from '@types'
 
-export function AccountSettings() {
-  const [userSettings, setUserSettings] = useState({
-    name: 'Иван Иванов',
-    email: 'ivan@example.com',
-    plan: 'Простой',
+export function AccountSettings({ onSave }: AccountSettingsProps) {
+  // const { tariffs } = useContext(AppContext)
+  const { user } = useContext(UserContext)
+
+  const [userSettings, setUserSettings] = useState<Partial<StudentType>>({
+    name: user?.name || '',
+    email: user?.email || '',
+    tariff: user?.tariff
   })
 
- const {tariffs} = useContext(AppContext);
-  console.log('tariffs',tariffs);
+  const handleSave = () => {
+    if (onSave) {
+      onSave(userSettings)
+    }
+  }
   
   return (
     <div className={styles.settingsCard}>
@@ -38,17 +47,22 @@ export function AccountSettings() {
         </div>
         <div className={styles.formGroup}>
           <label className={styles.label}>Тариф</label>
-          <select
-            value={userSettings.plan}
-            onChange={(e) => setUserSettings({ ...userSettings, plan: e.target.value })}
+          <p  className={styles.input}>{userSettings.tariff?.name}</p>
+          {/* <select
+            value={userSettings.tariff}
+            onChange={(e) => setUserSettings({ ...userSettings, tariff: e.target.value })}
             className={styles.input}
           >
-            <option value="Бесплатный">Бесплатный</option>
-            <option value="Простой">Простой</option>
-            <option value="Профессиональный">Профессиональный</option>
-          </select>
+            {tariffs?.map((tariff) => (
+              <option key={tariff.id} value={tariff.name}>
+                {tariff.name}
+              </option>
+            ))}
+          </select> */}
         </div>
-        <button className={styles.btnPrimary}>Сохранить изменения</button>
+        <button className={'button btnPrimary'} onClick={handleSave}>
+          Сохранить изменения
+        </button>
       </div>
     </div>
   )

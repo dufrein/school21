@@ -3,6 +3,8 @@
 import React, { useActionState, useState } from "react";
 import styles from "./styles.module.scss";
 import { signup } from "./helpers/signup";
+import { ROUTES } from "@constants";
+import { NavLink } from "@components";
 
 /**
  * Форма для регистрации пользователя
@@ -20,53 +22,53 @@ export const SignupForm: React.FC = () => {
   return (
     <form className={styles.form} action={action}>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Email</label>
+        <label className={"input-label"}>Email</label>
         <input
           type="email"
           name="email"
-          className={'input'}
+          className={"input"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isUserCreated}
         />
-        {errors?.email && <p className={'input-error'}>{errors?.email}</p>}
+        {errors?.email && <p className={"input-error"}>{errors?.email}</p>}
       </div>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Имя</label>
+        <label className={"input-label"}>Имя</label>
         <input
           type="text"
           name="name"
-          className={'input'}
+          className={"input"}
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={isUserCreated}
         />
-        {errors?.name && <p className={'input-error'}>{errors?.name}</p>}
+        {errors?.name && <p className={"input-error"}>{errors?.name}</p>}
       </div>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Фамилия</label>
+        <label className={"input-label"}>Фамилия</label>
         <input
           type="text"
           name="surname"
-          className={'input'}
+          className={"input"}
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
           disabled={isUserCreated}
         />
-        {errors?.surname && <p className={'input-error'}>{errors?.surname}</p>}
+        {errors?.surname && <p className={"input-error"}>{errors?.surname}</p>}
       </div>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Пароль</label>
+        <label className={"input-label"}>Пароль</label>
         <input
           type="password"
           name="password"
-          className={'input'}
+          className={"input"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={isUserCreated}
         />
         {state?.errors?.password && (
-          <div className={'input-error'}>
+          <div className={"input-error"}>
             <p>Пароль должен соответствовать правилам:</p>
             <ul>
               {state.errors.password.map((error) => (
@@ -86,9 +88,9 @@ export const SignupForm: React.FC = () => {
       >
         Зарегистрироваться
       </button>
-      <button className={"button btnSecondary"} formAction="/login">
+      <NavLink className={"button btnSecondary"} href={ROUTES.LOGIN} style={{ color: "#fff" }}>
         Войти
-      </button>
+      </NavLink>
     </form>
   );
 };

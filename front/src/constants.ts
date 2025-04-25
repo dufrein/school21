@@ -23,3 +23,17 @@ export const loginObjectSchema = {
         " также он должен иметь хотя бы одну цифру и может иметь спецсимволы -@#$%^&*!"
     ),
 };
+
+export const ROUTES = {
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  LEARNING: "/learning",
+  VERIFY: "/verify",
+  PRICING: "/pricing",
+  DASHBOARD: "/dashboard",
+  RESET_PASSWORD: "/resetPass",
+  LOGOUT: "/logout",
+  LESSON: "/lesson",
+  COURSE: "/course",
+  TOPIC: "/topic",
+};

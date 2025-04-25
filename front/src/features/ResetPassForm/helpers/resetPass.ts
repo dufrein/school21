@@ -1,3 +1,5 @@
+"use server";
+
 import { getStudentByEmail, updateStudent } from "@api/student";
 import { resetPassFormSchema } from "../schema";
 import bcrypt from "bcryptjs";
@@ -17,10 +19,7 @@ export const resetPass = async (state: unknown, formData: FormData) => {
       };
     }
 
-    const students = await getStudentByEmail(validatedFields.data.email);
-    const checkedStudent = students && students[0];
-
-    console.log("checkedStudent", checkedStudent);
+    const checkedStudent = await getStudentByEmail(validatedFields.data.email);
 
     if (!checkedStudent) {
       return {

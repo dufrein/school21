@@ -3,6 +3,8 @@
 import React, { useActionState, useState } from "react";
 import styles from "./styles.module.scss";
 import { resetPass } from "./helpers/resetPass";
+import { ROUTES } from "@constants";
+import { NavLink } from "@components";
 
 export const ResetPassForm: React.FC = () => {
   const [state, action] = useActionState(resetPass, undefined);
@@ -10,6 +12,7 @@ export const ResetPassForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const errors = state?.errors;
   const isPassReseted = state?.isPassReseted;
+
   return (
     <form className={styles.form} action={action}>
       <div className={styles.formGroup}>
@@ -42,9 +45,12 @@ export const ResetPassForm: React.FC = () => {
       <button className={"button btnPrimary"} type="submit">
         Обновить пароль
       </button>
-      <button className={"button btnSecondary"} formAction={"/signup"}>
+      <NavLink className={"button btnSecondary"} href={ROUTES.LOGIN} style={{ color: "#fff" }}>
+        Войти
+      </NavLink>
+      <NavLink className={"button btnTetriary"} href={ROUTES.SIGNUP} style={{ color: "#fff" }}>
         Зарегистрироваться
-      </button>
+      </NavLink>
     </form>
   );
 };

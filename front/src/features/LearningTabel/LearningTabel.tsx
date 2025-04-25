@@ -5,7 +5,8 @@ import { AppContext } from "@context/AppContext";
 import { Accordeon } from "@components/Accordeon";
 import { Lesson, Topic } from "@types";
 import styles from "./styles.module.scss";
-import { NavLink } from "@components";
+import { TableItem } from "./components";
+import { ROUTES } from "@constants";
 
 /**
  * Панель с содержанием плана обучения
@@ -13,33 +14,37 @@ import { NavLink } from "@components";
  */
 export const LearningTabel: React.FC = () => {
   const { userCourses } = useContext(AppContext);
-  console.log("userCourses!!!!!!!", userCourses);
 
   if (!userCourses) {
     return null;
   }
 
   const getTopics = (topics: Topic[]) => {
-    console.log("topics", topics);
     return (
       <div className={styles.lessons}>
-        {topics?.map((topicItem) => (
-          <Accordeon
-            title={topicItem.name}
-            content={getLessons(topicItem.lessons)}
-            key={topicItem.id}
-          />
-        ))}
+        {topics?.map((topicItem) => {
+          return (
+            <Accordeon
+              title={topicItem.name}
+              url={`${ROUTES.TOPIC}/${topicItem.documentId}`}
+              content={getLessons(topicItem.lessons)}
+              key={topicItem.id}
+            />
+          );
+        })}
       </div>
     );
   };
+
   const getLessons = (lessons: Lesson[]) => {
     return (
       <div className={styles.lessons}>
         {lessons?.map((lessonItem) => (
-          <NavLink key={lessonItem.id} href={`/lesson/${lessonItem.documentId}`}>
-            {lessonItem.title}
-          </NavLink>
+          <TableItem
+            key={lessonItem.id}
+            title={lessonItem.title}
+            url={`${ROUTES.LESSON}/${lessonItem.documentId}`}
+          />
         ))}
       </div>
     );
@@ -51,7 +56,8 @@ export const LearningTabel: React.FC = () => {
       {userCourses?.map((courseItem) => {
         return (
           <Accordeon
-            title={<NavLink href={`/course/${courseItem.documentId}`}>{courseItem.name}</NavLink>}
+            title={courseItem.name}
+            url={`${ROUTES.COURSE}/${courseItem.documentId}`}
             content={getTopics(courseItem.topics)}
             key={courseItem.id}
           />

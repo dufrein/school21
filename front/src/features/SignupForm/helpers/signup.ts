@@ -1,8 +1,9 @@
+'use server';
+
 import { signupUser } from "@api/signup";
 import { signupFormSchema } from "../schema";
 import { SignupFormStateErrorsType, SignupResult } from "../types";
 import { sendVerifyLink } from "./sendVerifyLink";
-import { getStudentByEmail, updateStudent } from "@api/student";
 
 export const signup = async (state: unknown, formData: FormData): Promise<SignupResult> => {
   const validatedFields = signupFormSchema.safeParse({
@@ -17,20 +18,6 @@ export const signup = async (state: unknown, formData: FormData): Promise<Signup
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
-  }
-
-  const students = await getStudentByEmail(validatedFields.data.email);
-  const checkedStudent = students && students[0];
-
-  if (checkedStudent && !checkedStudent?.isActive) {
-    const updatedNotVerifiedStudent = await updateStudent(checkedStudent.documentId, {
-      ...checkedStudent,
-      tariff: null,
-      verifyTimestamp: Date.now(),
-    });
-    sendVerifyLink(updatedNotVerifiedStudent);
-
-    return { data: updatedNotVerifiedStudent, isUserCreated: true };
   }
 
   const responseData = await signupUser({ ...validatedFields.data });

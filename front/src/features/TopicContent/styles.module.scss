@@ -1,0 +1,47 @@
+.content {
+  flex-grow: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.materialsList {
+  margin-top: 24px;
+}
+
+.materialsTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.materialCard {
+  max-width: 400px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  display: flex;
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+} 

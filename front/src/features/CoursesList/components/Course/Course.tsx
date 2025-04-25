@@ -15,7 +15,6 @@ export const Course: React.FC<CourseProps> = (props) => {
   const progress = Math.floor(
     (readyLessonsIds ? readyLessonsIds.length : 0) / course.topics.length
   );
-  console.log('course111111111',course);
   
   return (
     <Link key={course.id} href={`/course/${course.documentId}`} className={styles.courseCard}>

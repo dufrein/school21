@@ -1,0 +1,1 @@
+export { getMailer } from "./getMailer";

@@ -48,6 +48,10 @@ a:active {
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 300px;
 }
 
 .btnPrimary {

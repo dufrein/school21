@@ -1,25 +1,48 @@
-import React from "react";
+"use client";
+
+import { deleteSession } from "@actions/session";
 import styles from "./styles.module.scss";
 import { NavLink } from "@components";
+import { ROUTES } from "@constants";
+import { HeaderProps } from "./types";
+import { MobileHeader } from "./components/MobileHeader/MobileHeader";
+import { useState } from "react";
 
-export const Header: React.FC = () => {
+export const Header: React.FC<HeaderProps> = ({ userId }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <nav className={styles.nav}>
-      <div className={styles.navContent}>
-        <div className={styles.navContainer}>
-          <div className={styles.navLeft}>
-            <NavLink href="/" className={styles.logo}>
-              Чувашская языковая школа &quot;Хавал&quot;
-            </NavLink>
-          </div>
-          <div className={styles.navRight}>
-            <NavLink href="/learning">Учиться</NavLink>
-            <NavLink href="/pricing">Тарифы</NavLink>
-            <NavLink href="/dashboard">Личный кабинет</NavLink>
-            <NavLink href="/login">Войти</NavLink>
+    <>
+      <nav className={styles.nav}>
+        <div className={styles.navContent}>
+          <div className={styles.navContainer}>
+            <div className={styles.navLeft}>
+              <NavLink href="/" className={styles.logo}>
+                &quot;School&quot;
+              </NavLink>
+            </div>
+            <div className={styles.navRight}>
+              <NavLink href={ROUTES.LEARNING}>Учиться</NavLink>
+              <NavLink href={ROUTES.PRICING}>Тарифы</NavLink>
+              {userId ? (
+                <>
+                  <NavLink href={ROUTES.DASHBOARD}>Личный кабинет</NavLink>
+                  <button onClick={deleteSession} className="button btnTetriary">
+                    Выйти
+                  </button>
+                </>
+              ) : (
+                <NavLink href={ROUTES.LOGIN}>Войти</NavLink>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <MobileHeader
+        userId={userId}
+        isOpen={isMobileMenuOpen}
+        onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      />
+    </>
   );
 };

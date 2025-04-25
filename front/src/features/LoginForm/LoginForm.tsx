@@ -3,6 +3,8 @@
 import React, { useActionState, useState } from "react";
 import styles from "./styles.module.scss";
 import { login } from "./helpers/login";
+import { ROUTES } from "@constants";
+import { NavLink } from "@components";
 
 export const LoginForm: React.FC = () => {
   const [state, action, isPending] = useActionState(login, undefined);
@@ -12,11 +14,11 @@ export const LoginForm: React.FC = () => {
   return (
     <form className={styles.form} action={action}>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Email</label>
+        <label className={"input-label"}>Email</label>
         <input
           type="email"
           name="email"
-          className={'input'}
+          className={"input"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isPending}
@@ -24,11 +26,11 @@ export const LoginForm: React.FC = () => {
         {state?.errors?.email && <p className={"input-error"}>{state.errors.email}</p>}
       </div>
       <div className={styles.formGroup}>
-        <label className={'input-label'}>Пароль</label>
+        <label className={"input-label"}>Пароль</label>
         <input
           type="password"
           name="password"
-          className={'input'}
+          className={"input"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={isPending}
@@ -38,12 +40,16 @@ export const LoginForm: React.FC = () => {
       <button className={"button btnPrimary"} type="submit">
         Войти
       </button>
-      <button className={"button btnSecondary"} formAction={"/signup"}>
+      <NavLink className={"button btnSecondary"} href={ROUTES.SIGNUP} style={{ color: "#fff" }}>
         Зарегистрироваться
-      </button>
-      <button className={"button btnTetriary"} formAction={"/resetPass"}>
+      </NavLink>
+      <NavLink
+        className={"button btnTetriary"}
+        href={ROUTES.RESET_PASSWORD}
+        style={{ color: "#fff" }}
+      >
         Забыли пароль?
-      </button>
+      </NavLink>
     </form>
   );
 };

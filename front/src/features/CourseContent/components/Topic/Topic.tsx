@@ -4,6 +4,8 @@ import styles from "./styles.module.scss";
 import { Lesson as LessonItem } from "../Lesson";
 import { Lesson } from "@types";
 import { getTopic } from "@api/topics";
+import { NavLink } from "@components";
+import { ROUTES } from "@constants";
 
 /**
  * Компонент темы
@@ -13,7 +15,6 @@ export const Topic: React.FC<TopicProps> = (props) => {
   const { topic } = props;
   const [completedLessonsIds, setCompletedLessonsIds] = useState<string[]>([]);
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
-  console.log("lessons", lessons);
   useEffect(() => {
     getTopic(topic.documentId).then((topic) => setLessons(topic.lessons));
     // getUserProgress().then((progress) => setCompletedLessonsIds(progress));
@@ -21,8 +22,10 @@ export const Topic: React.FC<TopicProps> = (props) => {
 
   return (
     <div className={styles.lessonsSection}>
-      <h3 className={styles.lessonsTitle}>{topic.name}</h3>
-      <h4 >Уроки</h4>
+      <NavLink href={`${ROUTES.TOPIC}/${topic.documentId}`}>
+        <h3>{topic.name}</h3>
+      </NavLink>
+      <h4>Уроки</h4>
       <ul className={styles.lessonsList}>
         {lessons?.map((lessonItem) => (
           <LessonItem

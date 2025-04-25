@@ -7,7 +7,6 @@ import { AppContext } from "@context/AppContext";
 
 export function PricingPreview() {
   const { tariffs } = useContext(AppContext);
-  console.log("tariffs", tariffs);
   return (
     <section className={styles.pricing}>
       <div className={styles.pricingContent}>

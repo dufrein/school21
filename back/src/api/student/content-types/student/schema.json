@@ -61,8 +61,7 @@
     "password": {
       "type": "string",
       "required": true,
-      "minLength": 9,
-      "private": true
+      "minLength": 9
     }
   }
 }

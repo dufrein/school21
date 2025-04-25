@@ -21,14 +21,3 @@
 .lessonItem:last-child {
   border-bottom: none;
 }
-
-.topicLink {
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s;
-  font-size: 1.5rem;
-
-  &:hover {
-    color: #1d4ed8;
-  }
-}
