@@ -2,26 +2,17 @@
 
 import { useState } from "react";
 import styles from "./styles.module.scss";
-import useSWR from "swr";
-import { useParams } from "next/navigation";
-import { fetcher } from "@helpers/fetcher";
 import { Lesson } from "@types";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { QuestionResults, SelectedAnswers } from "./types";
 import { Questions } from "./components";
 
-export function LessonContent() {
+export function LessonContent({ lesson }: { lesson: Lesson }) {
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
 
   const [results, setResults] = useState<QuestionResults>({});
   const [isShownResults, setIsShownResults] = useState(false);
-  const { id } = useParams();
-
-  const { data: lesson } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/lessons/${id}?populate=*`,
-    fetcher<Lesson>
-  );
-
+ 
   if (!lesson) {
     return null;
   }

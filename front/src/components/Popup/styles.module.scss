@@ -1,0 +1,14 @@
+.popup {
+  &-cross {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  &-nodialog {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,1 @@
+export { CoursePreviewItem } from './CoursePreviewItem';

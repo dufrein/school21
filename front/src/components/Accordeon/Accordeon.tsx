@@ -4,6 +4,7 @@ import { getClassList } from "@utils";
 import stylesModule from './styles.module.scss'
 import { NavLink } from "@components";
 import linkIcon from "public/icon_link.svg";
+
 /**
  * Компонент Аккордеон
  */

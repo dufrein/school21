@@ -36,4 +36,6 @@ export const ROUTES = {
   LESSON: "/lesson",
   COURSE: "/course",
   TOPIC: "/topic",
+  ALL_COURSES: "/allCourses",
+  COURSE_PREVIEW: "/coursePreview",
 };

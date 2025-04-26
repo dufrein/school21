@@ -5,7 +5,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { NavLink } from "@components";
 import { ROUTES } from "@constants";
 
-export const TopicContent: React.FC<TopicContentProps> = ({ topic }) => {
+export const TopicContent: React.FC<TopicContentProps> = ({ topic, courseId }) => {
   return (
     <div className={styles.content}>
       <div className={styles.header}>
@@ -19,7 +19,7 @@ export const TopicContent: React.FC<TopicContentProps> = ({ topic }) => {
         <div className={styles.materialsList}>
           <h3 className={styles.materialsTitle}>Уроки темы</h3>
           {topic.lessons.map((lesson) => (
-            <NavLink key={lesson.id} href={`${ROUTES.LESSON}/${lesson.documentId}`} className={styles.materialCard}>
+            <NavLink key={lesson.id} href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topic.documentId}/${ROUTES.LESSON}/${lesson.documentId}`} className={styles.materialCard}>
               {lesson.title}
             </NavLink>
           ))}

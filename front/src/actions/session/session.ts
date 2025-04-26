@@ -3,6 +3,8 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import { redirect } from "next/navigation";
+import { getCourseById } from "@api";
+import { getStudent } from "@api";
 
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
@@ -79,5 +81,31 @@ export const verifySession = cache(async () => {
     redirect("/login");
   }
 
-  return { isAuth: true, userId: session.userId };
+  return { isAuth: true, userId: session.userId as string };
 });
+
+export const getUser = async () => {
+  const session = await verifySession();
+  if (!session?.userId) {
+    return false;
+  }
+  const user = await getStudent(session.userId);
+
+  return user;
+};
+
+export const checkUserAccess = async (courseId: string) => {
+  const user = await getUser();
+  const course = await getCourseById(courseId);
+
+  if (!course || !user) {
+    return false;
+  }
+  const tariff = course.tariffs?.find((tariff) => tariff.id === user.tariff?.id);
+
+  if (!tariff) {
+    return false;
+  }
+
+  return true;
+};

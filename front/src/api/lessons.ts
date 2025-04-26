@@ -14,3 +14,9 @@ export const getLessons = async () => {
 
   return data.data;
 };
+
+export const getLessonById = async (id: string) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/lessons/${id}?populate=*`);
+  const data: { data: Lesson } = await response.json();
+  return data.data;
+};

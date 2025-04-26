@@ -3,11 +3,19 @@ import { CourseProps } from "./types";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { getUserProgress } from "@api";
+import { UserContext } from "@context/UserContext";
+import { useContext } from "react";
+import { ROUTES } from "@constants";
 
+/**
+ * Компонент карточка списка курсов пользователя
+ */
 export const Course: React.FC<CourseProps> = (props) => {
   const { course } = props;
   const [readyLessonsIds, setReadyLessonsIds] = useState<string[] | null>(null);
+  const { user } = useContext(UserContext);
 
+  console.log("user", user);
   useEffect(() => {
     getUserProgress(course.documentId).then((lessonsIds) => setReadyLessonsIds(lessonsIds));
   }, []);
@@ -15,16 +23,20 @@ export const Course: React.FC<CourseProps> = (props) => {
   const progress = Math.floor(
     (readyLessonsIds ? readyLessonsIds.length : 0) / course.topics.length
   );
-  
+
   return (
-    <Link key={course.id} href={`/course/${course.documentId}`} className={styles.courseCard}>
+    <Link key={course.id} href={`${ROUTES.COURSE}/${course.documentId}`} className={styles.courseCard}>
       <div className={styles.courseHeader}>
         <h3 className={styles.courseTitle}>{course.name}</h3>
-        <div className={styles.progressText}>Прогресс: {progress}%</div>
       </div>
-      <div className={styles.progressBar}>
-        <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
-      </div>
+      {user && (
+        <>
+          <div className={styles.progressText}>Прогресс: {progress}%</div>
+          <div className={styles.progressBar}>
+            <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
+          </div>
+        </>
+      )}
       <div className={styles.topicsSection}>
         <h4 className={styles.topicsTitle}>Темы</h4>
         <ul className={styles.topicsList}>

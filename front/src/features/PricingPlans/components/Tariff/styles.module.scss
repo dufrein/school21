@@ -3,6 +3,9 @@
   border-radius: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cardTitle {
@@ -50,37 +53,22 @@
   color: #6b7280;
 }
 
-.btnPrimary {
-  display: block;
-  margin-top: 2rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  color: #ffffff;
-  font-weight: 500;
-  border-radius: 0.375rem;
-  text-align: center;
-  transition: background-color 0.2s;
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 
-  &:hover {
-    background-color: #2563eb;
+  :global(.btnPrimary) {
+    min-width: 150px;
   }
 }
 
-.btnSecondary {
-  display: block;
-  margin-top: 2rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #e5e7eb;
-  color: #374151;
-  font-weight: 500;
-  border-radius: 0.375rem;
-  text-align: center;
-  transition: background-color 0.2s;
+.btnStub {
+  margin: 0;
+  background-color: #2ead63;
 
   &:hover {
-    background-color: #d1d5db;
+    background-color: #68bd8a;
   }
-}
-
-@media (max-width: 900px) {
 }

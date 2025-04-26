@@ -1,0 +1,31 @@
+.topicsTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.topicsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topicItem {
+  max-width: 600px;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.lessonName {
+  font-size: 14px;
+  margin: 20px;
+}

@@ -11,7 +11,7 @@ export const getTariffs = async () => {
 };
 
 export const getTariffById = async (tariffId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs/${tariffId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs/${tariffId}?populate=*`);
   if (!response.ok) {
     throw new Error("Failed to fetch tariff");
   }

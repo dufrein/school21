@@ -6,6 +6,9 @@ import styles from "./styles.module.scss";
 import type { Course } from "@types";
 import { Course as CourseItem } from "./components";
 
+/**
+ * Список курсов
+ */
 export function CoursesList() {
   const [courses, setCourses] = useState<Course[]>([]);
 

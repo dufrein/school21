@@ -12,7 +12,7 @@ import { ROUTES } from "@constants";
  * @param topic: Topic
  */
 export const Topic: React.FC<TopicProps> = (props) => {
-  const { topic } = props;
+  const { topic, courseId } = props;
   const [completedLessonsIds, setCompletedLessonsIds] = useState<string[]>([]);
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Topic: React.FC<TopicProps> = (props) => {
 
   return (
     <div className={styles.lessonsSection}>
-      <NavLink href={`${ROUTES.TOPIC}/${topic.documentId}`}>
+      <NavLink href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topic.documentId}`}>
         <h3>{topic.name}</h3>
       </NavLink>
       <h4>Уроки</h4>
@@ -31,6 +31,8 @@ export const Topic: React.FC<TopicProps> = (props) => {
           <LessonItem
             completedLessonsIds={completedLessonsIds}
             lesson={lessonItem}
+            courseId={courseId}
+            topicId={topic.documentId}
             key={lessonItem.id}
           />
         ))}

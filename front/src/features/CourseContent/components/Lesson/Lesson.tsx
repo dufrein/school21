@@ -2,9 +2,10 @@ import React from "react";
 import { LessonProps } from "./types";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import { ROUTES } from "@constants";
 
 export const Lesson: React.FC<LessonProps> = (props) => {
-  const { lesson, completedLessonsIds } = props;
+  const { lesson, completedLessonsIds, courseId, topicId } = props;
 
   return (
     <li key={lesson.id} className={styles.lessonItem}>
@@ -22,7 +23,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           />
         </svg>
       )}
-      <Link href={`/lesson/${lesson.documentId}`} className={styles.lessonLink}>
+      <Link href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topicId}/${ROUTES.LESSON}/${lesson.documentId}`} className={styles.lessonLink}>
         {lesson.title}
       </Link>
     </li>

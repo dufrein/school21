@@ -1,0 +1,67 @@
+$mobileMin: 0;
+$mobileMax: 767px;
+$tabletPortraitMin: 768px;
+$tabletPortraitMax: 1023px;
+$tabletLandscapeMin: 1024px;
+$tabletLandscapeMax: 1279px;
+$desktopMin: 1280px;
+
+/**
+ * And one mixin to rule all breakpoints
+
+ * mobile - mobile (0-767px),
+ * tabletPortrait - tablet portrait (768-1023px),
+ * tabletLandscape - tablet landscape (1024-1279px),
+ * desktop - desktop (1280px+),
+
+ * toTabletPortrait - to tablet portrait (0-767px),
+ * toTabletLandscape - to tablet landscape (0-1023px),
+ * toDesktop - to desktop (0-1279px),
+
+ * fromTabletPortrait - from tablet portrait (768px+),
+ * fromTabletLandscape - from tablet landscape (1024px+),
+ * fromDesktop - from desktop (1280px+),
+ */
+@mixin deviceWidth($size) {
+  @if $size == toTabletPortrait {
+    @media (max-width: $mobileMax) {
+      @content;
+    }
+  } @else if $size == toTabletLandscape {
+    @media (max-width: $tabletPortraitMax) {
+      @content;
+    }
+  } @else if $size == toDesktop {
+    @media (max-width: $tabletLandscapeMax) {
+      @content;
+    }
+  } @else if $size == mobile {
+    @media (min-width: $mobileMin) and (max-width: $mobileMax) {
+      @content;
+    }
+  } @else if $size == tabletPortrait {
+    @media (min-width: $tabletPortraitMin) and (max-width: $tabletPortraitMax) {
+      @content;
+    }
+  } @else if $size == tabletLandscape {
+    @media (min-width: $tabletLandscapeMin) and (max-width: $tabletLandscapeMax) {
+      @content;
+    }
+  } @else if $size == desktop {
+    @media (min-width: $desktopMin) {
+      @content;
+    }
+  } @else if $size == fromTabletPortrait {
+    @media (min-width: $tabletPortraitMin) {
+      @content;
+    }
+  } @else if $size == fromTabletLandscape {
+    @media (min-width: $tabletLandscapeMin) {
+      @content;
+    }
+  } @else if $size == fromDesktop {
+    @media (min-width: $desktopMin) {
+      @content;
+    }
+  }
+}

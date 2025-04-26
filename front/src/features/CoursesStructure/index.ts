@@ -1,0 +1,1 @@
+export {  CoursesStructure } from './CoursesStructure';

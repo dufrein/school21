@@ -116,3 +116,7 @@ a:active {
   font-size: 14px;
   color: #666;
 }
+
+.scroll-lock {
+  overflow-y: hidden !important;
+}

@@ -6,43 +6,43 @@ import { NavLink } from "@components";
 import { ROUTES } from "@constants";
 import { HeaderProps } from "./types";
 import { MobileHeader } from "./components/MobileHeader/MobileHeader";
-import { useState } from "react";
+import { useScreenSize } from "@hooks/useScreenSize/useScreenSize";
+import { UserContext } from "@context/UserContext";
+import { useContext } from "react";
 
 export const Header: React.FC<HeaderProps> = ({ userId }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isMobile, isTabletPortrait } = useScreenSize();
+  const { user } = useContext(UserContext);
+
+  if (isMobile || isTabletPortrait) {
+    return <MobileHeader userId={userId} />;
+  }
 
   return (
-    <>
-      <nav className={styles.nav}>
-        <div className={styles.navContent}>
-          <div className={styles.navContainer}>
-            <div className={styles.navLeft}>
-              <NavLink href="/" className={styles.logo}>
-                &quot;School&quot;
-              </NavLink>
-            </div>
-            <div className={styles.navRight}>
-              <NavLink href={ROUTES.LEARNING}>Учиться</NavLink>
-              <NavLink href={ROUTES.PRICING}>Тарифы</NavLink>
-              {userId ? (
-                <>
-                  <NavLink href={ROUTES.DASHBOARD}>Личный кабинет</NavLink>
-                  <button onClick={deleteSession} className="button btnTetriary">
-                    Выйти
-                  </button>
-                </>
-              ) : (
-                <NavLink href={ROUTES.LOGIN}>Войти</NavLink>
-              )}
-            </div>
+    <nav className={styles.nav}>
+      <div className={styles.navContent}>
+        <div className={styles.navContainer}>
+          <div className={styles.navLeft}>
+            <NavLink href="/" className={styles.logo}>
+              &quot;School&quot;
+            </NavLink>
+          </div>
+          <div className={styles.navRight}>
+            {user && <NavLink href={ROUTES.LEARNING}>Учиться</NavLink>}
+            <NavLink href={ROUTES.PRICING}>Тарифы</NavLink>
+            {userId ? (
+              <>
+                <NavLink href={ROUTES.DASHBOARD}>Личный кабинет</NavLink>
+                <button onClick={deleteSession} className="button btnTetriary">
+                  Выйти
+                </button>
+              </>
+            ) : (
+              <NavLink href={ROUTES.LOGIN}>Войти</NavLink>
+            )}
           </div>
         </div>
-      </nav>
-      <MobileHeader
-        userId={userId}
-        isOpen={isMobileMenuOpen}
-        onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      />
-    </>
+      </div>
+    </nav>
   );
 };

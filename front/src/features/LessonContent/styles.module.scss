@@ -1,22 +1,15 @@
 .content {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding:  0 20px 20px;
   flex-grow: 2;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem 1rem;
-  }
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #111827;
+  margin: 36px 0;
 }
 
 .card {
@@ -36,6 +29,10 @@
 
 .theoryContent {
   margin-top: 1rem;
+
+  a {
+    color: #3b82f6;
+  }
 }
 
 .paragraph {
@@ -153,4 +150,4 @@
 
 .tryAgain {
   margin-top: 1rem;
-} 
+}

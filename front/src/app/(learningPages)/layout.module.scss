@@ -1,4 +1,10 @@
+@use "../../styles/helpers";
+
 .twoColumn {
   display: flex;
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    flex-direction: column;
+  }
 }

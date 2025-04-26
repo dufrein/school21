@@ -34,6 +34,7 @@ export function AccountSettings({ onSave }: AccountSettingsProps) {
             value={userSettings.name}
             onChange={(e) => setUserSettings({ ...userSettings, name: e.target.value })}
             className={styles.input}
+            disabled={true}
           />
         </div>
         <div className={styles.formGroup}>
@@ -43,6 +44,7 @@ export function AccountSettings({ onSave }: AccountSettingsProps) {
             value={userSettings.email}
             onChange={(e) => setUserSettings({ ...userSettings, email: e.target.value })}
             className={styles.input}
+            disabled={true}
           />
         </div>
         <div className={styles.formGroup}>

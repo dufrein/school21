@@ -7,11 +7,12 @@ import styles from "./styles.module.scss";
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   className?: string;
   style?: React.CSSProperties;
 }
 
-export function NavLink({ href, children, className,style }: NavLinkProps) {
+export function NavLink({ href, children, className, style, onClick }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -21,6 +22,7 @@ export function NavLink({ href, children, className,style }: NavLinkProps) {
       className={`${styles.navLink} ${className}`}
       data-active={isActive}
       style={style}
+      onClick={onClick}
     >
       {children}
     </Link>

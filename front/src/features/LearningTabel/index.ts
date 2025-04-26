@@ -1,1 +1,0 @@
-export { LearningTabel } from './LearningTabel';
