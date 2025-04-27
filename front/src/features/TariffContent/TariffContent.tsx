@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { TariffContentProps } from "./types";
 import styles from "./styles.module.scss";
-import { getClassList } from "@utils";
-import { OrderModal } from "@components";
+import { BuyTariff } from "@components";
 import { ROUTES } from "@constants";
 import { NavLink } from "@components";
 
@@ -15,16 +14,6 @@ import { NavLink } from "@components";
  */
 export const TariffContent: React.FC<TariffContentProps> = (props) => {
   const { tariff } = props;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const classList = getClassList(["button btnPrimary", styles.btnStub]);
-
-  const handleBuyClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className={styles.tariffContent}>
@@ -39,7 +28,7 @@ export const TariffContent: React.FC<TariffContentProps> = (props) => {
         ))}
       </ul>
       <p>Курсы входящие в тариф:</p>
-      <p className={styles.priceDescription}>
+      <div className={styles.priceDescription}>
         <ul className={styles.courseList}>
           {tariff.courses.map((courseItem) => (
             <li key={courseItem.id}>
@@ -52,11 +41,8 @@ export const TariffContent: React.FC<TariffContentProps> = (props) => {
             </li>
           ))}
         </ul>
-      </p>
-      <button className={classList} onClick={handleBuyClick}>
-        Купить
-      </button>
-      <OrderModal isOpened={isModalOpen} onClose={handleCloseModal} />
+      </div>
+      <BuyTariff>Купить</BuyTariff>
     </div>
   );
 };

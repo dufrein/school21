@@ -1,7 +1,7 @@
 "use server";
-
+import { strapiClient } from "@api/strapiClient";
 import { StudentType } from "@types";
-import { strapiClient } from "@utils/strapiClient/strapiClient";
+
 const studentsCollection = strapiClient.collection("students");
 
 export const getStudent = async (studentId: string) => {
@@ -48,21 +48,16 @@ export const updateStudent = async (studentId: string, newStudent: StudentType) 
       tariff: tariff ? tariff.documentId : null,
       phone: newStudent.phone,
       verifyTimestamp: newStudent.verifyTimestamp,
-      password: newStudent.password, //тут уже хэшированный пароль
+      sex: newStudent.sex || null,
+      avatarId: newStudent.avatarId || null,
     };
-    console.log("updatedStudent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", updatedStudent);
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/students/${studentId}`, {
-      method: "PUT",
-      body: JSON.stringify({ data: updatedStudent }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+
+    console.log("updatedStudent", updatedStudent);
+    const response = await studentsCollection.update(studentId, {
+      ...updatedStudent,
     });
-    if (!response.ok) {
-      throw new Error("Failed to update user data");
-    }
-    const data: { data: StudentType } = await response.json();
-    return data.data;
+
+    return response.data as unknown as StudentType;
   } catch (err) {
     console.error(err);
     return undefined;

@@ -2,6 +2,7 @@ import { AccountSettings } from "@features/AccountSettings";
 import styles from "./page.module.scss";
 import { verifySession } from "@actions/session/session";
 import { redirect } from "next/navigation";
+import { getAvatars } from "@api/avatars";
 
 export default async function Dashboard() {
   const session = await verifySession();
@@ -9,10 +10,13 @@ export default async function Dashboard() {
   if (!session?.isAuth) {
     redirect("/login");
   }
+
+  const avatars = await getAvatars();
+ 
   return (
     <div className={styles.container}>
-      <h1>Личный кабинет</h1>
-      <AccountSettings />
+      <h2>Личный кабинет</h2>
+      <AccountSettings avatarsWoman={avatars.avatarsWoman} avatarsMan={avatars.avatarsMan} />
     </div>
   );
 }

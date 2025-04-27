@@ -1,45 +1,70 @@
-"use client"; 
+"use client";
 
-import { useEffect, useState } from 'react';
-import { ScreenSize, UseScreenSizeResult } from './types';
+import { useEffect, useState } from "react";
+import { ScreenSize } from "./types";
 
-const BREAKPOINTS = {
-  mobile: 767,
-  tabletPortrait: 1023,
-  tabletLandscape: 1279,
-} as const;
+interface ScreenFlags {
+  isMobile: boolean;
+  isTabletPortrait: boolean;
+  isTabletLandscape: boolean;
+  isDesktop: boolean;
+}
 
-export const useScreenSize = (): UseScreenSizeResult => {
-  const [screenSize, setScreenSize] = useState<ScreenSize>('desktop');
+const initialState: ScreenFlags = {
+  isMobile: false,
+  isTabletPortrait: false,
+  isTabletLandscape: false,
+  isDesktop: false,
+};
+
+export const useScreenSize = () => {
+  const [screenSize, setScreenSize] = useState<ScreenSize | null>(null);
+  const [flags, setFlags] = useState<ScreenFlags>({
+    ...initialState,
+    isDesktop: true,
+  });
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
 
-      if (width <= BREAKPOINTS.mobile) {
-        setScreenSize('mobile');
-      } else if (width <= BREAKPOINTS.tabletPortrait) {
-        setScreenSize('tabletPortrait');
-      } else if (width <= BREAKPOINTS.tabletLandscape) {
-        setScreenSize('tabletLandscape');
+      if (width < 768) {
+        setScreenSize("mobile");
+        setFlags({
+          ...initialState,
+          isMobile: true,
+        });
+      } else if (width >= 768 && width < 1024) {
+        setScreenSize("tabletPortrait");
+        setFlags({
+          ...initialState,
+          isTabletPortrait: true,
+        });
+      } else if (width >= 1024 && width < 1280) {
+        setScreenSize("tabletLandscape");
+        setFlags({
+          ...initialState,
+          isTabletLandscape: true,
+        });
       } else {
-        setScreenSize('desktop');
+        setScreenSize("desktop");
+        setFlags({
+          ...initialState,
+          isDesktop: true,
+        });
       }
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return {
     screenSize,
-    isMobile: screenSize === 'mobile',
-    isTabletPortrait: screenSize === 'tabletPortrait',
-    isTabletLandscape: screenSize === 'tabletLandscape',
-    isDesktop: screenSize === 'desktop',
+    ...flags,
   };
-}; 
+};

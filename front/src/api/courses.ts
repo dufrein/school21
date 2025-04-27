@@ -1,5 +1,6 @@
 import { Course } from "@types";
 import { getTopic } from "./topics";
+
 export const getCourseById = async (courseId: string) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/courses/${courseId}?populate=*`);
   if (!response.ok) {

@@ -1,6 +1,6 @@
-import { CommonComponent } from "@types";
+import { CommonComponentProps } from "@types";
 
-export interface ModalProps extends CommonComponent {
+export interface ModalProps extends CommonComponentProps {
   isOpened: boolean;
   children: React.ReactNode;
   onClose?: () => void;

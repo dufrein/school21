@@ -13,7 +13,7 @@ export const CourseTariffs: React.FC<CourseTariffsProps> = ({ course }) => {
       <h4 className={styles.tariffsTitle}>Входит в тарифы:</h4>
       {course.tariffs.map((tariff, index) => (
         <React.Fragment key={tariff.id}>
-          <Link href={`${ROUTES.PRICING}/${tariff.id}`} className={styles.tariffLink}>
+          <Link href={`${ROUTES.PRICING}/${tariff.documentId}`} className={styles.tariffLink}>
             {tariff.name}
           </Link>
           {index < course.tariffs.length - 1 && ', '}

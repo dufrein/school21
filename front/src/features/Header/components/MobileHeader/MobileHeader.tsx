@@ -6,10 +6,13 @@ import { NavLink } from "@components";
 import { ROUTES } from "@constants";
 import { MobileHeaderProps } from "./types";
 import { Modal } from "@components/Modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "@context/UserContext";
+import { Avatar } from "@components/Avatar/Avatar";
 
 export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(UserContext);
   const onToggle = () => setIsOpen(!isOpen);
   const onLinkClick = () => setIsOpen(false);
   const onDeleteHandler = () => {
@@ -45,10 +48,16 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
             <NavLink href={ROUTES.PRICING} className={styles.mobileMenuItem} onClick={onLinkClick}>
               Тарифы
             </NavLink>
+            <NavLink href={ROUTES.VIDEO} className={styles.mobileMenuItem} onClick={onLinkClick}>
+              Видеолекции
+            </NavLink>
             {userId ? (
               <>
                 <NavLink href={ROUTES.DASHBOARD} className={styles.mobileMenuItem} onClick={onLinkClick}>
-                  Личный кабинет
+                  <div className={styles.mobileMenuItemContent}>
+                    <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
+                    <span>Личный кабинет</span>
+                  </div>
                 </NavLink>
                 <div className={styles.mobileMenuButton} onClick={onDeleteHandler}>
                   Выйти

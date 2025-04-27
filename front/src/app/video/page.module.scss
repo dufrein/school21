@@ -1,0 +1,12 @@
+@use "../../styles/helpers";
+
+.container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    padding: 20px;
+  }
+}

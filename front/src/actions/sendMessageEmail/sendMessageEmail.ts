@@ -1,5 +1,5 @@
 "use server";
-import { getMailer } from "@utils";
+import { getMailer } from "@actions"
 
 export interface SendMessageEmailParams {
   to: string;

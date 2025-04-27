@@ -28,17 +28,6 @@
       "type": "boolean",
       "required": true
     },
-    "avatar": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "tariff": {
       "type": "relation",
       "relation": "oneToOne",
@@ -62,6 +51,16 @@
       "type": "string",
       "required": true,
       "minLength": 9
+    },
+    "sex": {
+      "type": "enumeration",
+      "enum": [
+        "man",
+        "woman"
+      ]
+    },
+    "avatarId": {
+      "type": "string"
     }
   }
 }

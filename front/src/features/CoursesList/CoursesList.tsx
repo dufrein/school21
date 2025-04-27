@@ -1,26 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getCourses } from "../../api";
+import { useContext } from "react";
 import styles from "./styles.module.scss";
-import type { Course } from "@types";
 import { Course as CourseItem } from "./components";
+import { AppContext } from "@context/AppContext/AppContext";
 
 /**
  * Список курсов
  */
 export function CoursesList() {
-  const [courses, setCourses] = useState<Course[]>([]);
-
-  useEffect(() => {
-    getCourses(true).then((courses: Course[]) => setCourses(courses));
-  }, []);
+  const { userCourses } = useContext(AppContext);
 
   return (
     <div className={styles.coursesSection}>
       <h2 className={styles.coursesTitle}>Мои курсы</h2>
       <div className={styles.coursesList}>
-        {courses.map((course) => (
+        {userCourses?.map((course) => (
           <CourseItem course={course} key={course.id} />
         ))}
       </div>

@@ -24,6 +24,19 @@ export const loginObjectSchema = {
     ),
 };
 
+export const nameSurnameSchema = {
+  name: z
+    .string()
+    .min(5, "Минимальная длина 5")
+    .max(25, "Максимальная длина 25")
+    .regex(/^[а-яёй]+$/i, "Имя может содержать только русские буквы"),
+  surname: z
+    .string()
+    .min(5, "Минимальная длина 5")
+    .max(40, "Максимальная длина 40")
+    .regex(/^[а-яёй]+$/i, "Фамилия может содержать только русские буквы"),
+};
+
 export const ROUTES = {
   LOGIN: "/login",
   SIGNUP: "/signup",
@@ -38,4 +51,12 @@ export const ROUTES = {
   TOPIC: "/topic",
   ALL_COURSES: "/allCourses",
   COURSE_PREVIEW: "/coursePreview",
+  VIDEO: "/video",
 };
+
+
+export enum SexEnum {
+  MAN = "man",
+  WOMAN = "woman",
+}
+

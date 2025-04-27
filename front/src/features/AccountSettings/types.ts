@@ -1,11 +1,6 @@
-import { StudentType } from '@types/student'
-
-export interface UserSettings {
-  name: string;
-  email: string;
-  plan: string;
-}
+import { StrapiImage } from "@types";
 
 export interface AccountSettingsProps {
-  onSave?: (settings: Partial<StudentType>) => void;
+  avatarsWoman: StrapiImage[];
+  avatarsMan: StrapiImage[];
 }

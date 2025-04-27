@@ -1,7 +1,7 @@
 import { getLessons, getLessonById } from "./lessons";
 import { getCourseById, getCourses } from "./courses";
 import { getTariffs, getTariffById } from "./tariffs";
-import { getStudent, getUserProgress } from "./student";
+import { getStudent, getUserProgress, updateStudent } from "./student";
 
 export {
   getLessons,
@@ -12,4 +12,5 @@ export {
   getStudent,
   getUserProgress,
   getLessonById,
+  updateStudent,
 };

@@ -4,4 +4,7 @@ export type { Lesson } from "./lesson";
 export type { Topic } from "./topic";
 export type { Question, Answer } from "./question";
 export type { StudentType, SignupFormType, NewStudentType } from "./student";
-export type { HomePageProps, CommonComponent, StrapiImage, StrapiApiErrorType } from "./common";
+export type { HomePageProps, CommonComponentProps, StrapiImage, StrapiApiErrorType } from "./common";
+export type { VideoLesson } from "./video";
+export type { AvatarType } from "./avatar";
+export { SexEnum } from "./SexEnum";

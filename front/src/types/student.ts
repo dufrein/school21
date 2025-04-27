@@ -1,4 +1,5 @@
 import { Tariff } from "./tariff";
+import { SexEnum } from './SexEnum';
 
 /**
  * Тип студента (пользователь - ученик школы)
@@ -15,8 +16,9 @@ export interface StudentType {
   documentId: string;
   password: string;
   phone?: string;
-  avatar?: unknown;
+  avatarId?: string;
   verifyTimestamp?: number; 
+  sex?: SexEnum;
 }
 
 export type NewStudentType = Omit<StudentType, "id" | "documentId">;

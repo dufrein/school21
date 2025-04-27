@@ -1,5 +1,5 @@
-import { CommonComponent } from "@types";
+import { CommonComponentProps } from "@types";
 
-export interface BackdropProps extends CommonComponent {
+export interface BackdropProps extends CommonComponentProps {
   onClick?: () => void;
 }

@@ -1,6 +1,6 @@
-import { CommonComponent } from "@types";
+import { CommonComponentProps } from "@types";
 
-export interface PopupProps extends CommonComponent {
+export interface PopupProps extends CommonComponentProps {
   isOpened: boolean;
   onClose?: () => void;
   hideCloseButton?: boolean;

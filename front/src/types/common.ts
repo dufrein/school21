@@ -6,7 +6,7 @@ export interface HomePageProps {
   activeTariff: Tariff;
 }
 
-export interface CommonComponent extends PropsWithChildren {
+export interface CommonComponentProps extends PropsWithChildren {
   className?: string;
   styles?: React.CSSProperties;
 }

@@ -1,6 +1,8 @@
 import { NewStudentType, SignupFormType, StudentType } from "@types";
-import { StrapiApiErrorType } from "@types";
 import bcrypt from "bcryptjs";
+import { strapiClient } from "@api/strapiClient";
+
+const studentsCollection = strapiClient.collection("students");
 
 export const signupUser = async (signupFormData: SignupFormType) => {
   const salt = bcrypt.genSaltSync(5);
@@ -16,18 +18,25 @@ export const signupUser = async (signupFormData: SignupFormType) => {
   };
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/students`, {
-      method: "POST",
-      body: JSON.stringify({ data: studentUser }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await studentsCollection.create({ ...studentUser });
 
-    const info: { data: StudentType; error: StrapiApiErrorType } = await response.json();
-    const fullData = { data: info.data, errors: info.error?.details.errors };
+    console.log("response", response);
+
+    const fullData = {
+      data: response.data as unknown as StudentType,
+      errors: null,
+    };
+
     return fullData;
   } catch (err) {
     console.error("Ошибка при регистрации", err);
+    return {
+      errors: [
+        {
+          path: ["email"],
+          message: "Пользователь с такой почтой уже существует, выберите другую почту",
+        },
+      ],
+    };
   }
 };

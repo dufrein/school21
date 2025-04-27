@@ -3,3 +3,7 @@ export { OrderModal } from "./OrderModal";
 export { Modal } from "./Modal";
 export { Popup } from "./Popup";
 export { Accordeon } from "./Accordeon";
+export { BuyTariff } from "./BuyTariff";
+export { AvatarSelect } from "./AvatarSelect/AvatarSelect";
+export { Avatar } from "./Avatar/Avatar";
+export { Spinner } from "./Spinner";

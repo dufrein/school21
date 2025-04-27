@@ -120,3 +120,8 @@ a:active {
 .scroll-lock {
   overflow-y: hidden !important;
 }
+
+h1,
+h2 {
+  margin: 10px 0;
+}

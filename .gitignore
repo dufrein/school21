@@ -15,7 +15,10 @@ dist-ssr
 *.local
 static
 tmp
-
+.env.development
+.env.production
+.env
+.env.local
 # Editor directories and files
 .vscode/*
 .cursor/*

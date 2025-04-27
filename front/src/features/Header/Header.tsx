@@ -9,9 +9,10 @@ import { MobileHeader } from "./components/MobileHeader/MobileHeader";
 import { useScreenSize } from "@hooks/useScreenSize/useScreenSize";
 import { UserContext } from "@context/UserContext";
 import { useContext } from "react";
+import { Avatar } from "@components/Avatar/Avatar";
 
 export const Header: React.FC<HeaderProps> = ({ userId }) => {
-  const { isMobile, isTabletPortrait } = useScreenSize();
+  const { isMobile, isTabletPortrait} = useScreenSize();
   const { user } = useContext(UserContext);
 
   if (isMobile || isTabletPortrait) {
@@ -30,9 +31,13 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
           <div className={styles.navRight}>
             {user && <NavLink href={ROUTES.LEARNING}>Учиться</NavLink>}
             <NavLink href={ROUTES.PRICING}>Тарифы</NavLink>
+            <NavLink href={ROUTES.VIDEO}>Видеолекции</NavLink>
+
             {userId ? (
               <>
-                <NavLink href={ROUTES.DASHBOARD}>Личный кабинет</NavLink>
+                <NavLink href={ROUTES.DASHBOARD}>
+                  <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
+                </NavLink>
                 <button onClick={deleteSession} className="button btnTetriary">
                   Выйти
                 </button>

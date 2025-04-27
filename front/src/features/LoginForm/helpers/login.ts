@@ -31,6 +31,16 @@ export const login = async (state: unknown, formData: FormData) => {
       };
     }
 
+    if (!checkedStudent.isActive) {
+      return {
+        errors: {
+          email: "Пользователь не прошел верификацию по ссылке в почте",
+          password: "",
+        },
+      };
+    }
+
+
     const result = await bcrypt.compare(validatedFields.data.password, checkedStudent.password);
 
     if (result) {

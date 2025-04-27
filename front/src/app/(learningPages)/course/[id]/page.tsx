@@ -1,9 +1,10 @@
 import { CourseContent } from "@features/CourseContent";
 import { getCourseById } from "@api";
 import { checkUserAccess } from "@actions/session/session";
-import styles from "./layout.module.scss";
+import styles from "./page.module.scss";
 import { NavLink } from "@components/NavLink";
 import { ROUTES } from "@constants";
+
 export default async function Course({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const course = await getCourseById(id);

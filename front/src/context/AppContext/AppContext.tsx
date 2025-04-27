@@ -38,7 +38,7 @@ export const AppContextProvider: React.FC<AppContextProps> = (props) => {
     const fullCourses: Course[] = [];
 
     activeTariff?.courses.forEach((courseItem, index) => {
-      getCourseById(courseItem.documentId, true).then((courseData) => {
+      getCourseById(courseItem.documentId).then((courseData) => {
         const fullCourseData = courseData;
 
         const promises = courseData.topics.map((topicItem) => getTopic(topicItem.documentId));
