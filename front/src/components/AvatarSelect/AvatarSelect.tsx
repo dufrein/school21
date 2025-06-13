@@ -1,9 +1,14 @@
+"use client";
+
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import { getImageSrc } from "@helpers";
 import { AvatarSelectProps } from "./types";
 import { SexEnum } from '../../types/SexEnum';
 
+/**
+ * Компонент для выбора аватара
+ */
 export const AvatarSelect = (props: AvatarSelectProps) => {
   const { avatarsWoman, avatarsMan, currentAvatarId, sex, onAvatarSelect } = props;
   const [showAvatarSelect, setShowAvatarSelect] = useState(false);

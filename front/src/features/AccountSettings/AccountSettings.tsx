@@ -5,11 +5,10 @@ import styles from "./styles.module.scss";
 import { UserContext } from "@context/UserContext";
 import { StudentType } from "@types";
 import { BuyTariff, AvatarSelect } from "@components";
-import { updateStudent } from "@api/student";
 import { accountSettingsSchema } from "./schema";
 import { getClassList } from "@utils";
 import { AccountSettingsProps } from "./types";
-import { SexEnum } from '@constants';
+import { SexEnum } from "@constants";
 
 /**
  * Компонент для настроек аккаунта
@@ -17,13 +16,12 @@ import { SexEnum } from '@constants';
  */
 export const AccountSettings = (props: AccountSettingsProps) => {
   const { avatarsWoman, avatarsMan } = props;
-  const { user } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const { user, saveStudent, isLoading } = useContext(UserContext);
   const [userSettings, setUserSettings] = useState<Partial<StudentType>>({
     name: user?.name || "",
     surname: user?.surname || "",
     sex: user?.sex,
-    avatarId: user?.avatarId || '',
+    avatarId: user?.avatarId || "",
   });
 
   const [errors, setErrors] = useState<{
@@ -43,7 +41,6 @@ export const AccountSettings = (props: AccountSettingsProps) => {
   }, [userSettings, user]);
 
   const handleSave = async () => {
-    setIsLoading(true);
     setErrors({});
 
     const validationResult = accountSettingsSchema.safeParse({
@@ -54,19 +51,13 @@ export const AccountSettings = (props: AccountSettingsProps) => {
 
     if (!validationResult.success) {
       setErrors(validationResult.error.flatten().fieldErrors);
-      setIsLoading(false);
       return;
     }
 
     if (user?.documentId) {
-      updateStudent(user?.documentId, { ...user, ...userSettings })
-        .then(() => {
-          setErrors({});
-        })
-        .catch((error) => console.error(error))
-        .finally(() => {
-          setIsLoading(false);
-        });
+      saveStudent(user, userSettings).then(() => {
+        setErrors({});
+      });
     }
   };
 
@@ -104,9 +95,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
           <label className={styles.label}>Пол</label>
           <select
             value={userSettings.sex || ""}
-            onChange={(e) =>
-              setUserSettings({ ...userSettings, sex: e.target.value as SexEnum })
-            }
+            onChange={(e) => setUserSettings({ ...userSettings, sex: e.target.value as SexEnum })}
             className={styles.sexSelect}
           >
             <option value={SexEnum.MAN}>Мужской</option>

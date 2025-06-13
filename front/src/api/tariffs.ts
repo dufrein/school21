@@ -1,7 +1,7 @@
 import { Tariff } from "@types";
 
 export const getTariffs = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tariffs`);
   if (!response.ok) {
     throw new Error("Failed to fetch tariffs");
   }
@@ -11,7 +11,7 @@ export const getTariffs = async () => {
 };
 
 export const getTariffById = async (tariffId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/tariffs/${tariffId}?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tariffs/${tariffId}?populate=*`);
   if (!response.ok) {
     throw new Error("Failed to fetch tariff");
   }

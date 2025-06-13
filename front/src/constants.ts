@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export const IS_SSR = typeof window === "undefined";
+
 export enum Complexity {
   BASIC = "basic",
   MEDIUM = "medium",
@@ -60,3 +62,14 @@ export enum SexEnum {
   WOMAN = "woman",
 }
 
+export const SCHOOL_NAME = 'Шкул';
+
+/**
+ * Класс для ошибки запроса
+ */
+export class FetchError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "FetchError";
+  }
+}

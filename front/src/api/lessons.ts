@@ -5,7 +5,7 @@ import { Lesson } from "@types";
  * @returns Lesson[]
  */
 export const getLessons = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/lessons?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lessons?populate=*`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch course lessons");
@@ -16,7 +16,7 @@ export const getLessons = async () => {
 };
 
 export const getLessonById = async (id: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/lessons/${id}?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lessons/${id}?populate=*`);
   const data: { data: Lesson } = await response.json();
   return data.data;
 };

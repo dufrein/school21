@@ -3,7 +3,7 @@
 import { deleteSession } from "@actions/session";
 import styles from "./styles.module.scss";
 import { NavLink } from "@components";
-import { ROUTES } from "@constants";
+import { ROUTES, SCHOOL_NAME } from "@constants";
 import { MobileHeaderProps } from "./types";
 import { Modal } from "@components/Modal";
 import { useState, useContext } from "react";
@@ -25,7 +25,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
         <div className={styles.mobileNavContainer}>
           <div className={styles.mobileNavLeft}>
             <NavLink href="/" className={styles.logo}>
-              &quot;School&quot;
+              &quot;{SCHOOL_NAME}&quot;
             </NavLink>
           </div>
           <button

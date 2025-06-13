@@ -8,3 +8,4 @@ export type { HomePageProps, CommonComponentProps, StrapiImage, StrapiApiErrorTy
 export type { VideoLesson } from "./video";
 export type { AvatarType } from "./avatar";
 export { SexEnum } from "./SexEnum";
+export type { FetchOptions, FetchResponse } from "./fetcher";

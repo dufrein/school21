@@ -26,6 +26,12 @@
   font-size: 1rem;
   color: #666;
   overflow-wrap: break-word;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 }
 
 .videoInfo {

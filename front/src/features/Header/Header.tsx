@@ -3,7 +3,7 @@
 import { deleteSession } from "@actions/session";
 import styles from "./styles.module.scss";
 import { NavLink } from "@components";
-import { ROUTES } from "@constants";
+import { ROUTES, SCHOOL_NAME } from "@constants";
 import { HeaderProps } from "./types";
 import { MobileHeader } from "./components/MobileHeader/MobileHeader";
 import { useScreenSize } from "@hooks/useScreenSize/useScreenSize";
@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
         <div className={styles.navContainer}>
           <div className={styles.navLeft}>
             <NavLink href="/" className={styles.logo}>
-              &quot;School&quot;
+              &quot;{SCHOOL_NAME}&quot;
             </NavLink>
           </div>
           <div className={styles.navRight}>

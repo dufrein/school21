@@ -1,5 +1,6 @@
 'use server';
 
+import { SCHOOL_NAME } from "@constants";
 import { StudentType } from "@types";
 import { sendMessageEmail } from "src/actions/sendMessageEmail/sendMessageEmail";
 
@@ -15,7 +16,7 @@ export const sendVerifyLink = async (student?: StudentType) => {
       to: student.email,
       subject: "Подтвердите регистрацию",
       html:
-        "Вы зарегистрировались на сайте языковой школы School, для окончания регистрации пройдите по ссылке ниже:<br><a href=" +
+        `Вы зарегистрировались на сайте языковой школы ${SCHOOL_NAME}, для окончания регистрации пройдите по ссылке ниже:<br><a href=` +
         finishSignupLink +
         ">Завершить регистрацию</a>",
     });

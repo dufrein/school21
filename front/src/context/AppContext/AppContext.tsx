@@ -18,7 +18,7 @@ export const AppContextProvider: React.FC<AppContextProps> = (props) => {
   const [userCourses, setUserCourses] = useState<Course[] | null>(null);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/tariffs?populate=*`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/tariffs?populate=*`)
       .then((res) => {
         return res.json();
       })

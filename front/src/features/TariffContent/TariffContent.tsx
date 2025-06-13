@@ -17,7 +17,7 @@ export const TariffContent: React.FC<TariffContentProps> = (props) => {
 
   return (
     <div className={styles.tariffContent}>
-      <h2 className={styles.title}>{tariff.name}</h2>
+      <h2 className={styles.title}>Информация о тарифе &quot;{tariff.name}&quot;</h2>
       <p className={styles.description}>{tariff.description}</p>
       <p className={styles.price}>{tariff.price} рублей</p>
       <ul className={styles.featuresList}>
@@ -42,7 +42,7 @@ export const TariffContent: React.FC<TariffContentProps> = (props) => {
           ))}
         </ul>
       </div>
-      <BuyTariff>Купить</BuyTariff>
+      {!!tariff.price && <BuyTariff>Купить</BuyTariff>}
     </div>
   );
 };

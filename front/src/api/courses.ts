@@ -2,7 +2,7 @@ import { Course } from "@types";
 import { getTopic } from "./topics";
 
 export const getCourseById = async (courseId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/courses/${courseId}?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}?populate=*`);
   if (!response.ok) {
     throw new Error("Failed to fetch course");
   }
@@ -13,7 +13,7 @@ export const getCourseById = async (courseId: string) => {
 
 export const getCourses = async (populate?: boolean) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/courses${populate ? "?populate=*" : ""}`
+    `${process.env.NEXT_PUBLIC_API_URL}/courses${populate ? "?populate=*" : ""}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch courses");
@@ -24,7 +24,7 @@ export const getCourses = async (populate?: boolean) => {
 };
 
 export const getFullCourse = async (courseId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/courses/${courseId}?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}?populate=*`);
   if (!response.ok) {
     throw new Error("Failed to fetch course");
   }

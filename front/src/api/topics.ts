@@ -7,7 +7,7 @@ import { Topic } from "@types";
  */
 export const getTopics = async (courseId: string) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/topics?courseId=${courseId}&populate=*`
+    `${process.env.NEXT_PUBLIC_API_URL}/topics?courseId=${courseId}&populate=*`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch course topics");
@@ -23,7 +23,7 @@ export const getTopics = async (courseId: string) => {
  * @returns Topic[]
  */
 export const getTopic = async (topicId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/topics/${topicId}?populate=*`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics/${topicId}?populate=*`);
   if (!response.ok) {
     throw new Error("Failed to fetch course topics");
   }

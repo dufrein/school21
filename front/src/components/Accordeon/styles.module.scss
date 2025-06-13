@@ -1,6 +1,5 @@
 .accordeon {
   padding: 10px 0;
-  cursor: pointer;
 
   ::marker {
     width: 50px;
@@ -15,5 +14,6 @@
 
   summary {
     outline: none;
+    cursor: pointer;
   }
 }

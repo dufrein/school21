@@ -43,12 +43,10 @@ export async function createSession(userId: string) {
 
 export async function updateSession() {
   const session = (await cookies()).get("session")?.value;
-
   if (!session) {
     return null;
   }
   const payload = await decrypt(session);
-
   if (!payload) {
     return null;
   }
@@ -72,11 +70,13 @@ export async function deleteSession() {
 
 export const verifySession = cache(async () => {
   const cookie = (await cookies()).get("session")?.value;
+  console.log("cookie", cookie);
+
   if (!cookie) {
     return null;
   }
   const session = await decrypt(cookie);
-
+  console.log("session", session);
   if (!session?.userId) {
     redirect("/login");
   }

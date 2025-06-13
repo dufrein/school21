@@ -1,7 +1,7 @@
 import { Question } from "@types";
 
 export const getQuestionsByLessonId = async (lessonId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/lesson/${lessonId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lesson/${lessonId}`);
   if (!response.ok) {
     throw new Error("Failed to fetch questions");
   }

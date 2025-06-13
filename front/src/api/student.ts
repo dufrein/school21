@@ -1,4 +1,5 @@
 "use server";
+
 import { strapiClient } from "@api/strapiClient";
 import { StudentType } from "@types";
 
@@ -6,7 +7,7 @@ const studentsCollection = strapiClient.collection("students");
 
 export const getStudent = async (studentId: string) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/students/${studentId}?populate=*`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/students/${studentId}?populate=*`);
     if (!response.ok) {
       throw new Error("Failed to fetch student data");
     }
