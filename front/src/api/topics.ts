@@ -1,4 +1,6 @@
 import { Topic } from "@types";
+import { fetchApi } from "@utils/fetchApi";
+import { ENDPOINTS } from "./constants";
 
 /**
  * Хелпер для получения тем курса по courseId
@@ -6,14 +8,9 @@ import { Topic } from "@types";
  * @returns Topic[]
  */
 export const getTopics = async (courseId: string) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/topics?courseId=${courseId}&populate=*`
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch course topics");
-  }
-  const data: { data: Topic[] } = await response.json();
-
+  const { data } = await fetchApi<{ data: Topic[] }>(ENDPOINTS.Topics, {
+    params: { courseId, populate: "*" }
+  });
   return data.data;
 };
 
@@ -22,12 +19,9 @@ export const getTopics = async (courseId: string) => {
  * @param topicId
  * @returns Topic[]
  */
-export const getTopic = async (topicId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics/${topicId}?populate=*`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch course topics");
-  }
-  const data: { data: Topic } = await response.json();
-
+export const getTopicById = async (topicId: string) => {
+  const { data } = await fetchApi<{ data: Topic }>(ENDPOINTS.TopicById(topicId), {
+    params: { populate: "*" }
+  });
   return data.data;
 };

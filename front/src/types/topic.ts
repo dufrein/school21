@@ -7,4 +7,6 @@ export interface Topic {
   lessons: Lesson[];
   description: RootNode[];
   documentId: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -11,7 +11,7 @@ export function PricingPreview() {
     <section className={styles.pricing}>
       <div className={styles.pricingContent}>
         <h2 className={styles.pricingTitle}>Выберите свой тариф</h2>
-        <div className={styles.pricingGrid}>
+        <div className={styles.pricingContainer}>
           {tariffs.map((tariffItem) => {
             return (
               <div className={styles.card} key={tariffItem.documentId}>

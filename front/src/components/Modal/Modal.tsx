@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, { useEffect } from "react";
 import { ModalProps } from "./types";
 import styles from "./styles.module.scss";
 
@@ -8,13 +10,21 @@ import { getClassList } from "@utils/getClassList";
 
 /**
  * Компонент для отображения модального окна
- * @props isOpened - флаг для отображения модального окна
- * @props onClose - функция для закрытия модального окна
- * @props children - компонент для отображения в модальном окне
- * @returns React.FC<ModalProps>
  */
 export const Modal: React.FC<ModalProps> = (props) => {
   const { isOpened, onClose, children, className, hideCloseButton } = props;
+
+  useEffect(() => {
+    if (isOpened) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpened]);
 
   if (!isOpened) {
     return null;

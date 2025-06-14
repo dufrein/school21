@@ -20,9 +20,7 @@ export const Popup: React.FC<PopupProps> = (props) => {
   useScrollLock(isOpened);
 
   const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
-    // e.preventDefault();
     e.stopPropagation();
-    console.log("clicked");
   };
 
   const withoutDialogClassList = getClassList([className, styles["popup-nodialog"]]);

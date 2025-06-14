@@ -2,17 +2,19 @@
 
 import { strapiClient } from "@api/strapiClient";
 import { StudentType } from "@types";
+import { fetchApi } from "@utils/fetchApi";
+import { ENDPOINTS } from "./constants";
 
-const studentsCollection = strapiClient.collection("students");
-
-export const getStudent = async (studentId: string) => {
+/**
+ * Хелпер получения студента по id
+ * @param studentId - идентификатор студента
+ * @returns Promise<StudentType | null>
+ */
+export const getStudent = async (studentId: string): Promise<StudentType | null> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/students/${studentId}?populate=*`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch student data");
-    }
-    const data: { data: StudentType } = await response.json();
-
+    const { data } = await fetchApi<{ data: StudentType }>(ENDPOINTS.StudentById(studentId), {
+      params: { populate: "*" },
+    });
     return data.data;
   } catch (err) {
     console.error(err);
@@ -20,8 +22,15 @@ export const getStudent = async (studentId: string) => {
   }
 };
 
+/**
+ * Хелпер получения студента по email
+ * @param studentEmail - email студента
+ * @returns Promise<StudentType | undefined>
+ */
 export const getStudentByEmail = async (studentEmail: string): Promise<StudentType | undefined> => {
   try {
+    const studentsCollection = strapiClient.collection("students");
+
     const students = await studentsCollection.find({
       filters: {
         email: {
@@ -36,8 +45,19 @@ export const getStudentByEmail = async (studentEmail: string): Promise<StudentTy
   }
 };
 
-export const updateStudent = async (studentId: string, newStudent: StudentType) => {
+/**
+ * Хелпер обновления данных студента
+ * @param studentId - идентификатор студента
+ * @param newStudent - новые данные студента
+ * @returns Promise<StudentType | undefined>
+ */
+export const updateStudent = async (
+  studentId: string,
+  newStudent: StudentType
+): Promise<StudentType | undefined> => {
   try {
+    const studentsCollection = strapiClient.collection("students");
+
     const { tariff } = newStudent;
 
     const updatedStudent = {
@@ -53,11 +73,13 @@ export const updateStudent = async (studentId: string, newStudent: StudentType) 
       avatarId: newStudent.avatarId || null,
     };
 
-    console.log("updatedStudent", updatedStudent);
-    const response = await studentsCollection.update(studentId, {
-      ...updatedStudent,
-    });
-
+    const response = await studentsCollection.update(
+      studentId,
+      {
+        ...updatedStudent,
+      },
+      { populate: "*" }
+    );
     return response.data as unknown as StudentType;
   } catch (err) {
     console.error(err);
@@ -66,8 +88,8 @@ export const updateStudent = async (studentId: string, newStudent: StudentType) 
 };
 
 /**
- * Хелпер получения инфы о поргресс прохождения круса пользователем
- * @param courseId: string
+ * Хелпер получения информации о прогрессе прохождения курса пользователем
+ * @param courseId - идентификатор курса
  * @returns Promise<string[]>
  */
 export const getUserProgress = async (courseId: string): Promise<string[]> => {

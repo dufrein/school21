@@ -7,6 +7,7 @@ import { UserContextProvider } from "@context/UserContext";
 import { verifySession } from "@actions/session";
 import { getStudent } from "@api/student";
 import { PageBody } from "@features/PageBody";
+import { LearningContextProvider } from "@context/LearningContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -34,9 +35,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="ru">
       <body className={`${inter.className} ${poppins.variable} ${styles.body}`}>
         <AppContextProvider>
-          <UserContextProvider user={userInfo}>
-            <PageBody userId={session?.userId as string | null}>{children}</PageBody>
-          </UserContextProvider>
+          <LearningContextProvider>
+            <UserContextProvider user={userInfo}>
+              <PageBody userId={session?.userId as string | null}>{children}</PageBody>
+            </UserContextProvider>
+          </LearningContextProvider>
         </AppContextProvider>
       </body>
     </html>

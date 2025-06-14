@@ -3,6 +3,9 @@
   --background-rgb: 255, 255, 255;
   --header-height: 70px;
   --footer-height: 70px;
+  --text-color: #4b5563;
+  --link-active-color: #2563eb;
+  --link-hover-color: #6e18d1;
 }
 
 body {
@@ -37,7 +40,7 @@ a {
 }
 
 a:active {
-  color: #2563eb;
+  color: #6e18d1;
 }
 
 .button {

@@ -15,12 +15,12 @@ export function CourseContent({ course }: { course: Course }) {
   return (
     <div className={styles.content}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{course.name}</h1>
+        <h2 className={styles.title}>{course.name}</h2>
         <p className={styles.description}>{course.description}</p>
       </div>
 
       <div className={styles.topicsList}>
-        <h3 className={styles.topicsTitle}>Темы курса</h3>
+        <p className={styles.topicsTitle}>Темы курса:</p>
         {course.topics?.map((topicItem) => (
           <div key={topicItem.name} className={styles.topicCard}>
             <TopicItem topic={topicItem} courseId={course.documentId} />

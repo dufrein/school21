@@ -1,16 +1,18 @@
-'use client'
+"use client";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export function FeaturesSection() {
   return (
     <section className={styles.features}>
       <div className={styles.featuresContent}>
+        <h2 className={styles.featureTitle}>Наши преимущества</h2>
         <div className={styles.featuresGrid}>
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Интерактивные уроки</h3>
             <p className={styles.cardText}>
-              Увлекательные уроки с обратной связью в реальном времени и интерактивными упражнениями.
+              Увлекательные уроки с обратной связью в реальном времени и интерактивными
+              упражнениями.
             </p>
           </div>
           <div className={styles.card}>
@@ -28,5 +30,5 @@ export function FeaturesSection() {
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

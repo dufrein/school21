@@ -1,8 +1,7 @@
 .content {
-  padding: 2rem;
+  padding: 20px;
   max-width: 1200px;
   flex-grow: 2;
-  margin: 0 auto;
 }
 
 .header {
@@ -10,7 +9,7 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1a1a1a;
@@ -24,7 +23,7 @@
 
 .topicsList {
   display: grid;
-  gap: 2rem;
+  gap: 12px;
 }
 
 .topicCard {
@@ -36,9 +35,9 @@
 }
 
 .topicTitle {
-  font-size: 1.5rem;
+  font-size: 14px;
   font-weight: 600;
-  margin: 36px 0;
+  margin: 16px 0;
   color: #1a1a1a;
 }
 

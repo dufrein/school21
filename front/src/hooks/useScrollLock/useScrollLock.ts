@@ -7,7 +7,6 @@ import { useEffect } from "react";
  * @param isOpened - флаг для отображения модального окна
  */
 export const useScrollLock = (isOpened: boolean) => {
-  console.log("isOpened", isOpened);
   useEffect(() => {
     if (isOpened) {
       document.body.classList.add("scroll-lock");

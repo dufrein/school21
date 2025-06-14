@@ -4,11 +4,16 @@ import styles from "./styles.module.scss";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { NavLink } from "@components";
 import { ROUTES } from "@constants";
+import { BreadCrumbs } from "@components/BreadCrumbs";
 
+/**
+ * Содержание темы
+ */
 export const TopicContent: React.FC<TopicContentProps> = ({ topic, courseId }) => {
   return (
     <div className={styles.content}>
       <div className={styles.header}>
+        <BreadCrumbs/>
         <h1 className={styles.title}>{topic.name}</h1>
         <div className={styles.description}>
           <BlocksRenderer content={topic.description} />

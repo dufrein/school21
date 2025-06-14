@@ -22,6 +22,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     surname: user?.surname || "",
     sex: user?.sex,
     avatarId: user?.avatarId || "",
+    tariff: user?.tariff || null,
   });
 
   const [errors, setErrors] = useState<{
@@ -55,7 +56,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     }
 
     if (user?.documentId) {
-      saveStudent(user, userSettings).then(() => {
+      saveStudent(userSettings).then(() => {
         setErrors({});
       });
     }
@@ -67,6 +68,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     isLoading || !hasChanges ? "btnDisabled" : "",
   ]);
 
+  console.log('userSettings.sex',userSettings.sex);
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.settingsTitle}>Настройки аккаунта</h2>
@@ -95,9 +97,11 @@ export const AccountSettings = (props: AccountSettingsProps) => {
           <label className={styles.label}>Пол</label>
           <select
             value={userSettings.sex || ""}
+            defaultValue={'x'}
             onChange={(e) => setUserSettings({ ...userSettings, sex: e.target.value as SexEnum })}
             className={styles.sexSelect}
           >
+            <option value={'x'}>Выберите пол</option>
             <option value={SexEnum.MAN}>Мужской</option>
             <option value={SexEnum.WOMAN}>Женский</option>
           </select>

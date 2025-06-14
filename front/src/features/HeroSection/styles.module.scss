@@ -81,6 +81,6 @@
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #2563eb;
+    background-color: var(--link-hover-color);
   }
-} 
+}

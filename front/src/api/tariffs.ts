@@ -1,21 +1,24 @@
 import { Tariff } from "@types";
+import { fetchApi } from "@utils/fetchApi";
+import { ENDPOINTS } from "./constants";
 
-export const getTariffs = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tariffs`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch tariffs");
-  }
-  const data: { data: Tariff[] } = await response.json();
-
+/**
+ * Хелпер получения списка тарифов
+ * @returns Promise<Tariff[]>
+ */
+export const getTariffs = async (): Promise<Tariff[]> => {
+  const { data } = await fetchApi<{ data: Tariff[] }>(ENDPOINTS.Tariffs);
   return data.data;
 };
 
-export const getTariffById = async (tariffId: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tariffs/${tariffId}?populate=*`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch tariff");
-  }
-  const data: { data: Tariff } = await response.json();
-
+/**
+ * Хелпер получения тарифа по id
+ * @param tariffId - идентификатор тарифа
+ * @returns Promise<Tariff>
+ */
+export const getTariffById = async (tariffId: string): Promise<Tariff> => {
+  const { data } = await fetchApi<{ data: Tariff }>(ENDPOINTS.TariffById(tariffId), {
+    params: { populate: "*" }
+  });
   return data.data;
 };

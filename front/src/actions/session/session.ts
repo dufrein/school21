@@ -70,13 +70,11 @@ export async function deleteSession() {
 
 export const verifySession = cache(async () => {
   const cookie = (await cookies()).get("session")?.value;
-  console.log("cookie", cookie);
 
   if (!cookie) {
     return null;
   }
   const session = await decrypt(cookie);
-  console.log("session", session);
   if (!session?.userId) {
     redirect("/login");
   }

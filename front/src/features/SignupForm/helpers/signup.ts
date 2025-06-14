@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { signupUser } from "@api/signup";
 import { signupFormSchema } from "../schema";
@@ -36,7 +36,7 @@ export const signup = async (state: unknown, formData: FormData): Promise<Signup
     });
     return { errors: objectErrors.errors };
   }
-  
+
   sendVerifyLink(responseData?.data);
 
   return { data: responseData?.data, isUserCreated: true };

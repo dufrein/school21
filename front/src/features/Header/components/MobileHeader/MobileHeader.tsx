@@ -9,16 +9,34 @@ import { Modal } from "@components/Modal";
 import { useState, useContext } from "react";
 import { UserContext } from "@context/UserContext";
 import { Avatar } from "@components/Avatar/Avatar";
+import { AppContext } from "@context/AppContext";
 
+/**
+ * Мобильное меню
+ */
 export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCoursesOpened, setIsCoursesOpened] = useState(false);
   const { user } = useContext(UserContext);
+  const { tableContent } = useContext(AppContext);
   const onToggle = () => setIsOpen(!isOpen);
   const onLinkClick = () => setIsOpen(false);
   const onDeleteHandler = () => {
     deleteSession();
     setIsOpen(false);
   };
+
+  const openCoursesModal = () => {
+    setIsCoursesOpened(true);
+  };
+
+  
+  const closeCoursesModal = () => {
+    setIsCoursesOpened(false);
+    setIsOpen(false);
+  };
+
+
   return (
     <nav className={styles.mobileNav}>
       <div className={styles.mobileNavContent}>
@@ -29,7 +47,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
             </NavLink>
           </div>
           <button
-            className={`${styles.burgerButton} ${isOpen ? styles.active : ""}`}
+            className={`${styles.burgerButton}`}
             onClick={onToggle}
             aria-label="Открыть меню"
           >
@@ -40,8 +58,19 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
         </div>
       </div>
       {isOpen && (
-        <Modal isOpened={isOpen} onClose={onToggle} className={styles.menu} hideCloseButton={true}>
+        <Modal isOpened={isOpen} onClose={onToggle} className={styles.menu}>
           <div className={styles.mobileMenu}>
+            {userId && (
+              <NavLink
+                href={ROUTES.DASHBOARD}
+                className={styles.mobileMenuItem}
+                onClick={onLinkClick}
+              >
+                <div className={styles.mobileMenuItemContent}>
+                  <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
+                </div>
+              </NavLink>
+            )}
             <NavLink href={ROUTES.LEARNING} className={styles.mobileMenuItem} onClick={onLinkClick}>
               Учиться
             </NavLink>
@@ -53,12 +82,9 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
             </NavLink>
             {userId ? (
               <>
-                <NavLink href={ROUTES.DASHBOARD} className={styles.mobileMenuItem} onClick={onLinkClick}>
-                  <div className={styles.mobileMenuItemContent}>
-                    <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
-                    <span>Личный кабинет</span>
-                  </div>
-                </NavLink>
+                <div className={styles.mobileMenuButton} onClick={openCoursesModal}>
+                  Навигация по курсам
+                </div>
                 <div className={styles.mobileMenuButton} onClick={onDeleteHandler}>
                   Выйти
                 </div>
@@ -71,6 +97,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
           </div>
         </Modal>
       )}
+
+      <Modal isOpened={isCoursesOpened} className={styles.tableModal} onClose={closeCoursesModal}>
+        {tableContent}
+      </Modal>
     </nav>
   );
 };

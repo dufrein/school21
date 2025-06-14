@@ -57,8 +57,7 @@ export const fetchApi = async <T>(
       ok: response.ok,
     };
   } catch (error) {
-    const errorColor = chalk.redBright;
-    console.log(errorColor("error="));
+    console.error(chalk.redBright("error="));
     console.error(error);
 
     throw new FetchError(error as string);

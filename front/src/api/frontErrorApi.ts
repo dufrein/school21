@@ -1,7 +1,7 @@
-import { endpoints } from "./constants";
+import { ENDPOINTS } from "./constants";
 
 export const frontErrorApi = async (error: { error: Error }) => {
-  const endPoint = `${endpoints.FrontError}`;
+  const endPoint = `${ENDPOINTS.FrontError}`;
 
   const res = await fetch(endPoint, {
     method: "POST",

@@ -4,7 +4,9 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { getImageSrc } from "@helpers";
 import { AvatarSelectProps } from "./types";
-import { SexEnum } from '../../types/SexEnum';
+import { SexEnum } from "../../types/SexEnum";
+import { getClassList } from "@utils";
+import { StrapiImage } from "@types";
 
 /**
  * Компонент для выбора аватара
@@ -13,9 +15,16 @@ export const AvatarSelect = (props: AvatarSelectProps) => {
   const { avatarsWoman, avatarsMan, currentAvatarId, sex, onAvatarSelect } = props;
   const [showAvatarSelect, setShowAvatarSelect] = useState(false);
 
-  const currentAvatar = sex === SexEnum.WOMAN
-    ? avatarsWoman.find(avatar => avatar.documentId === currentAvatarId)
-    : avatarsMan.find(avatar => avatar.documentId === currentAvatarId);
+  const currentAvatar =
+    sex === SexEnum.WOMAN
+      ? avatarsWoman.find((avatar) => avatar.documentId === currentAvatarId)
+      : avatarsMan.find((avatar) => avatar.documentId === currentAvatarId);
+
+  const getAvatarPlateClassList = (avatar: StrapiImage) =>
+    getClassList([
+      styles.avatarOption,
+      currentAvatarId === avatar.documentId ? styles.selected : "",
+    ]);
 
   return (
     <div className={styles.avatarSelect}>
@@ -26,10 +35,7 @@ export const AvatarSelect = (props: AvatarSelectProps) => {
             alt={currentAvatar.name}
             className={styles.avatarPreview}
           />
-          <button
-            className={styles.changeAvatarButton}
-            onClick={() => setShowAvatarSelect(true)}
-          >
+          <button className={getClassList([styles.changeAvatarButton, "button"])} onClick={() => setShowAvatarSelect(true)}>
             Сменить аватар
           </button>
         </div>
@@ -38,18 +44,13 @@ export const AvatarSelect = (props: AvatarSelectProps) => {
           {(sex === SexEnum.WOMAN ? avatarsWoman : avatarsMan).map((avatar) => (
             <div
               key={avatar.id}
-              className={`${styles.avatarOption} ${
-                currentAvatarId === avatar.documentId ? styles.selected : ""
-              }`}
+              className={getAvatarPlateClassList(avatar)}
               onClick={() => {
                 onAvatarSelect(avatar.documentId);
                 setShowAvatarSelect(false);
               }}
             >
-              <img
-                src={getImageSrc(avatar)}
-                alt={avatar.name}
-              />
+              <img src={getImageSrc(avatar)} alt={avatar.name} />
             </div>
           ))}
         </div>

@@ -1,5 +1,3 @@
-"use server";
-
 import { strapi } from "@strapi/client";
 
 export const createStrapiClient = async () => {

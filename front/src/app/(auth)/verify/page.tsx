@@ -48,7 +48,7 @@ export default async function Verify({
     isActive: true,
     tariff: student.tariff || freeTariff || null,
   });
-  console.log("verifiedUser", verifiedUser);
+
   return (
     <div className={styles.container}>
       <h2>Подтверждение верификации</h2>

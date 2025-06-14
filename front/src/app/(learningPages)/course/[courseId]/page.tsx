@@ -5,11 +5,10 @@ import styles from "./page.module.scss";
 import { NavLink } from "@components/NavLink";
 import { ROUTES } from "@constants";
 
-export default async function Course({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const course = await getCourseById(id);
-  const hasAccess = await checkUserAccess(id);
-  console.log("course", course);
+export default async function Course({ params }: { params: Promise<{ courseId: string }> }) {
+  const { courseId } = await params;
+  const course = await getCourseById(courseId);
+  const hasAccess = await checkUserAccess(courseId);
 
   if (!hasAccess) {
     return (

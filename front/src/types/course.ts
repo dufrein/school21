@@ -10,5 +10,6 @@ export interface Course {
   documentId: string;
   description: string;
   complexity: Complexity;
+  createdAt?: string;
+  updatedAt?: string;
 }
-

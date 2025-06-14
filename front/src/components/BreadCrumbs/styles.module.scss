@@ -1,0 +1,40 @@
+.breadcrumbs {
+  padding: 16px 0;
+
+  ol {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--link-active-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+
+  &.active {
+    color: var(--text-primary);
+    pointer-events: none;
+  }
+}
+
+.separator {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0 8px;
+}

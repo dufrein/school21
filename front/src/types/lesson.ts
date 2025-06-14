@@ -11,4 +11,6 @@ export interface Lesson {
   complexity: Complexity;
   video: VideoLesson[];
   image?: StrapiImage;
+  createdAt?: string;
+  updatedAt?: string;
 }

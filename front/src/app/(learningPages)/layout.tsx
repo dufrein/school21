@@ -22,7 +22,6 @@ export default async function LearningPagesLayout({ children }: { children: Reac
   if (!user) {
     return (
       <div className={styles.twoColumn}>
-        <CoursesStructure courses={courses} />
         {children}
       </div>
     );

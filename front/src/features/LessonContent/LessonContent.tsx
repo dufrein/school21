@@ -6,13 +6,14 @@ import { Lesson } from "@types";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { QuestionResults, SelectedAnswers } from "./types";
 import { Questions } from "./components";
+import { BreadCrumbs } from "@components/BreadCrumbs";
 
 export function LessonContent({ lesson }: { lesson: Lesson }) {
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
 
   const [results, setResults] = useState<QuestionResults>({});
   const [isShownResults, setIsShownResults] = useState(false);
- 
+
   if (!lesson) {
     return null;
   }
@@ -37,6 +38,8 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
 
   return (
     <div className={styles.content}>
+      <BreadCrumbs />
+
       <h2 className={styles.title}>{lesson.title}</h2>
 
       <div className={styles.card}>

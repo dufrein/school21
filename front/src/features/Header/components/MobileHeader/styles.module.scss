@@ -1,4 +1,4 @@
-.menu {
+dialog.menu {
   top: 0;
   width: auto;
   height: fit-content;
@@ -38,24 +38,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
   outline: none;
-  
-  &.active {
-    span {
-      &:first-child {
-        transform: translateY(9px) rotate(45deg);
-      }
-
-      &:nth-child(2) {
-        opacity: 0;
-      }
-
-      &:last-child {
-        transform: translateY(-9px) rotate(-45deg);
-      }
-    }
-  }
 }
 
 .mobileMenu {
@@ -67,6 +50,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 5;
   padding: 20px 0;
+
   a {
     margin-bottom: 10px;
   }
@@ -86,7 +70,11 @@
 .mobileMenuButton {
   cursor: pointer;
   padding: 5px 20px;
-  border-bottom: 1px solid var(--back-06);
+  color: var(--text-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
 }
 
 .mobileMenuItemContent {
@@ -98,4 +86,17 @@
     width: 24px;
     height: 24px;
   }
+}
+
+.tableModal {
+  z-index: 11;
+  border-radius: 4px;
+  top: 70px;
+  min-width: 350px;
+  min-height: 200px;
+
+  max-width: 80dvw;
+  max-height: 80dvh;
+
+  padding: 40px 20px;
 }

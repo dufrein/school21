@@ -1,8 +1,9 @@
+@use "../../styles/helpers";
+
 .content {
   flex-grow: 2;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
 }
 
 .header {
@@ -44,4 +45,24 @@
   &:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-} 
+}
+
+@include helpers.deviceWidth(toTabletLandscape) {
+  .title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .materialsTitle {
+    font-size: 14px;
+  }
+
+  .materialsList {
+    a {
+      font-size: 14px;
+    }
+  }
+}
