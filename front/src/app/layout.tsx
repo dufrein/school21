@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 import styles from "./layout.module.scss";
 import { AppContextProvider } from "@context/AppContext/AppContext";
 import { UserContextProvider } from "@context/UserContext";
@@ -8,13 +7,6 @@ import { verifySession } from "@actions/session";
 import { getStudent } from "@api/student";
 import { PageBody } from "@features/PageBody";
 import { LearningContextProvider } from "@context/LearningContext";
-
-const inter = Inter({ subsets: ["latin"] });
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
 
 export const metadata: Metadata = {
   title: "Языковая школа",
@@ -33,7 +25,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="ru">
-      <body className={`${inter.className} ${poppins.variable} ${styles.body}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Zen+Maru+Gothic&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={styles.body}>
         <AppContextProvider>
           <LearningContextProvider>
             <UserContextProvider user={userInfo}>

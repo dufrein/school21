@@ -1,0 +1,1 @@
+export { fetchStrapiDocsList } from "./fetchStrapiDocsList";

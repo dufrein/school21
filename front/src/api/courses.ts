@@ -2,6 +2,8 @@ import { Course } from "@types";
 import { fetchApi } from "@utils/fetchApi";
 import { ENDPOINTS } from "./constants";
 import { getTopicById } from "./topics";
+import { StrapiPagination } from "@types";
+import { fetchStrapiDocsList } from "@utils";
 
 /**
  * Хелпер получения курса по id
@@ -20,13 +22,14 @@ export const getCourseById = async (courseId: string): Promise<Course> => {
  * @param populate - флаг для получения связанных данных
  * @returns Promise<Course[]>
  */
-export const getCourses = async (populate?: boolean): Promise<Course[]> => {
-  const { data } = await fetchApi<{ data: Course[] }>(ENDPOINTS.Courses, {
-    params: populate ? { populate: "*" } : undefined,
-  });
+export const getCourses = async (
+  populate?: boolean,
+  pagination?: StrapiPagination
+): Promise<Course[]> => {
+  const { data } = await fetchStrapiDocsList<Course>(ENDPOINTS.Courses, populate, pagination);
 
   const [...coursesInfo] = await Promise.all(
-    data.data.map(async (courseItem) => {
+    data.map(async (courseItem) => {
       const topicsFull = await Promise.all(
         courseItem.topics.map(async (topic) => {
           const fullTopic = await getTopicById(topic.documentId);

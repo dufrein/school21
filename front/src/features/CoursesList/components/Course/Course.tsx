@@ -16,6 +16,7 @@ export const Course: React.FC<CourseProps> = (props) => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    //todo доделать прогресс курса
     getUserProgress(course.documentId).then((lessonsIds) => setReadyLessonsIds(lessonsIds));
   }, []);
 

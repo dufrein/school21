@@ -1,3 +1,5 @@
+@use "../styles/helpers";
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
@@ -127,4 +129,15 @@ a:active {
 h1,
 h2 {
   margin: 10px 0;
+}
+
+.container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    padding: 20px;
+  }
 }

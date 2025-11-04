@@ -65,7 +65,7 @@ export const updateStudent = async (
       surname: newStudent.surname,
       email: newStudent.email,
       isActive: newStudent.isActive,
-      finishedLessonsIds: [],
+      finishedLessonsIds: newStudent.finishedLessonsIds || [],
       tariff: tariff ? tariff.documentId : null,
       phone: newStudent.phone,
       verifyTimestamp: newStudent.verifyTimestamp,

@@ -11,8 +11,6 @@ export const TableItem: React.FC<TableItemProps> = (props) => {
     <div className={styles.summary}>
       <NavLink href={url} className={styles.summary}>
         {title}
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={linkIcon.src} alt="icon link" />
       </NavLink>
     </div>

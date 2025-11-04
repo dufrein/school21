@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { getImageSrc } from "@helpers";
 import { AvatarSelectProps } from "./types";
-import { SexEnum } from "../../types/SexEnum";
+import { SexEnum } from "@constants";
 import { getClassList } from "@utils";
 import { StrapiImage } from "@types";
 

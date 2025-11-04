@@ -15,31 +15,30 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = (props) => {
   const { items: itemsInitial, className } = props;
   const items = itemsInitial || [];
   const { openedCourse, openedTopic, openedLesson } = useContext(LearningContext);
-  console.log("openedLesson", openedLesson);
+
+  const courseUrl = `${ROUTES.COURSE}/${openedCourse?.documentId}`;
 
   if (!items.length) {
     if (openedCourse) {
       items.push({
         label: "Курс",
-        path: `${ROUTES.COURSE}/${openedCourse.documentId}`,
+        path: courseUrl,
       });
     }
 
-    if (openedTopic) {
+    const topicUrl = `${courseUrl}/${ROUTES.TOPIC}/${openedTopic?.documentId}`;
+
+    if (openedTopic && openedCourse) {
       items.push({
         label: "Тема",
-        path: `${ROUTES.TOPIC}/${openedTopic.documentId}`,
+        path: topicUrl,
       });
     }
 
     if (openedLesson) {
-      const updatedDate = openedLesson.updatedAt
-        ? `, ${new Date(openedLesson.updatedAt).toLocaleDateString()}`
-        : "";
-
       items.push({
-        label: "Урок" + updatedDate,
-        path: `${ROUTES.LESSON}/${openedLesson.documentId}`,
+        label: "Урок",
+        path: ``,
       });
     }
   }

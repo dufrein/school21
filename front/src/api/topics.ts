@@ -8,10 +8,13 @@ import { ENDPOINTS } from "./constants";
  * @returns Topic[]
  */
 export const getTopics = async (courseId: string) => {
-  const { data } = await fetchApi<{ data: Topic[] }>(ENDPOINTS.Topics, {
-    params: { courseId, populate: "*" }
-  });
-  return data.data;
+  // const { data } = await fetchApi<{ data: Topic[] }>(ENDPOINTS.Topics, {
+  //   params: { courseId, populate: "*" }
+  // });
+  // return data.data;
+  console.log("courseId", courseId);
+  //todo доделать или удалить
+  return [];
 };
 
 /**

@@ -9,6 +9,13 @@ export enum Complexity {
   PROFESSIONAL = "professional",
 }
 
+export const COMPLEXITY_LEVEL= {
+  [Complexity.BASIC]: 'Лёгкий',
+  [Complexity.MEDIUM]: 'Средний',
+  [Complexity.ADVANCED]: 'Продвинутый',
+  [Complexity.PROFESSIONAL]: 'Профессионал',
+}
+
 export const loginObjectSchema = {
   email: z
     .string()
@@ -54,6 +61,7 @@ export const ROUTES = {
   ALL_COURSES: "/allCourses",
   COURSE_PREVIEW: "/coursePreview",
   VIDEO: "/video",
+  ARTICLES: "/articles",
 };
 
 

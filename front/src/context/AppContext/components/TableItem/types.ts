@@ -1,4 +1,6 @@
+import { ReactElement } from "react";
+
 export interface TableItemProps {
-  title: string;
+  title: string | ReactElement;
   url: string;
 }

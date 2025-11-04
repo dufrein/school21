@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useParams } from "next/navigation";
 import { Course, Lesson, Topic } from "@types";
@@ -23,19 +23,25 @@ export const useGetValues = () => {
   useEffect(() => {
     if (params.courseId) {
       getCourseById(params.courseId).then((data) => setOpenedCourse(data));
+      return;
     }
+    setOpenedCourse(null);
   }, [params.courseId]);
 
   useEffect(() => {
     if (params.topicId) {
       getTopicById(params.topicId).then((data) => setOpenedTopic(data));
+      return;
     }
+    setOpenedTopic(null);
   }, [params.topicId]);
 
   useEffect(() => {
     if (params.lessonId) {
       getLessonById(params.lessonId).then((data) => setOpenedLesson(data));
+      return;
     }
+    setOpenedLesson(null);
   }, [params.lessonId]);
 
   return {

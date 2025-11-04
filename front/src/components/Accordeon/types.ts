@@ -1,8 +1,8 @@
 import { CommonComponentProps } from "@types";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export interface AccordeonProps extends CommonComponentProps {
-  title: string;
+  title: string | ReactElement;
   content: string | ReactNode;
   url?: string;
 }

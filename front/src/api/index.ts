@@ -1,4 +1,4 @@
-import { getLessons, getLessonById } from "./lessons";
+import { getAllLessons, getLessonById } from "./lessons";
 import { getCourseById, getCourses } from "./courses";
 import { getTariffs, getTariffById } from "./tariffs";
 import { getStudent, getUserProgress, updateStudent } from "./student";
@@ -9,7 +9,7 @@ import { signupUser } from "./signup";
 import { frontErrorApi } from "./frontErrorApi";
 
 export {
-  getLessons,
+  getAllLessons,
   getCourseById,
   getCourses,
   getTariffs,

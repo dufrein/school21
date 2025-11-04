@@ -1,0 +1,17 @@
+.article {
+  border: 1px solid #000;
+  padding: 20px;
+  border-radius: 10px;
+  content-visibility: auto;
+  contain-intrinsic-height: 200px;
+  contain: content;
+  container-type: size;
+  container-name: sss;
+}
+
+@container sss (min-width: 700px) {
+  .header {
+    color: red;
+    width: fit-content;
+  }
+}

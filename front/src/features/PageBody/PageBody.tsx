@@ -9,13 +9,9 @@ import { useScreenSize } from "@hooks/useScreenSize/useScreenSize";
 import { Spinner } from "@components";
 /**
  * Компонент для отображения страницы
- * @param userId: string | null;
- * @param children: React.ReactNode;
- * @returns 
  */
 export const PageBody: React.FC<PageBodyProps> = (props) => {
   const { userId, children } = props;
-
   const { screenSize } = useScreenSize();
 
   if (!screenSize) {

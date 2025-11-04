@@ -18,7 +18,6 @@ export const Accordeon: React.FC<AccordeonProps> = (props) => {
         {title}
         {url && (
           <NavLink href={url} className={stylesModule.summary}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={linkIcon.src} alt="icon link" />
           </NavLink>
         )}

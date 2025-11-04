@@ -55,3 +55,15 @@ export interface ErrorDetailType {
   message: string;
   value: unknown;
 }
+
+/**
+ * Параметры пагинации
+ * @param limit?: number - количество элементов на странице
+ * @param start?: number - номер первого элемента
+ * @param withCount?: boolean - флаг для включения подсчета общего количества элементов в ответе
+ */
+export interface StrapiPagination {
+  limit?: number;
+  start?: number;
+  withCount?: boolean;
+}

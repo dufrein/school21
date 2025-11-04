@@ -1,5 +1,5 @@
+import { SexEnum } from "@constants";
 import { Tariff } from "./tariff";
-import { SexEnum } from './SexEnum';
 
 /**
  * Тип студента (пользователь - ученик школы)

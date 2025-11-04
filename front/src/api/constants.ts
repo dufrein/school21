@@ -19,5 +19,8 @@ export const ENDPOINTS = {
   Videos: "/videos",
   VideoById: (id: string) => `/videos/${id}`,
 
+  Articles: "/articles",
+  ArticleById: (id: string) => `/articles/${id}`,
+
   Avatars: "/avatar",
 };
