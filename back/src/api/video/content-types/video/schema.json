@@ -26,12 +26,6 @@
       "maxLength": 5000,
       "minLength": 50
     },
-    "lessons": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::lesson.lesson",
-      "inversedBy": "videos"
-    },
     "url": {
       "type": "string",
       "required": true

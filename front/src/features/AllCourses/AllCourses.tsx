@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import { AllCoursesProps } from "./types";
 import styles from "./styles.module.scss";
 import { CourseItem } from "./components/CourseItem/CourseItem";
+import { COMPLEXITY_LEVEL } from "@constants";
 
-export const AllCourses: React.FC<AllCoursesProps> = ({ courses }) => {
+export const AllCourses: React.FC<AllCoursesProps> = ({ courses, complexityLevel }) => {
   const [expandedCourses, setExpandedCourses] = useState<Set<string>>(new Set());
 
   const toggleCourse = (courseId: string) => {
@@ -18,9 +19,13 @@ export const AllCourses: React.FC<AllCoursesProps> = ({ courses }) => {
     setExpandedCourses(newExpandedCourses);
   };
 
+  const title = complexityLevel
+    ? `Курсы уровня "${COMPLEXITY_LEVEL[complexityLevel]}"`
+    : "Все курсы";
+
   return (
     <div className={styles.courses}>
-      <h2 className={styles.coursesTitle}>Все курсы</h2>
+      <h2 className={styles.coursesTitle}>{title}</h2>
       {courses.map((course) => (
         <CourseItem
           key={course.id}

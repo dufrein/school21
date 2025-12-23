@@ -58,15 +58,12 @@ export const updateStudent = async (
   try {
     const studentsCollection = strapiClient.collection("students");
 
-    const { tariff } = newStudent;
-
     const updatedStudent = {
       name: newStudent.name,
       surname: newStudent.surname,
       email: newStudent.email,
       isActive: newStudent.isActive,
       finishedLessonsIds: newStudent.finishedLessonsIds || [],
-      tariff: tariff ? tariff.documentId : null,
       phone: newStudent.phone,
       verifyTimestamp: newStudent.verifyTimestamp,
       sex: newStudent.sex || null,

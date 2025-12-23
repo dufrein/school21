@@ -1,7 +1,7 @@
 import React from "react";
 import { CoursePreviewProps } from "./types";
 import styles from "./styles.module.scss";
-import { CourseTariffs } from "@components/CourseTariffs";
+import { CourseCompleixity } from "@components/CourseCompleixity";
 import { CoursePreviewItem } from "./components";
 
 /**
@@ -15,7 +15,7 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ course }) => {
       <div className={styles.description}>
         <h2 className={styles.title}>{course.name}</h2>
         <p className={styles.text}>{course.description}</p>
-        <CourseTariffs course={course} />
+        <CourseCompleixity course={course} />
       </div>
 
       <CoursePreviewItem course={course} />

@@ -5,7 +5,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import iconLink from "public/icon_link.svg";
 import { NavLink } from "@components/NavLink";
 import { ROUTES } from "@constants";
-import { CourseTariffs } from "@components/CourseTariffs";
+import { CourseCompleixity } from "@components/CourseCompleixity";
 /**
  * Компонент элемент списка просмотра всех курсов
  */
@@ -16,7 +16,7 @@ export const CourseItem: React.FC<CourseItemProps> = ({ course, isExpanded, onTo
         <div>
           <h3 className={styles.courseTitle}>{course.name}</h3>
           <p className={styles.courseDescription}>{course.description}</p>
-          <CourseTariffs course={course} />
+          <CourseCompleixity course={course} />
 
           <NavLink
             href={`${ROUTES.COURSE_PREVIEW}/${course.documentId}`}

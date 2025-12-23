@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { VideoListProps } from "./types";
 import styles from "./styles.module.scss";
 import { getImageSrc } from "@helpers/getImageSrc";
 import { NavLink } from "@components";
-import { ROUTES } from "@constants";
 
 /**
  * Список видеолекций

@@ -9,7 +9,7 @@ export interface Lesson {
   documentId: string;
   questions: Question[];
   complexity: Complexity;
-  video: VideoLesson[];
+  video?: VideoLesson;
   image?: StrapiImage;
   createdAt?: string;
   updatedAt?: string;

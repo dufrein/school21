@@ -1,5 +1,4 @@
-import { SexEnum } from "@constants";
-import { Tariff } from "./tariff";
+import { Complexity, SexEnum } from "@constants";
 
 /**
  * Тип студента (пользователь - ученик школы)
@@ -10,11 +9,11 @@ export interface StudentType {
   name: string;
   surname: string;
   email: string;
-  tariff: Tariff | null;
   isActive: boolean;
   finishedLessonsIds: string[];
   documentId: string;
   password: string;
+  level: Complexity;
   phone?: string;
   avatarId?: string;
   verifyTimestamp?: number; 

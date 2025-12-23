@@ -23,7 +23,10 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           />
         </svg>
       )}
-      <Link href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topicId}/${ROUTES.LESSON}/${lesson.documentId}`} className={styles.lessonLink}>
+      <Link
+        href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topicId}/${ROUTES.LESSON}/${lesson.documentId}`}
+        className={styles.lessonLink}
+      >
         {lesson.title}
       </Link>
     </li>

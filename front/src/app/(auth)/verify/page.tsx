@@ -1,5 +1,4 @@
 import styles from "./page.module.scss";
-import { getTariffs } from "@api";
 import { getStudent, updateStudent } from "@api/student";
 import { NavLink } from "@components";
 import { ROUTES } from "@constants";
@@ -32,8 +31,6 @@ export default async function Verify({
     );
   }
 
-  const freeTariff = (await getTariffs()).find((traiifItem) => traiifItem.price === 0);
-
   if (student.verifyTimestamp && Date.now() - student.verifyTimestamp > 10 * 60 * 60 * 1000) {
     return (
       <div className={styles.container}>
@@ -46,7 +43,6 @@ export default async function Verify({
   const verifiedUser = await updateStudent(query.id, {
     ...student,
     isActive: true,
-    tariff: student.tariff || freeTariff || null,
   });
 
   return (

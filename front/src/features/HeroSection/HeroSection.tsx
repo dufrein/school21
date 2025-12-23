@@ -4,8 +4,7 @@ import styles from './styles.module.scss'
 import { ROUTES, SCHOOL_NAME } from '@constants'
 
 /**
- * Секция с приветствием и ссылкой на тарифы
- * @returns React.FC
+ * Секция с приветствием
  */
 export function HeroSection() {
   return (
@@ -20,7 +19,7 @@ export function HeroSection() {
           </p>
           <div className={styles.ctaContainer}>
             <Link href={ROUTES.ALL_COURSES} className={styles.btnPrimary}>
-              Посмотреть курсы
+              Посмотреть все курсы
             </Link>
           </div>
         </div>

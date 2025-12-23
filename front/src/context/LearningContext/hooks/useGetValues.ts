@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { Course, Lesson, Topic } from "@types";
 import { useEffect, useState } from "react";
 import { getCourseById, getTopicById, getLessonById } from "@api";
+import { getNextElement } from "@helpers/getNextElement";
 
 /**
  * Хук для получения данных открытого курса, темы и урока
@@ -12,6 +13,8 @@ export const useGetValues = () => {
   const [openedCourse, setOpenedCourse] = useState<Course | null>(null);
   const [openedTopic, setOpenedTopic] = useState<Topic | null>(null);
   const [openedLesson, setOpenedLesson] = useState<Lesson | null>(null);
+  const [nextTopic, setNextTopic] = useState<Topic | null>(null);
+  const [nextLesson, setNextLesson] = useState<Lesson | null>(null);  
 
   const params = useParams<{
     courseId?: string;
@@ -31,22 +34,30 @@ export const useGetValues = () => {
   useEffect(() => {
     if (params.topicId) {
       getTopicById(params.topicId).then((data) => setOpenedTopic(data));
+      const nextElement = getNextElement({list:openedCourse?.topics,currentElementId: params.topicId})
+
+      setNextTopic(nextElement);
       return;
     }
     setOpenedTopic(null);
-  }, [params.topicId]);
+  }, [params.topicId, openedCourse]);
 
   useEffect(() => {
     if (params.lessonId) {
       getLessonById(params.lessonId).then((data) => setOpenedLesson(data));
+      const nextElement = getNextElement({list:openedTopic?.lessons,currentElementId: params.lessonId})
+
+      setNextLesson(nextElement);
       return;
     }
     setOpenedLesson(null);
-  }, [params.lessonId]);
+  }, [openedTopic?.lessons, params.lessonId]);
 
   return {
     openedCourse,
     openedTopic,
     openedLesson,
+    nextTopic,
+    nextLesson
   };
 };

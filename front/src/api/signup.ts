@@ -2,6 +2,7 @@ import { NewStudentType, SignupFormType, StudentType } from "@types";
 import bcrypt from "bcryptjs";
 import { strapiClient } from "@api/strapiClient";
 import chalk from "chalk";
+import { Complexity } from "@constants";
 
 interface StrapiError {
   error: {
@@ -24,7 +25,7 @@ export const signupUser = async (signupFormData: SignupFormType) => {
     surname: signupFormData.surname.trim(),
     email: signupFormData.email.trim(),
     isActive: false,
-    tariff: null,
+    level: Complexity.BASIC,
     finishedLessonsIds: [],
     verifyTimestamp: Date.now(),
     password: hashedPassword,

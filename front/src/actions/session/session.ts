@@ -99,11 +99,6 @@ export const checkUserAccess = async (courseId: string) => {
   if (!course || !user) {
     return false;
   }
-  const tariff = course.tariffs?.find((tariff) => tariff.id === user.tariff?.id);
-
-  if (!tariff) {
-    return false;
-  }
 
   return true;
 };

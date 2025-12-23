@@ -19,12 +19,6 @@
       "type": "string",
       "required": true
     },
-    "tariffs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tariff.tariff",
-      "inversedBy": "courses"
-    },
     "complexity": {
       "type": "enumeration",
       "enum": [

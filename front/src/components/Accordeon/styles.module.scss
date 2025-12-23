@@ -1,19 +1,24 @@
 .accordeon {
-  padding: 10px 0;
+  margin-bottom: 12px;
 
   ::marker {
     width: 50px;
     height: 50px;
   }
 
+  summary {
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+.link {
+  position: relative;
+
   img {
     margin-left: 10px;
     width: 20px;
     height: 20px;
-  }
-
-  summary {
-    outline: none;
-    cursor: pointer;
+    position: absolute;
   }
 }

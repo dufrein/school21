@@ -1,7 +1,22 @@
 import { getCourses } from "@api";
 import { AllCourses } from "@features/AllCourses";
+import { Complexity } from "@constants";
 
-export default async function AllCoursesPage() {
-  const courses = await getCourses(true);
-  return <AllCourses courses={courses} />;
+type AllCoursesPageProps = {
+  searchParams: Promise<{ complexity?: string }>;
+};
+
+export default async function AllCoursesPage({ searchParams }: AllCoursesPageProps) {
+  const params = await searchParams;
+  const allCourses = await getCourses(true);
+  
+  let courses = allCourses;
+  let complexityLevel: Complexity | undefined;
+  
+  if (params.complexity && Object.values(Complexity).includes(params.complexity as Complexity)) {
+    complexityLevel = params.complexity as Complexity;
+    courses = allCourses.filter((course) => course.complexity === complexityLevel);
+  }
+  
+  return <AllCourses courses={courses} complexityLevel={complexityLevel} />;
 }

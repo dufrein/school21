@@ -10,9 +10,6 @@ export const ENDPOINTS = {
   Lessons: "/lessons",
   LessonById: (id: string) => `/lessons/${id}`,
 
-  Tariffs: "/tariffs",
-  TariffById: (id: string) => `/tariffs/${id}`,
-
   Topics: "/topics",
   TopicById: (id: string) => `/topics/${id}`,
 

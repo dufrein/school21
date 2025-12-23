@@ -9,6 +9,8 @@ import { Questions } from "./components";
 import { BreadCrumbs } from "@components/BreadCrumbs";
 import { UserContext } from "@context/UserContext";
 import { COMPLEXITY_LEVEL } from "@constants";
+import { NextLessonButton } from "./components/NextLessonButton";
+import { VideoList } from "@features/VideoList";
 
 export function LessonContent({ lesson }: { lesson: Lesson }) {
   const { user, saveStudent } = useContext(UserContext);
@@ -47,6 +49,7 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
   const date = lesson.updatedAt || lesson.createdAt;
   const updatedDate = date ? `Дата обновления: ${new Date(date).toLocaleDateString()}` : "";
 
+  console.log('lesson', lesson);
   return (
     <div className={styles.content}>
       <BreadCrumbs />
@@ -86,6 +89,7 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
             alt={"изображение урока"}
           />
         )}
+        {/* {lesson.video && <VideoList videos={[lesson.video]}/>} */}
         <div className={styles.theoryContent}>
           <BlocksRenderer content={lesson.theory} />
         </div>
@@ -127,6 +131,7 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
           )}
         </div>
       </div>
+      <NextLessonButton isDisabled={!isShownResults || calculateScore() !== 100} />
     </div>
   );
 }

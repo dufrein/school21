@@ -1,1 +1,0 @@
-export { CourseTariffs } from './CourseTariffs';

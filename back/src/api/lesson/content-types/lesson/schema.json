@@ -44,11 +44,10 @@
         "audios"
       ]
     },
-    "videos": {
+    "video": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::video.video",
-      "mappedBy": "lessons"
+      "relation": "oneToOne",
+      "target": "api::video.video"
     }
   }
 }

@@ -28,11 +28,6 @@
       "type": "boolean",
       "required": true
     },
-    "tariff": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tariff.tariff"
-    },
     "finishedLessonsIds": {
       "type": "json",
       "required": true
@@ -61,6 +56,15 @@
     },
     "avatarId": {
       "type": "string"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "basic",
+        "medium",
+        "advanced",
+        "professional"
+      ]
     }
   }
 }

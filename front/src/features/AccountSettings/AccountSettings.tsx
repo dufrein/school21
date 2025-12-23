@@ -4,7 +4,7 @@ import { useContext, useMemo, useState } from "react";
 import styles from "./styles.module.scss";
 import { UserContext } from "@context/UserContext";
 import { StudentType } from "@types";
-import { BuyTariff, AvatarSelect } from "@components";
+import { AvatarSelect } from "@components";
 import { accountSettingsSchema } from "./schema";
 import { getClassList } from "@utils";
 import { AccountSettingsProps } from "./types";
@@ -22,7 +22,6 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     surname: user?.surname || "",
     sex: user?.sex,
     avatarId: user?.avatarId || "",
-    tariff: user?.tariff || null,
   });
 
   const [errors, setErrors] = useState<{
@@ -68,7 +67,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     isLoading || !hasChanges ? "btnDisabled" : "",
   ]);
 
-  console.log('userSettings.sex',userSettings.sex);
+  console.log("userSettings.sex", userSettings.sex);
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.settingsTitle}>Настройки аккаунта</h2>
@@ -97,11 +96,11 @@ export const AccountSettings = (props: AccountSettingsProps) => {
           <label className={styles.label}>Пол</label>
           <select
             value={userSettings.sex || ""}
-            defaultValue={'x'}
+            defaultValue={"x"}
             onChange={(e) => setUserSettings({ ...userSettings, sex: e.target.value as SexEnum })}
             className={styles.sexSelect}
           >
-            <option value={'x'}>Выберите пол</option>
+            <option value={"x"}>Выберите пол</option>
             <option value={SexEnum.MAN}>Мужской</option>
             <option value={SexEnum.WOMAN}>Женский</option>
           </select>
@@ -122,10 +121,6 @@ export const AccountSettings = (props: AccountSettingsProps) => {
           <p>{user?.email}</p>
         </div>
         <div className={styles.formGroup}>
-          <label className={styles.label}>Тариф</label>
-          <p>{user?.tariff?.name}</p>
-        </div>
-        <div className={styles.formGroup}>
           <button
             className={buttinClassList}
             onClick={handleSave}
@@ -133,7 +128,6 @@ export const AccountSettings = (props: AccountSettingsProps) => {
           >
             {isLoading ? "Сохранение..." : "Сохранить изменения"}
           </button>
-          <BuyTariff className={styles.buyTariff}>Выбрать другой тариф</BuyTariff>
         </div>
       </div>
     </div>

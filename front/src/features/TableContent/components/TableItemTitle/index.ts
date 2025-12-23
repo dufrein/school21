@@ -1,0 +1,1 @@
+export { TableItemTitle } from './TableItemTitle';

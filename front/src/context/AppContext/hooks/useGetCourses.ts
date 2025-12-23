@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-import { getCourseById } from "@api";
+import { getCourseById, getCourses } from "@api";
 import { getTopicById } from "@api/topics";
-import { Course, Tariff } from "@types";
+import { Course, StudentType } from "@types";
 
-export const useGetCourses = (activeTariff: Tariff | null) => {
+export const useGetCourses = (userLevel: StudentType['level']) => {
   const [userCourses, setUserCourses] = useState<Course[] | null>(null);
   
   useEffect(() => {
-    if (!activeTariff) {
+    if (!userLevel) {
       return;
     }
     const fullCourses: Course[] = [];
-
-    activeTariff?.courses.forEach((courseItem, index) => {
+     getCourses(true).then(allCourses=>allCourses.forEach((courseItem, index) => {
       getCourseById(courseItem.documentId).then((courseData) => {
         const fullCourseData = courseData;
 
@@ -21,13 +20,13 @@ export const useGetCourses = (activeTariff: Tariff | null) => {
         Promise.all(promises).then((topics) => {
           fullCourseData.topics = topics;
           fullCourses.push(fullCourseData);
-          if (index === activeTariff?.courses.length - 1) {
+          if (index === allCourses.length - 1) {
             setUserCourses([...fullCourses]);
           }
         });
       });
-    });
-  }, [activeTariff]);
+    }));
+  }, [userLevel]);
 
   return userCourses;
 };

@@ -1,0 +1,9 @@
+.item {
+  margin-top: 4px;
+  padding: 4px 8px;
+  border-radius: 2px;
+
+  &_active {
+    background-color: #56a9dd49;
+  }
+}

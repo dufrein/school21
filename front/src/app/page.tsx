@@ -1,6 +1,6 @@
 import { HeroSection } from "../features/HeroSection";
 import { FeaturesSection } from "../features/FeaturesSection";
-import { PricingPreview } from "../features/PricingPreview";
+import { ComplexityLevelsPreview } from "../features/ComplexityLevelsPreview";
 import styles from "./page.module.scss";
 
 export default async function Home() {
@@ -8,7 +8,7 @@ export default async function Home() {
     <div className={styles.container}>
       <HeroSection />
       <FeaturesSection />
-      <PricingPreview />
+      <ComplexityLevelsPreview />
     </div>
   );
 }

@@ -466,7 +466,6 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    tariffs: Schema.Attribute.Relation<'manyToMany', 'api::tariff.tariff'>;
     topics: Schema.Attribute.Relation<'manyToMany', 'api::topic.topic'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -506,7 +505,7 @@ export interface ApiLessonLesson extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    videos: Schema.Attribute.Relation<'manyToMany', 'api::video.video'>;
+    video: Schema.Attribute.Relation<'oneToOne', 'api::video.video'>;
   };
 }
 
@@ -569,6 +568,9 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       }>;
     finishedLessonsIds: Schema.Attribute.JSON & Schema.Attribute.Required;
     isActive: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    level: Schema.Attribute.Enumeration<
+      ['basic', 'medium', 'advanced', 'professional']
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -593,46 +595,10 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 40;
       }>;
-    tariff: Schema.Attribute.Relation<'oneToOne', 'api::tariff.tariff'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     verifyTimestamp: Schema.Attribute.Integer;
-  };
-}
-
-export interface ApiTariffTariff extends Struct.CollectionTypeSchema {
-  collectionName: 'tariffs';
-  info: {
-    description: '';
-    displayName: 'Tariff';
-    pluralName: 'tariffs';
-    singularName: 'tariff';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.String & Schema.Attribute.Required;
-    features: Schema.Attribute.JSON & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::tariff.tariff'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    price: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<0>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -686,7 +652,6 @@ export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
         maxLength: 5000;
         minLength: 50;
       }>;
-    lessons: Schema.Attribute.Relation<'manyToMany', 'api::lesson.lesson'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::video.video'> &
       Schema.Attribute.Private;
@@ -1218,7 +1183,6 @@ declare module '@strapi/strapi' {
       'api::lesson.lesson': ApiLessonLesson;
       'api::question.question': ApiQuestionQuestion;
       'api::student.student': ApiStudentStudent;
-      'api::tariff.tariff': ApiTariffTariff;
       'api::topic.topic': ApiTopicTopic;
       'api::video.video': ApiVideoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;

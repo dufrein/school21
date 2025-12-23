@@ -1,7 +1,7 @@
 import React from "react";
 import { AccordeonProps } from "./types";
 import { getClassList } from "@utils";
-import stylesModule from './styles.module.scss'
+import stylesModule from "./styles.module.scss";
 import { NavLink } from "@components";
 import linkIcon from "public/icon_link.svg";
 
@@ -15,9 +15,9 @@ export const Accordeon: React.FC<AccordeonProps> = (props) => {
   return (
     <details className={classList} style={styles}>
       <summary>
-        {title}
+        <span>{title}</span>
         {url && (
-          <NavLink href={url} className={stylesModule.summary}>
+          <NavLink href={url} className={stylesModule.link}>
             <img src={linkIcon.src} alt="icon link" />
           </NavLink>
         )}

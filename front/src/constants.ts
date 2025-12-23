@@ -51,7 +51,6 @@ export const ROUTES = {
   SIGNUP: "/signup",
   LEARNING: "/learning",
   VERIFY: "/verify",
-  PRICING: "/pricing",
   DASHBOARD: "/dashboard",
   RESET_PASSWORD: "/resetPass",
   LOGOUT: "/logout",

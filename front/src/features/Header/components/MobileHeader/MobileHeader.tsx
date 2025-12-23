@@ -74,9 +74,6 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
             <NavLink href={ROUTES.LEARNING} className={styles.mobileMenuItem} onClick={onLinkClick}>
               Учиться
             </NavLink>
-            <NavLink href={ROUTES.PRICING} className={styles.mobileMenuItem} onClick={onLinkClick}>
-              Тарифы
-            </NavLink>
             <NavLink href={ROUTES.VIDEO} className={styles.mobileMenuItem} onClick={onLinkClick}>
               Видеолекции
             </NavLink>

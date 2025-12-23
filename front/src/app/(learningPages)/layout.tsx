@@ -3,7 +3,7 @@ import styles from "./layout.module.scss";
 import { CoursesStructure } from "@features/CoursesStructure";
 import { getUser, verifySession } from "@actions/session/session";
 import { redirect } from "next/navigation";
-import { getCourses, getTariffById } from "@api";
+import { getCourses } from "@api";
 
 export const metadata: Metadata = {
   title: "Языковая школа",
@@ -26,15 +26,11 @@ export default async function LearningPagesLayout({ children }: { children: Reac
       </div>
     );
   }
-  const userTariff = user.tariff?.documentId ? await getTariffById(user.tariff?.documentId) : null;
 
   // получим список курсов, которые доступны пользователю
   const coursesToShow = courses.filter(
-    (courseItem) =>
-      userTariff?.courses?.filter(
-        (userTariffCourseItem) => userTariffCourseItem.documentId === courseItem.documentId
-      )[0]
-  );
+    (courseItem) =>courseItem.complexity===user.level
+   );
 
   return (
     <div className={styles.twoColumn}>

@@ -3,7 +3,7 @@ import styles from "./page.module.scss";
 import { getVideos } from "@api/videos";
 
 export default async function VideoLessonsPage() {
-  const videos = await getVideos("preview");
+  const videos = await getVideos();
   const filteredVideos = videos.filter((video) => video.showOnVideoPage);
   
   return (
