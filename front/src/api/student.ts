@@ -68,6 +68,7 @@ export const updateStudent = async (
       verifyTimestamp: newStudent.verifyTimestamp,
       sex: newStudent.sex || null,
       avatarId: newStudent.avatarId || null,
+      level: newStudent.level || null
     };
 
     const response = await studentsCollection.update(

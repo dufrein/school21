@@ -3,17 +3,6 @@ import { ENDPOINTS } from "./constants";
 import { Article, StrapiPagination } from "@types";
 import { fetchStrapiDocsList } from "@utils";
 
-/**
- * Хелпер получения статьи по id
- * @param articleId - идентификатор статьи
- * @returns Promise<Article>
- */
-export const getArticleById = async (articleId: string): Promise<Article> => {
-  const { data } = await fetchApi<{ data: Article }>(ENDPOINTS.ArticleById(articleId), {
-    params: { populate: "*" },
-  });
-  return data.data;
-};
 
 /**
  * Хелпер получения списка статей
@@ -26,4 +15,16 @@ export const getArticles = async (
 ): Promise<Article[]> => {
   const { data } = await fetchStrapiDocsList<Article>(ENDPOINTS.Articles, populate, pagination);
   return data;
+};
+
+/**
+ * Хелпер получения статьи по id
+ * @param articleId - идентификатор статьи
+ * @returns Promise<Article>
+ */
+export const getArticleById = async (articleId: string): Promise<Article> => {
+  const { data } = await fetchApi<{ data: Article }>(ENDPOINTS.ArticleById(articleId), {
+    params: { populate: "*" },
+  });
+  return data.data;
 };

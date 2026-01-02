@@ -20,17 +20,15 @@ export default async function LearningPagesLayout({ children }: { children: Reac
   const courses = await getCourses(true);
 
   if (!user) {
-    return (
-      <div className={styles.twoColumn}>
-        {children}
-      </div>
-    );
+    return <div className={styles.twoColumn}>{children}</div>;
+  }
+console.log('user111',user);
+  if (!user.level) {
+    redirect("/dashboard?isLevelEmpty=true");
   }
 
   // получим список курсов, которые доступны пользователю
-  const coursesToShow = courses.filter(
-    (courseItem) =>courseItem.complexity===user.level
-   );
+  const coursesToShow = courses.filter((courseItem) => courseItem.complexity === user.level);
 
   return (
     <div className={styles.twoColumn}>

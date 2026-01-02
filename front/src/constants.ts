@@ -10,8 +10,8 @@ export enum Complexity {
 }
 
 export const COMPLEXITY_LEVEL= {
-  [Complexity.BASIC]: 'Лёгкий',
-  [Complexity.MEDIUM]: 'Средний',
+  [Complexity.BASIC]: 'Новичок',
+  [Complexity.MEDIUM]: 'Среднячок',
   [Complexity.ADVANCED]: 'Продвинутый',
   [Complexity.PROFESSIONAL]: 'Профессионал',
 }

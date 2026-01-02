@@ -10,6 +10,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "@context/UserContext";
 import { Avatar } from "@components/Avatar/Avatar";
 import { AppContext } from "@context/AppContext";
+import { TableContent } from "@features/TableContent";
 
 /**
  * Мобильное меню
@@ -18,7 +19,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCoursesOpened, setIsCoursesOpened] = useState(false);
   const { user } = useContext(UserContext);
-  const { tableContent } = useContext(AppContext);
+  const { userCourses } = useContext(AppContext);
   const onToggle = () => setIsOpen(!isOpen);
   const onLinkClick = () => setIsOpen(false);
   const onDeleteHandler = () => {
@@ -96,7 +97,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
       )}
 
       <Modal isOpened={isCoursesOpened} className={styles.tableModal} onClose={closeCoursesModal}>
-        {tableContent}
+        <TableContent userCourses={userCourses} />
       </Modal>
     </nav>
   );

@@ -13,10 +13,10 @@ export interface StudentType {
   finishedLessonsIds: string[];
   documentId: string;
   password: string;
-  level: Complexity;
+  level: Complexity | null;
   phone?: string;
   avatarId?: string;
-  verifyTimestamp?: number; 
+  verifyTimestamp?: number;
   sex?: SexEnum;
 }
 

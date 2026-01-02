@@ -8,7 +8,7 @@ import { AvatarSelect } from "@components";
 import { accountSettingsSchema } from "./schema";
 import { getClassList } from "@utils";
 import { AccountSettingsProps } from "./types";
-import { SexEnum } from "@constants";
+import { Complexity, COMPLEXITY_LEVEL, SexEnum } from "@constants";
 
 /**
  * Компонент для настроек аккаунта
@@ -22,6 +22,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     surname: user?.surname || "",
     sex: user?.sex,
     avatarId: user?.avatarId || "",
+    level: user?.level || null,
   });
 
   const [errors, setErrors] = useState<{
@@ -29,14 +30,16 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     surname?: string[];
     sex?: string[];
     avatarId?: string[];
+    level?: string[]
   }>({});
-
+console.log('user',user);
   const hasChanges = useMemo(() => {
     return (
       userSettings.name !== user?.name ||
       userSettings.surname !== user?.surname ||
       userSettings.sex !== user?.sex ||
-      userSettings.avatarId !== user?.avatarId
+      userSettings.avatarId !== user?.avatarId ||
+      userSettings.level !== user?.level
     );
   }, [userSettings, user]);
 
@@ -47,6 +50,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
       name: userSettings.name,
       surname: userSettings.surname,
       sex: userSettings.sex,
+      level: userSettings.level,
     });
 
     if (!validationResult.success) {
@@ -67,11 +71,36 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     isLoading || !hasChanges ? "btnDisabled" : "",
   ]);
 
-  console.log("userSettings.sex", userSettings.sex);
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.settingsTitle}>Настройки аккаунта</h2>
       <div className={styles.settingsForm}>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Уровень знаний</label>
+          <select
+            value={userSettings.level || ""}
+            defaultValue={Complexity.BASIC}
+            onChange={(e) =>
+              setUserSettings({ ...userSettings, level: (e.target.value as Complexity) || null })
+            }
+            className={styles.sexSelect}
+          >
+            <option key={"x"} value={""}>
+              Выберите свой уровень
+            </option>
+            {Object.entries(COMPLEXITY_LEVEL).map((levelItem) => (
+              <option key={levelItem[0]} value={levelItem[0]}>
+                {levelItem[1]}
+              </option>
+            ))}
+          </select>
+          {!user?.level && (
+            <div style={{ color: "#ee5ed6ff", fontSize: 14 }}>
+              Укажите свой уровень знаний, чтобы продолжить обучение
+            </div>
+          )}
+          {errors.level && <p className={styles.fieldError}>{errors.level[0]}</p>}
+        </div>
         <div className={styles.formGroup}>
           <label className={styles.label}>Имя</label>
           <input

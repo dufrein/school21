@@ -13,7 +13,7 @@ export const Articles: React.FC = () => {
   }
   return (
     <div className={styles.articles}>
-      {[...articles,...articles,...articles,...articles,...articles]?.map((article) => (
+      {[...articles]?.map((article) => (
         <Article key={article?.id} article={article} />
       ))}
     </div>

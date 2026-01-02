@@ -11,11 +11,16 @@ import { TableItemTitle } from "./components/TableItemTitle";
 import { useGetCheckCourseFinished } from "@hooks/useGetCheckCourseFinished";
 import { useGetCheckLessonFinished } from "@hooks/useGetCheckLessonFinished";
 
+/**
+ * Вывод содержимого курсов в виде списка тем и уроков
+ */
 export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
   const { user } = useContext(UserContext);
   const { openedCourse, openedTopic } = useContext(LearningContext);
   const getIsCourseFinished = useGetCheckCourseFinished();
   const getIsLessonFinished = useGetCheckLessonFinished();
+ 
+  console.log("userCourses", userCourses);
 
   if (!userCourses || !user?.finishedLessonsIds) {
     return null;
@@ -26,7 +31,10 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
       <div className={styles.lessons}>
         {topics?.map((topicItem) => {
           const topicLessonIds = topicItem.lessons.map((lessonItem) => lessonItem.documentId);
-          const isTopicFinished = user?.finishedLessonsIds.every((lessonId) =>
+          console.log('topicLessonIds',topicLessonIds);
+          console.log('user?.finishedLessonsIds',user?.finishedLessonsIds);
+
+          const isTopicFinished = !!user?.finishedLessonsIds.length && user?.finishedLessonsIds.every((lessonId) =>
             topicLessonIds.includes(lessonId)
           );
 
