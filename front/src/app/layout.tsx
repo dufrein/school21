@@ -7,15 +7,24 @@ import { verifySession } from "@actions/session";
 import { getStudent } from "@api/student";
 import { PageBody } from "@features/PageBody";
 import { LearningContextProvider } from "@context/LearningContext";
+import { getCourses } from "@api";
+import { Inter } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: "Языковая школа",
   description: "Изучайте языки с нашими профессиональными курсами",
 };
 
+const inter = Inter({})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await verifySession();
-  const user = session?.userId && (await getStudent(session?.userId as string));
+  const user = session?.userId ? await getStudent(session?.userId as string) : null;
+  const userCourses = await getCourses({
+    populate: 'topics',
+    searchParams: { "filters[complexity][$eq]": `${user?.level as string}` },
+  });
+ 
   const userInfo = user
     ? {
         ...user,
@@ -24,17 +33,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     : null;
 
   return (
-    <html lang="ru">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Zen+Maru+Gothic&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="ru" className={inter.className}>
       <body className={styles.body}>
-        <AppContextProvider>
+        <AppContextProvider userCourses={userCourses}>
           <LearningContextProvider>
             <UserContextProvider user={userInfo}>
               <PageBody userId={session?.userId as string | null}>{children}</PageBody>

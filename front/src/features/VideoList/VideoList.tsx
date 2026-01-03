@@ -12,12 +12,11 @@ import { NavLink } from "@components";
  * @returns список видеолекций
  */
 export const VideoList: React.FC<VideoListProps> = ({ videos }) => {
-console.log('videos',videos);
   return (
     <div className={styles.videoList} >
       {videos.map((video) => (
         <div key={video.documentId} className={styles.videoItem}>
-          <NavLink href={video.url}>
+          <NavLink href={video.url} target="='_blank">
             <img
               src={getImageSrc(video.preview, "small")}
               alt={video.name}

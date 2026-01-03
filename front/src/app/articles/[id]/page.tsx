@@ -4,8 +4,7 @@ import { ArticlesContextProvider } from "@context/ArticlesContext";
 import { Articles } from "@features/Articles";
 
 export const Page = async () => {
-  const articles = await getArticles();
-  console.log("articles", articles);
+  const articles = (await getArticles({})) || [];
   //доделать ленту новостей
   return (
     <div className="container">

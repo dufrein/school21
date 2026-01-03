@@ -1,6 +1,6 @@
 import { StrapiImage } from "@types";
 
 export interface AccountSettingsProps {
-  avatarsWoman: StrapiImage[];
-  avatarsMan: StrapiImage[];
+  avatarsWoman?: StrapiImage[] | null;
+  avatarsMan?: StrapiImage[] | null;
 }

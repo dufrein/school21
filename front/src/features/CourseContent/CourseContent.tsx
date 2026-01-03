@@ -7,7 +7,7 @@ import { Topic as TopicItem } from "./components";
 /**
  * Контент курса
  */
-export function CourseContent({ course }: { course: Course }) {
+export function CourseContent({ course }: { course: Course | null }) {
   if (!course) {
     return null;
   }

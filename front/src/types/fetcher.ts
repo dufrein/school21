@@ -5,11 +5,18 @@ export interface FetchOptions extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;
 }
 
-/**
- * Интерфейс для ответа запроса
- */
-export interface FetchResponse<T> {
-  data: T;
-  status: number;
-  ok: boolean;
-}
+export type StrapiError = {
+  error: {
+    status: number;
+    name: string;
+    message: string;
+    details?: { errors: StrapiDetailError[] };
+  };
+};
+
+export type StrapiDetailError = {
+  path: string[];
+  message: string;
+  name: string;
+  value: string;
+};

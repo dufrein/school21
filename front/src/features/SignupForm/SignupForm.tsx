@@ -79,7 +79,7 @@ export const SignupForm: React.FC = () => {
         )}
       </div>
       {!errors && isUserCreated && (
-        <p>На вашу почту {email} выслана ссылка для окончания регистрации, перейдите по ней</p>
+        <p>На вашу почту {email} выслана ссылка для окончания регистрации, перейдите по ней. Если этого не произошло, напишите в техподдержку</p>
       )}
       <button
         className={`button btnPrimary${isUserCreated ? " btnDisabled" : ""}`}

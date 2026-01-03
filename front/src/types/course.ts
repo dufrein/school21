@@ -8,6 +8,10 @@ export interface Course {
   documentId: string;
   description: string;
   complexity: Complexity;
+  /**
+   * Это искусственное поле, его нет в типах страпи контента и в админке соответственно, создается в контроллере 
+   */
+  courseLessonsIds: string[]; 
   createdAt?: string;
   updatedAt?: string;
 }

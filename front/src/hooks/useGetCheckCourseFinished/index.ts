@@ -1,1 +1,0 @@
-export { useGetCheckCourseFinished } from "./useGetCheckCourseFinished";

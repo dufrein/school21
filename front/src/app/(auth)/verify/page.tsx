@@ -48,7 +48,8 @@ export default async function Verify({
   return (
     <div className={styles.container}>
       <h2>Подтверждение верификации</h2>
-      <div className={styles.verified}>{verifiedUser ? "Верификация пройдена" : "..."}</div>
+      <div className={styles.verified}>{verifiedUser ? "Верификация пройдена, поздравляем! Теперь вам необходимо войти на сайт "+ 
+      "и заполнить свой уровень знания языка в настройках, после этого вам станут доступны курсы вашего уровня" : "..."}</div>
       <NavLink href={ROUTES.LOGIN} style={{ color: "blue", paddingTop: 20 }}>
         Войти
       </NavLink>

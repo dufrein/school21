@@ -5,7 +5,9 @@ export const ENDPOINTS = {
   StudentById: (id: string) => `/students/${id}`,
 
   Courses: "/courses",
+  CoursesFull: "/courses/full",
   CourseById: (id: string) => `/courses/${id}`,
+  CourseFullById: (id: string) => `/courses/full/${id}`,
 
   Lessons: "/lessons",
   LessonById: (id: string) => `/lessons/${id}`,

@@ -15,7 +15,7 @@ export default async function Dashboard() {
   return (
     <div className={'container'}>
       <h2>Личный кабинет</h2>
-      <AccountSettings avatarsWoman={avatars.avatarsWoman} avatarsMan={avatars.avatarsMan}/>
+      <AccountSettings avatarsWoman={avatars?.avatarsWoman} avatarsMan={avatars?.avatarsMan}/>
     </div>
   );
 }

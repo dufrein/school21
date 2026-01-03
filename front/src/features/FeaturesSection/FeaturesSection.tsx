@@ -11,14 +11,14 @@ export function FeaturesSection() {
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Интерактивные уроки</h3>
             <p className={styles.cardText}>
-              Увлекательные уроки с обратной связью в реальном времени и интерактивными
+              Увлекательные уроки с интерактивными
               упражнениями.
             </p>
           </div>
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Профессиональные преподаватели</h3>
             <p className={styles.cardText}>
-              Учитесь у сертифицированных преподавателей с многолетним опытом.
+              Дополнительные занятия у преподавателей с многолетним опытом.
             </p>
           </div>
           <div className={styles.card}>

@@ -1,17 +1,22 @@
-import { StrapiPagination, VideoLesson } from "@types";
+import { VideoLesson } from "@types";
 import { fetchApi } from "@utils/fetchApi";
 import { ENDPOINTS } from "./constants";
 import { fetchStrapiDocsList } from "@utils";
+import { GetDocsParams } from "./types";
 
-export const getVideos = async (populate?: boolean, pagination?: StrapiPagination): Promise<VideoLesson[]> => {
-  const { data } = await fetchStrapiDocsList<VideoLesson>(ENDPOINTS.Videos, populate, pagination);
-  return data;
+export const getVideos = async ({
+  populate,
+  pagination,
+}: GetDocsParams) => {
+  return await fetchStrapiDocsList<VideoLesson>({
+    url: ENDPOINTS.Videos,
+    populate,
+    pagination,
+  });
 };
 
 export const getVideoById = async (id: string, populate?: string) => {
-  const { data } = await fetchApi<{ data: VideoLesson }>(ENDPOINTS.VideoById(id), {
+  return await fetchApi<{ data: VideoLesson }>(ENDPOINTS.VideoById(id), {
     params: { populate },
   });
-
-  return data.data;
 };

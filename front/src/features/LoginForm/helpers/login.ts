@@ -13,15 +13,14 @@ export const login = async (state: unknown, formData: FormData) => {
       password: formData.get("password"),
     });
 
-    // If any form fields are invalid, return early
     if (!validatedFields.success) {
       return {
         errors: validatedFields.error.flatten().fieldErrors,
       };
     }
-
+    
     const checkedStudent = await getStudentByEmail(validatedFields.data.email);
-
+  
     if (!checkedStudent) {
       return {
         errors: {

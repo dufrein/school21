@@ -1,8 +1,7 @@
 import { Course } from "@types";
 import { PropsWithChildren } from "react";
 
-export type AppContextProps = PropsWithChildren;
-
+export type AppContextProps = PropsWithChildren & AppContextType;
 export interface AppContextType {
   userCourses: Course[] | null;
 }

@@ -6,26 +6,24 @@ export enum Complexity {
   BASIC = "basic",
   MEDIUM = "medium",
   ADVANCED = "advanced",
-  PROFESSIONAL = "professional",
 }
 
-export const COMPLEXITY_LEVEL= {
-  [Complexity.BASIC]: 'Новичок',
-  [Complexity.MEDIUM]: 'Среднячок',
-  [Complexity.ADVANCED]: 'Продвинутый',
-  [Complexity.PROFESSIONAL]: 'Профессионал',
-}
+export const COMPLEXITY_LEVEL = {
+  [Complexity.BASIC]: "Новичок",
+  [Complexity.MEDIUM]: "Среднячок",
+  [Complexity.ADVANCED]: "Продвинутый",
+};
 
 export const loginObjectSchema = {
   email: z
     .string()
-    .min(7, "Минимальная длина 7")
-    .max(50, "Максимальная длина 50")
-    .email("Некорректный адрес email"),
+    .min(7, "Минимальная длина 7 ")
+    .max(50, "Максимальная длина 50 ")
+    .email("Некорректный адрес email "),
   password: z
     .string()
-    .min(9, "Минимальная длина 9")
-    .max(25, "Максимальная длина 25")
+    .min(9, "Минимальная длина 9 ")
+    .max(25, "Максимальная длина 25 ")
     .regex(
       /^[a-zA-Z][a-zA-Z0-9!-@\.]*([0-9]+[!-@\.]|[!-@\.]+[0-9])+/,
       "Пароль должен содержать только латинские буквы и начинаться с буквы," +
@@ -36,14 +34,14 @@ export const loginObjectSchema = {
 export const nameSurnameSchema = {
   name: z
     .string()
-    .min(3, "Минимальная длина 3")
-    .max(25, "Максимальная длина 25")
-    .regex(/^[а-яёй]+$/i, "Имя может содержать только русские буквы"),
+    .min(3, "Минимальная длина 3 ")
+    .max(25, "Максимальная длина 25 ")
+    .regex(/^[а-яёй]+$/i, "Имя может содержать только русские буквы "),
   surname: z
     .string()
-    .min(3, "Минимальная длина 3")
-    .max(40, "Максимальная длина 40")
-    .regex(/^[а-яёй]+$/i, "Фамилия может содержать только русские буквы"),
+    .min(3, "Минимальная длина 3 ")
+    .max(40, "Максимальная длина 40 ")
+    .regex(/^[а-яёй]+$/i, "Фамилия может содержать только русские буквы "),
 };
 
 export const ROUTES = {
@@ -63,13 +61,12 @@ export const ROUTES = {
   ARTICLES: "/articles",
 };
 
-
 export enum SexEnum {
   MAN = "man",
   WOMAN = "woman",
 }
 
-export const SCHOOL_NAME = 'Шкул';
+export const SCHOOL_NAME = "Шкул";
 
 /**
  * Класс для ошибки запроса
@@ -80,3 +77,18 @@ export class FetchError extends Error {
     this.name = "FetchError";
   }
 }
+
+/**
+ * Конфиг параметров для zod схемы для enum
+ */
+export const zodEnumOptions = {
+  errorMap: (issue: z.ZodIssueOptionalMessage, ctx: z.ErrorMapCtx) => {
+    if (
+      issue.code === z.ZodIssueCode.invalid_type ||
+      issue.code === z.ZodIssueCode.invalid_enum_value
+    ) {
+      return { message: "Выберите подходящее значение" };
+    }
+    return { message: ctx.defaultError };
+  },
+};

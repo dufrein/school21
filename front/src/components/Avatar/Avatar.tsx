@@ -24,6 +24,10 @@ export const Avatar: FC<AvatarProps> = (props) => {
   useEffect(() => {
     if (avatarId) {
       getAvatars().then((avatars) => {
+        if (!avatars) {
+          return;
+        }
+
         const avatarsList = sex === SexEnum.WOMAN ? avatars.avatarsWoman : avatars.avatarsMan;
         setAvatar(avatarsList.find((avatar) => avatar.documentId === avatarId) || null);
       });

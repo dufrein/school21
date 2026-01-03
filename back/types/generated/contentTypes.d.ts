@@ -512,9 +512,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    complexity: Schema.Attribute.Enumeration<
-      ['basic', 'medium', 'advanced', 'professional']
-    >;
+    complexity: Schema.Attribute.Enumeration<['basic', 'medium', 'advanced']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

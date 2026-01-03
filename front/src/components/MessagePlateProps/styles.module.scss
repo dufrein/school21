@@ -1,0 +1,21 @@
+.plate {
+  margin: 20 0;
+  padding: 20;
+  border: 1px solid;
+  border-radius: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_popup {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  &-cross {
+    font-size: 32px;
+    line-height: 0.6;
+    cursor: pointer;
+  }
+}

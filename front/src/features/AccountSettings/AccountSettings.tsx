@@ -30,9 +30,9 @@ export const AccountSettings = (props: AccountSettingsProps) => {
     surname?: string[];
     sex?: string[];
     avatarId?: string[];
-    level?: string[]
+    level?: string[];
   }>({});
-console.log('user',user);
+
   const hasChanges = useMemo(() => {
     return (
       userSettings.name !== user?.name ||
@@ -42,6 +42,10 @@ console.log('user',user);
       userSettings.level !== user?.level
     );
   }, [userSettings, user]);
+
+  if (!avatarsWoman || !avatarsMan) {
+    return null;
+  }
 
   const handleSave = async () => {
     setErrors({});

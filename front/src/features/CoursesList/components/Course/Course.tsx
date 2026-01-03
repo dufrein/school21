@@ -1,31 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CourseProps } from "./types";
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import { getUserProgress } from "@api";
 import { UserContext } from "@context/UserContext";
 import { useContext } from "react";
 import { ROUTES } from "@constants";
+import { getCourseProgress } from "@helpers/getCourseProgress";
 
 /**
  * Компонент карточка списка курсов пользователя
  */
 export const Course: React.FC<CourseProps> = (props) => {
   const { course } = props;
-  const [readyLessonsIds, setReadyLessonsIds] = useState<string[] | null>(null);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    //todo доделать прогресс курса
-    getUserProgress(course.documentId).then((lessonsIds) => setReadyLessonsIds(lessonsIds));
-  }, []);
-
-  const progress = Math.floor(
-    (readyLessonsIds ? readyLessonsIds.length : 0) / course.topics.length
-  );
+  const progress = getCourseProgress(course, user) || 0;
 
   return (
-    <Link key={course.id} href={`${ROUTES.COURSE}/${course.documentId}`} className={styles.courseCard}>
+    <Link
+      key={course.id}
+      href={`${ROUTES.COURSE}/${course.documentId}`}
+      className={styles.courseCard}
+    >
       <div className={styles.courseHeader}>
         <h3 className={styles.courseTitle}>{course.name}</h3>
       </div>

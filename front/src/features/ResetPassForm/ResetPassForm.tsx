@@ -40,7 +40,7 @@ export const ResetPassForm: React.FC = () => {
         {state?.errors?.password && <p className={"input-error"}>{state.errors.password}</p>}
       </div>
       {!errors && isPassReseted && (
-        <p>На вашу почту {email} выслана ссылка для окончания смены пароля, перейдите по ней</p>
+        <p>На вашу почту {email} выслана ссылка для окончания смены пароля, перейдите по ней. Если этого не произошло, напишите в техподдержку</p>
       )}
       <button className={"button btnPrimary"} type="submit">
         Обновить пароль

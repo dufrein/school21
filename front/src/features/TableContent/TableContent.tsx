@@ -8,8 +8,9 @@ import { UserContext } from "@context/UserContext";
 import { LessonItem } from "./components/LessonItem";
 import { LearningContext } from "@context/LearningContext";
 import { TableItemTitle } from "./components/TableItemTitle";
-import { useGetCheckCourseFinished } from "@hooks/useGetCheckCourseFinished";
-import { useGetCheckLessonFinished } from "@hooks/useGetCheckLessonFinished";
+import { checkLessonFinished } from "@helpers/checkLessonFinished";
+import { getCourseProgress } from "@helpers/getCourseProgress";
+import { checkTopicFinished } from "@helpers/checkTopicFinished";
 
 /**
  * Вывод содержимого курсов в виде списка тем и уроков
@@ -17,10 +18,6 @@ import { useGetCheckLessonFinished } from "@hooks/useGetCheckLessonFinished";
 export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
   const { user } = useContext(UserContext);
   const { openedCourse, openedTopic } = useContext(LearningContext);
-  const getIsCourseFinished = useGetCheckCourseFinished();
-  const getIsLessonFinished = useGetCheckLessonFinished();
- 
-  console.log("userCourses", userCourses);
 
   if (!userCourses || !user?.finishedLessonsIds) {
     return null;
@@ -30,14 +27,7 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
     return (
       <div className={styles.lessons}>
         {topics?.map((topicItem) => {
-          const topicLessonIds = topicItem.lessons.map((lessonItem) => lessonItem.documentId);
-          console.log('topicLessonIds',topicLessonIds);
-          console.log('user?.finishedLessonsIds',user?.finishedLessonsIds);
-
-          const isTopicFinished = !!user?.finishedLessonsIds.length && user?.finishedLessonsIds.every((lessonId) =>
-            topicLessonIds.includes(lessonId)
-          );
-
+          const isTopicFinished = checkTopicFinished(topicItem, user);
           return (
             <Accordeon
               title={
@@ -61,7 +51,7 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
     return (
       <div className={styles.lessons}>
         {lessons?.map((lessonItem) => {
-          const isLessonFinished = getIsLessonFinished(lessonItem.documentId);
+          const isLessonFinished = checkLessonFinished(user, lessonItem.documentId);
 
           return (
             <LessonItem
@@ -75,12 +65,11 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
       </div>
     );
   };
-
   return (
     <>
       <h4>Структура курсов</h4>
       {userCourses?.map((courseItem) => {
-        const isCourseFinished = getIsCourseFinished(courseItem);
+        const isCourseFinished = getCourseProgress(courseItem, user) === 100;
 
         return (
           <Accordeon

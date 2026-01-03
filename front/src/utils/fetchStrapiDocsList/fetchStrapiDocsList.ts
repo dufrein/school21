@@ -1,20 +1,22 @@
-import { StrapiPagination } from "@types";
 import { fetchApi } from "@utils/fetchApi";
+import { FetchStrapiDocsListParams } from "./types";
 
 /**
  * Хелпер для получения списка документов из Strapi
- * @param url - url для запроса
- * @param populate - флаг для получения связанных данных
- * @param pagination - параметры пагинации
- * @returns Promise<T[]>
  */
-export const fetchStrapiDocsList = async <T>(url: string, populate?: boolean, pagination?: StrapiPagination) => {
-  const response = await fetchApi<{ data: T[] }>(url, {
+export const fetchStrapiDocsList = async <T>({
+  url,
+  populate,
+  pagination,
+  searchParams,
+}: FetchStrapiDocsListParams) => {
+  const response = await fetchApi<T[]>(url, {
     params: {
       ...(pagination ? pagination : { limit: "*" }),
-      populate: populate ? "*" : undefined,
+      ...searchParams,
+      populate,
     },
   });
-  
-  return response.data;
+
+  return response;
 };

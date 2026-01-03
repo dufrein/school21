@@ -8,11 +8,10 @@ import { QuestionResults, SelectedAnswers } from "./types";
 import { Questions } from "./components";
 import { BreadCrumbs } from "@components/BreadCrumbs";
 import { UserContext } from "@context/UserContext";
-import { COMPLEXITY_LEVEL } from "@constants";
 import { NextLessonButton } from "./components/NextLessonButton";
-import { VideoList } from "@features/VideoList";
+import { LevelIcon } from "@components/LevelIcon";
 
-export function LessonContent({ lesson }: { lesson: Lesson }) {
+export function LessonContent({ lesson }: { lesson: Lesson | null }) {
   const { user, saveStudent } = useContext(UserContext);
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [results, setResults] = useState<QuestionResults>({});
@@ -49,7 +48,6 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
   const date = lesson.updatedAt || lesson.createdAt;
   const updatedDate = date ? `Дата обновления: ${new Date(date).toLocaleDateString()}` : "";
 
-  console.log('lesson', lesson);
   return (
     <div className={styles.content}>
       <BreadCrumbs />
@@ -67,19 +65,8 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
         )}
       </h2>
 
-      {lesson.complexity && (
-        <div className={styles.level}>
-          <img
-            src={`/icon_complexity_${lesson.complexity}.png`}
-            alt="уровень сложности"
-            width="20"
-            height="20"
-          />
-          <span>
-            Уровень сложности: <i>{COMPLEXITY_LEVEL[lesson.complexity]}</i>
-          </span>
-        </div>
-      )}
+      <LevelIcon complexity={lesson.complexity} withText />
+
       <div>{updatedDate}</div>
       <div className={styles.card}>
         <h3 className={styles.cardTitle}>Теория</h3>

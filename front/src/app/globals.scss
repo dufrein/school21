@@ -3,7 +3,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
-  --header-height: 70px;
+  --header-height: 60px;
   --footer-height: 70px;
   --text-color: #4b5563;
   --link-active-color: #2563eb;
@@ -52,7 +52,6 @@ a:active {
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin-top: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

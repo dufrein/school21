@@ -1,0 +1,1 @@
+export { MessagePlate } from './MessagePlate';

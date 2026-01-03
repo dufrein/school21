@@ -1,10 +1,9 @@
 import { getAllLessons, getLessonById } from "./lessons";
-import { getCourseById, getCourses } from "./courses";
-import { getStudent, getUserProgress, updateStudent } from "./student";
-import { getTopicById, getTopics } from "./topics";
+import { getCourseById, getCourses, getFullCourse } from "./courses";
+import { getStudent, updateStudent } from "./student";
+import { getTopicById } from "./topics";
 import { getVideos, getVideoById } from "./videos";
 import { getAvatars } from "./avatars";
-import { signupUser } from "./signup";
 import { frontErrorApi } from "./frontErrorApi";
 
 export {
@@ -12,14 +11,12 @@ export {
   getCourseById,
   getCourses,
   getStudent,
-  getUserProgress,
+  getFullCourse,
   getLessonById,
   updateStudent,
   getTopicById,
-  getTopics,
   getVideos,
   getVideoById,
   getAvatars,
-  signupUser,
   frontErrorApi,
 };
