@@ -5,15 +5,17 @@ import { AppContextProps, AppContextType } from "./types";
 
 export const AppContext = createContext<AppContextType>({
   userCourses: null,
+  userCoursesMeta: null,
 });
 
 export const AppContextProvider: React.FC<AppContextProps> = (props) => {
-  const {userCourses} = props;
+  const { userCourses, userCoursesMeta } = props;
 
   return (
     <AppContext.Provider
       value={{
         userCourses,
+        userCoursesMeta,
       }}
     >
       {props.children}

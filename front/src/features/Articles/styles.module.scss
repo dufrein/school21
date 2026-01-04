@@ -1,5 +1,11 @@
 .articles {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+}
+
+.articlesPage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

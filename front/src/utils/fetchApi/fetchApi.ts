@@ -2,6 +2,7 @@ import { IS_SSR } from "@constants";
 import { FetchOptions, StrapiError } from "@types";
 import { serverFetchAction } from "src/actions/serverFetchAction";
 import chalk from "chalk";
+import { FetchFullResponse } from "@types";
 
 export const doFetch = async (url: string, options: FetchOptions = {}) => {
   try {
@@ -49,6 +50,23 @@ export const fetchApi = async <T>(url: string, options: FetchOptions = {}): Prom
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return null;
+  }
+};
+
+/**
+ * Функция для выполнения запросов к API, возвращает null в случае ошибки
+ */
+export const fetchApiWithMeta = async <T>(
+  url: string,
+  options: FetchOptions = {}
+): Promise<FetchFullResponse<T>> => {
+  try {
+    const response = await doFetch(url, options);
+    const data = await response.json();
+    return data;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return { data: null, meta: null };
   }
 };
 

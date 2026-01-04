@@ -10,7 +10,7 @@ import { AppContext } from "@context/AppContext/AppContext";
  */
 export function CoursesList() {
   const { userCourses } = useContext(AppContext);
-
+  console.log('userCourses',userCourses);
   return (
     <div className={styles.coursesSection}>
       <h2 className={styles.coursesTitle}>Мои курсы</h2>

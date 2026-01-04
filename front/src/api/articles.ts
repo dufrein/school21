@@ -9,11 +9,12 @@ import { GetDocsParams } from "./types";
  * @param populate - флаг для получения связанных данных
  * @returns Promise<Article[]>
  */
-export const getArticles = async ({ populate, pagination }: GetDocsParams) => {
+export const getArticles = async ({ populate, pagination, searchParams }: GetDocsParams) => {
   return await fetchStrapiDocsList<Article>({
     url: ENDPOINTS.Articles,
     populate,
     pagination,
+    searchParams,
   });
 };
 

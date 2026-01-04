@@ -1,17 +1,58 @@
 .article {
-  border: 1px solid #000;
+  border-bottom: 1px solid #ddd;
   padding: 20px;
-  border-radius: 10px;
-  content-visibility: auto;
-  contain-intrinsic-height: 200px;
-  contain: content;
-  container-type: size;
-  container-name: sss;
+  // content-visibility: auto;
+  // contain-intrinsic-height: 200px;
+  // contain: content;
+  // container-type: size;
+  // container-name: sss;
 }
 
-@container sss (min-width: 700px) {
-  .header {
-    color: red;
-    width: fit-content;
+// @container sss (min-width: 700px) {
+//   .header {
+//     color: red;
+//     width: fit-content;
+//   }
+// }
+
+.content {
+  font-size: 14px;
+  overflow-y: hidden;
+  position: relative;
+
+  &_short {
+    min-height: 60px;
+    max-height: 100px;
+
+    &:after {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      top: 55px;
+      display: flex;
+      content: ".";
+      color: transparent;
+      background: linear-gradient(180deg, transparent, #fff, #fff, #fff);
+    }
   }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle {
+  font-size: 16px;
+}
+
+.meta {
+  font-size: 12px;
+  margin: 24px 0;
+}
+
+.readMore {
+  color: #3659ce;
+  font-size: 18px;
+  font-weight: 500;
 }

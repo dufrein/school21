@@ -43,7 +43,7 @@ export function ComplexityLevelsPreview() {
               >
                 <h3 className={styles.cardTitle}>{level.title}</h3>
                 <p className={styles.cardText}>{level.description}</p>
-                <div className={styles.btnPrimary}>Посмотреть курсы</div>
+                  <div className={"button btnPrimary"}>Посмотреть курсы</div>
               </Link>
             );
           })}
@@ -52,4 +52,3 @@ export function ComplexityLevelsPreview() {
     </section>
   );
 }
-

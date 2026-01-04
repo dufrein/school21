@@ -20,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .card {
@@ -32,8 +32,15 @@
   background-color: #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s, box-shadow 0.2s;
+
+  :global(.button) {
+    margin-top: 20px;
+  }
 
   &:hover {
     transform: translateY(-4px);
@@ -54,7 +61,8 @@
 
 .btnPrimary {
   display: block;
-  margin-top: 2rem;
+  width: max-content;
+  margin: 2rem auto;
   padding: 0.75rem 1.5rem;
   background-color: #3b82f6;
   color: #ffffff;
@@ -67,4 +75,3 @@
 .card:hover .btnPrimary {
   background-color: var(--link-hover-color);
 }
-

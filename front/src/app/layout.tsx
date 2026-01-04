@@ -8,23 +8,23 @@ import { getStudent } from "@api/student";
 import { PageBody } from "@features/PageBody";
 import { LearningContextProvider } from "@context/LearningContext";
 import { getCourses } from "@api";
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Языковая школа",
   description: "Изучайте языки с нашими профессиональными курсами",
 };
 
-const inter = Inter({})
+const inter = Inter({});
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await verifySession();
   const user = session?.userId ? await getStudent(session?.userId as string) : null;
-  const userCourses = await getCourses({
-    populate: 'topics',
+  const { data: userCourses, meta } = await getCourses({
+    populate: "topics",
     searchParams: { "filters[complexity][$eq]": `${user?.level as string}` },
   });
- 
+
   const userInfo = user
     ? {
         ...user,
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ru" className={inter.className}>
       <body className={styles.body}>
-        <AppContextProvider userCourses={userCourses}>
+        <AppContextProvider userCourses={userCourses} userCoursesMeta={meta}>
           <LearningContextProvider>
             <UserContextProvider user={userInfo}>
               <PageBody userId={session?.userId as string | null}>{children}</PageBody>

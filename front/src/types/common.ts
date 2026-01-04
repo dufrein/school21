@@ -33,31 +33,3 @@ export interface StrapiImageFormatType {
   sizeInBytes: number;
   url: string;
 }
-
-export interface StrapiApiErrorType {
-  status: number;
-  name: string;
-  message: "string";
-  details: {
-    errors: ErrorDetailType[];
-  };
-}
-
-export interface ErrorDetailType {
-  path: string[];
-  name: string;
-  message: string;
-  value: unknown;
-}
-
-/**
- * Параметры пагинации
- * @param limit?: number - количество элементов на странице
- * @param start?: number - номер первого элемента
- * @param withCount?: boolean - флаг для включения подсчета общего количества элементов в ответе
- */
-export interface StrapiPagination {
-  limit?: number;
-  start?: number;
-  withCount?: boolean;
-}

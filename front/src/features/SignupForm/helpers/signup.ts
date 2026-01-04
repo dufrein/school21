@@ -1,6 +1,6 @@
 "use server";
 
-import { getStudentByEmail, signupUser2 } from "@api/student";
+import { getStudentByEmail, createStudent } from "@api/student";
 import { signupFormSchema } from "../schema";
 import { SignupFormStateErrorsType, SignupResult } from "../types";
 import { sendVerifyLink } from "./sendVerifyLink";
@@ -20,8 +20,7 @@ export const signup = async (state: unknown, formData: FormData): Promise<Signup
   }
   const checkedStudent = await getStudentByEmail(validatedFields.data.email);
 
-  // const responseData = await signupUser({ ...validatedFields.data });
-  const responseData = await signupUser2({ ...validatedFields.data });
+  const responseData = await createStudent({ ...validatedFields.data });
   console.log("responseDataresponseData", responseData?.error?.details?.errors);
   const objectErrors: { errors: SignupFormStateErrorsType } = { errors: {} };
 

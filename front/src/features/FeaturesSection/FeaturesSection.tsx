@@ -18,7 +18,7 @@ export function FeaturesSection() {
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Профессиональные преподаватели</h3>
             <p className={styles.cardText}>
-              Дополнительные занятия у преподавателей с многолетним опытом.
+              Вы можете записаться на дополнительные занятия к преподавателям.
             </p>
           </div>
           <div className={styles.card}>

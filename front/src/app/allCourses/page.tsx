@@ -8,14 +8,14 @@ type AllCoursesPageProps = {
 
 export default async function AllCoursesPage({ searchParams }: AllCoursesPageProps) {
   const params = await searchParams;
-  const allCourses = (await getCourses({})) || [];
+  const { data: allCourses } = await getCourses({});
 
-  let courses = allCourses;
+  let courses = allCourses || [];
   let complexityLevel: Complexity | undefined;
 
   if (params.complexity && Object.values(Complexity).includes(params.complexity as Complexity)) {
     complexityLevel = params.complexity as Complexity;
-    courses = allCourses.filter((course) => course.complexity === complexityLevel);
+    courses = courses.filter((course) => course.complexity === complexityLevel);
   }
 
   return <AllCourses courses={courses} complexityLevel={complexityLevel} />;

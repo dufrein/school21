@@ -4,6 +4,7 @@
   height: var(--header-height);
   position: fixed;
   width: 100dvw;
+  z-index: 9;
 }
 
 .navContent {

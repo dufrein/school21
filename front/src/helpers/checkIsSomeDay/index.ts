@@ -1,0 +1,1 @@
+export { checkIsSomeDay } from "./checkIsSomeDay";

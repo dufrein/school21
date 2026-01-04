@@ -10,7 +10,7 @@ export enum Complexity {
 
 export const COMPLEXITY_LEVEL = {
   [Complexity.BASIC]: "Новичок",
-  [Complexity.MEDIUM]: "Среднячок",
+  [Complexity.MEDIUM]: "Средний",
   [Complexity.ADVANCED]: "Продвинутый",
 };
 
@@ -92,3 +92,8 @@ export const zodEnumOptions = {
     return { message: ctx.defaultError };
   },
 };
+
+/**
+ * Количество статей на страницу, используется как при выводе статей, так и в апи запросе
+ */
+export const ARTICLES_BY_PAGE = 10;

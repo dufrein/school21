@@ -1,0 +1,1 @@
+export { getDateFormatted } from "./getDateFormatted";

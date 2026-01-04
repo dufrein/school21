@@ -1,19 +1,15 @@
-import { getArticles } from "@api/articles";
-import styles from "./page.module.scss";
-import { ArticlesContextProvider } from "@context/ArticlesContext";
-import { Articles } from "@features/Articles";
+import { getArticleById } from "@api/articles";
 
-export const Page = async () => {
-  const articles = (await getArticles({})) || [];
-  //доделать ленту новостей
+import { ArticlePageFeature } from "@features/ArticlePageFeature";
+
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  
+  const article = await getArticleById(id);
+
   return (
     <div className="container">
-      <h2>Статьи:</h2>
-      <div className={styles.articles}>
-        <ArticlesContextProvider articles={articles}>
-          <Articles />
-        </ArticlesContextProvider>
-      </div>
+      <ArticlePageFeature article={article} />
     </div>
   );
-};
+}
