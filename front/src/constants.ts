@@ -59,6 +59,7 @@ export const ROUTES = {
   COURSE_PREVIEW: "/coursePreview",
   VIDEO: "/video",
   ARTICLES: "/articles",
+  TEACHERS: "/teachers",
 };
 
 export enum SexEnum {
@@ -97,3 +98,8 @@ export const zodEnumOptions = {
  * Количество статей на страницу, используется как при выводе статей, так и в апи запросе
  */
 export const ARTICLES_BY_PAGE = 10;
+
+/**
+ * Количество видео на страницу, используется как при выводе видео, так и в апи запросе
+ */
+export const VIDEOS_BY_PAGE = 20;

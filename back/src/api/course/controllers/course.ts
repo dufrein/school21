@@ -24,6 +24,6 @@ export default factories.createCoreController("api::course.course", ({ strapi })
       )
     );
 
-    return { data: allSaturatedCourses };
+    return { data: allSaturatedCourses.map((courseItem) => courseItem.data) };
   },
 }));

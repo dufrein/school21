@@ -14,7 +14,7 @@ export const Course: React.FC<CourseProps> = (props) => {
   const { course } = props;
   const { user } = useContext(UserContext);
 
-  const progress = getCourseProgress(course, user) || 0;
+  const {progress, remaining, ready} = getCourseProgress(course, user) || 0;
 
   return (
     <Link
@@ -27,7 +27,7 @@ export const Course: React.FC<CourseProps> = (props) => {
       </div>
       {user && (
         <>
-          <div className={styles.progressText}>Прогресс: {progress}%</div>
+          <div className={styles.progressText}>{`Прогресс: ${progress}% (сделано ${ready}, осталось ${remaining})`}</div>
           <div className={styles.progressBar}>
             <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
           </div>

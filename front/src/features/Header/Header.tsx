@@ -32,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
             {user && <NavLink href={ROUTES.LEARNING}>Учиться</NavLink>}
             <NavLink href={ROUTES.VIDEO}>Видеолекции</NavLink>
             <NavLink href={ROUTES.ARTICLES}>Статьи</NavLink>
+            <NavLink href={ROUTES.TEACHERS}>Учителя</NavLink>
             {userId ? (
               <>
                 <NavLink href={ROUTES.DASHBOARD}>

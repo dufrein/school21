@@ -1,16 +1,16 @@
-import { VideoList } from "@features/VideoList";
+import { VideosList } from "@features/VideosList";
 import styles from "./page.module.scss";
-import { getVideos } from "@api/videos";
+import { VideosListContextProvider } from "@context/VideosListContext";
+import { getVideosHelper } from "@context/VideosListContext/helpers";
 
 export default async function VideoLessonsPage() {
-  const { data: videos } = await getVideos({ populate: "*" });
-  const videosArray = videos || [];
-  const filteredVideos = videosArray.filter((video) => video.showOnVideoPage);
+  const videosData = await getVideosHelper({ start: 0 });
 
   return (
     <div className={styles.container}>
-      <h2>Видеолекции</h2>
-      <VideoList videos={filteredVideos} />
+      <VideosListContextProvider videosData={videosData}>
+        <VideosList />
+      </VideosListContextProvider>
     </div>
   );
 }

@@ -7,11 +7,13 @@ import { GetDocsParams } from "./types";
 export const getVideos = async ({
   populate,
   pagination,
+  searchParams
 }: GetDocsParams) => {
   return await fetchStrapiDocsList<VideoLesson>({
     url: ENDPOINTS.Videos,
     populate,
     pagination,
+    searchParams,
   });
 };
 

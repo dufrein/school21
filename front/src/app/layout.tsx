@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <AppContextProvider userCourses={userCourses} userCoursesMeta={meta}>
           <LearningContextProvider>
             <UserContextProvider user={userInfo}>
-              <PageBody userId={session?.userId as string | null}>{children}</PageBody>
+                <PageBody userId={session?.userId as string | null}>{children}</PageBody>
             </UserContextProvider>
           </LearningContextProvider>
         </AppContextProvider>

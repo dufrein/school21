@@ -15,3 +15,4 @@ export type {
   FetchMetaPaginationDefined,
 } from "./fetcher";
 export type { Article } from "./article";
+export type { Teacher } from "./teacher";

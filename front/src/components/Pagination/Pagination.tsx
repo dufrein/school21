@@ -9,6 +9,11 @@ import { getSiblingNumbers } from "./helpers";
  */
 export const Pagination: React.FC<PaginationProps> = (props) => {
   const { pagesCount, setPageHandler, activePageNumber, isFixed } = props;
+
+  if (!pagesCount) {
+    return null;
+  }
+
   const siblingNumbers = getSiblingNumbers({ activePageNumber, pagesCount });
   const classList = getClassList(["pagination", isFixed && "pagination_fixed"]);
 

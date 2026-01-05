@@ -28,6 +28,6 @@ export default factories.createCoreService("api::course.course", ({ strapi }) =>
       courseLessonsIds.push(...topicLessonsIds);
     });
 
-    return { ...result, topics: fullTopics, courseLessonsIds };
+    return { data: { ...result, topics: fullTopics, courseLessonsIds } };
   },
 }));

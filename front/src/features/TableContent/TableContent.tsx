@@ -69,7 +69,7 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
     <>
       <h4>Структура курсов</h4>
       {userCourses?.map((courseItem) => {
-        const isCourseFinished = getCourseProgress(courseItem, user) === 100;
+        const isCourseFinished = getCourseProgress(courseItem, user).progress === 100;
 
         return (
           <Accordeon

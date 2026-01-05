@@ -31,12 +31,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
     setIsCoursesOpened(true);
   };
 
-  
   const closeCoursesModal = () => {
     setIsCoursesOpened(false);
     setIsOpen(false);
   };
-
 
   return (
     <nav className={styles.mobileNav}>
@@ -47,11 +45,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
               &quot;{SCHOOL_NAME}&quot;
             </NavLink>
           </div>
-          <button
-            className={`${styles.burgerButton}`}
-            onClick={onToggle}
-            aria-label="Открыть меню"
-          >
+          <button className={`${styles.burgerButton}`} onClick={onToggle} aria-label="Открыть меню">
             <span className={styles.burgerButtonLine}></span>
             <span className={styles.burgerButtonLine}></span>
             <span className={styles.burgerButtonLine}></span>
@@ -78,6 +72,13 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
             <NavLink href={ROUTES.VIDEO} className={styles.mobileMenuItem} onClick={onLinkClick}>
               Видеолекции
             </NavLink>
+            <NavLink href={ROUTES.ARTICLES} className={styles.mobileMenuItem} onClick={onLinkClick}>
+              Статьи
+            </NavLink>
+            <NavLink href={ROUTES.TEACHERS} className={styles.mobileMenuItem} onClick={onLinkClick}>
+              Учителя
+            </NavLink>
+
             {userId ? (
               <>
                 <div className={styles.mobileMenuButton} onClick={openCoursesModal}>

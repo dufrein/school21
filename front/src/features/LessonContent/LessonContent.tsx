@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import styles from "./styles.module.scss";
 import { Lesson } from "@types";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
@@ -10,6 +10,7 @@ import { BreadCrumbs } from "@components/BreadCrumbs";
 import { UserContext } from "@context/UserContext";
 import { NextLessonButton } from "./components/NextLessonButton";
 import { LevelIcon } from "@components/LevelIcon";
+import { useAddTargetBlank } from "@hooks/useAddTargetBlank/useAddTargetBlank";
 
 export function LessonContent({ lesson }: { lesson: Lesson | null }) {
   const { user, saveStudent } = useContext(UserContext);
@@ -17,6 +18,9 @@ export function LessonContent({ lesson }: { lesson: Lesson | null }) {
   const [results, setResults] = useState<QuestionResults>({});
   const [isShownResults, setIsShownResults] = useState(false);
 
+  const contentBlockRef = useRef<HTMLDivElement>(null);
+
+  useAddTargetBlank(contentBlockRef);
   if (!lesson || !user) {
     return null;
   }
@@ -77,7 +81,7 @@ export function LessonContent({ lesson }: { lesson: Lesson | null }) {
           />
         )}
         {/* {lesson.video && <VideoList videos={[lesson.video]}/>} */}
-        <div className={styles.theoryContent}>
+        <div className={styles.theoryContent} ref={contentBlockRef}>
           <BlocksRenderer content={lesson.theory} />
         </div>
       </div>

@@ -12,6 +12,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const { user } = useContext(UserContext);
   const { lesson, courseId, topicId } = props;
   const isLessonFinished = checkLessonFinished(user, lesson.documentId);
+
   return (
     <li key={lesson.id} className={styles.lessonItem}>
       <Link

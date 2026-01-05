@@ -1,19 +1,17 @@
-import { ArticlesContextProvider } from "@context/ArticlesContext";
-import { getArticlesHelper } from "@context/ArticlesContext/helpers";
-import { Articles } from "@features/Articles";
+import { ArticlesListContextProvider } from "@context/ArticlesListContext";
+import { getArticlesHelper } from "@context/ArticlesListContext/helpers";
+import { ArticlesList } from "@features/ArticlesList";
 
 export default async function Page() {
-  const startArticlesNumber = 0;
-
-  const articlesData = await getArticlesHelper({ start: startArticlesNumber });
+  const articlesData = await getArticlesHelper({ start: 0 });
 
   return (
     <div className="container">
-      <ArticlesContextProvider
+      <ArticlesListContextProvider
         articlesData={articlesData}
       >
-        <Articles />
-      </ArticlesContextProvider>
+        <ArticlesList />
+      </ArticlesListContextProvider>
     </div>
   );
 }

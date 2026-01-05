@@ -22,4 +22,6 @@ export const ENDPOINTS = {
   ArticleById: (id: string) => `/articles/${id}`,
 
   Avatars: "/avatar",
+
+  Teachers: "/teachers",
 };
