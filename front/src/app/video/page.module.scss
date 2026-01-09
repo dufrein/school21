@@ -1,7 +1,7 @@
 @use "../../styles/helpers";
 
 .container {
-  padding: 40px;
+  padding: 40px var(--main-margin-X);
   display: flex;
   flex-direction: column;
   gap: 30px;

@@ -1,6 +1,6 @@
 .article {
   border-bottom: 1px solid #ddd;
-  padding: 20px;
+  padding: 20px 0;
   // content-visibility: auto;
   // contain-intrinsic-height: 200px;
   // contain: content;
@@ -32,7 +32,7 @@
       display: flex;
       content: ".";
       color: transparent;
-      background: linear-gradient(180deg, transparent, #fff, #fff, #fff);
+      background: linear-gradient(180deg, transparent, #fff);
     }
   }
 }

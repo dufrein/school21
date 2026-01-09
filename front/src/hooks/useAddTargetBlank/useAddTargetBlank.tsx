@@ -11,5 +11,6 @@ export const useAddTargetBlank = (contentBlockRef: RefObject<HTMLDivElement | nu
         anchorItem.target = "_blank";
       }
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

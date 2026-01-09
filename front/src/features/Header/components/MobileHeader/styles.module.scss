@@ -12,10 +12,13 @@ dialog.menu {
   width: 100%;
   background-color: var(--color-background);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  background: #fff;
+  z-index: 11;
 }
 
 .mobileNavContent {
-  padding: 20px;
+  padding: 20px var(--main-mobile-margin-X);
 }
 
 .mobileNavContainer {

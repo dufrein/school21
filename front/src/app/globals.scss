@@ -1,4 +1,4 @@
-@use "../styles/helpers";
+@use "../styles";
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -7,12 +7,28 @@
   --text-color: #4b5563;
   --link-active-color: #2563eb;
   --link-hover-color: #6e18d1;
+  --main-margin-X: 10%;
+  --main-mobile-margin-X: 20px;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   margin: 0;
+}
+
+.main-section-title {
+  margin: 50px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.main-section {
+  > .main-section-content {
+    margin: 80px var(--main-margin-X);
+  }
 }
 
 .card {
@@ -130,54 +146,12 @@ h2 {
 }
 
 .container {
-  padding: 40px;
+  padding: 40px var(--main-margin-X);
   display: flex;
   flex-direction: column;
   gap: 20px;
 
-  @include helpers.deviceWidth(toTabletLandscape) {
+  @include styles.deviceWidth(toTabletLandscape) {
     padding: 20px;
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-
-  &_fixed {
-    position: fixed;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: #5dfb85;
-    right: 50px;
-    top: 200px;
-    z-index: 9;
-    border: 1px solid #ddd;
-
-    .pagination-numbers {
-      flex-direction: column;
-    }
-  }
-
-  &-numbers {
-    display: flex;
-    gap: 4px;
-
-    &-item {
-      padding: 6px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #dce5f5;
-      }
-
-      &_active {
-        background-color: #b5d0fc;
-      }
-    }
   }
 }

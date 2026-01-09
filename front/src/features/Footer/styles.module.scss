@@ -1,18 +1,72 @@
+@use "../../styles//helpers.scss";
+
 .footer {
-  background-color: #e5eef8;
+  background-color: #101828;
   height: auto;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 40px;
+  color: #e7eefa;
 }
 
 .footerContent {
-  max-width: 80rem;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px;
+
+  @include helpers.deviceWidth(mobile) {
+    margin: 0;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-.footerText {
-  text-align: center;
-  color: #6b7280;
-  text-wrap: balance;
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 30px;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    padding: 0 10px;
+  }
+}
+
+.icon {
+  width: fit-content;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #34f;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  a {
+    color: #e7eefa;
+  }
+}
+
+.socLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.socIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #fff;
+  }
 }

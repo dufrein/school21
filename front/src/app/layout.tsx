@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: "Изучайте языки с нашими профессиональными курсами",
 };
 
-const inter = Inter({});
+const inter = Inter({ subsets: ["cyrillic"] });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await verifySession();
@@ -34,11 +34,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="ru" className={inter.className}>
+      <head>
+        <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
+      </head>
       <body className={styles.body}>
         <AppContextProvider userCourses={userCourses} userCoursesMeta={meta}>
           <LearningContextProvider>
             <UserContextProvider user={userInfo}>
-                <PageBody userId={session?.userId as string | null}>{children}</PageBody>
+              <PageBody userId={session?.userId as string | null}>{children}</PageBody>
             </UserContextProvider>
           </LearningContextProvider>
         </AppContextProvider>

@@ -1,0 +1,56 @@
+services:
+  # 1. База данных для Strapi
+  strapi-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    # Используем env файл из папки back для настроек БД
+    env_file: ./back/.env.production
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - strapi_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. Strapi (Backend)
+  strapi:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./back/.env.production
+    environment:
+      NODE_ENV: production
+    ports:
+      - "1337:1337"
+    depends_on:
+      strapi-db:
+        condition: service_healthy
+
+  # 3. Next.js (Frontend)
+  nextjs:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./front/.env.production
+    environment:
+      NODE_ENV: production
+      # Этот адрес Next.js будет использовать внутри Docker (для SSR)
+      SERVER_SIDE_API_URL: http://strapi:1337/api
+      # Этот адрес пойдет в браузер (для обычных fetch)
+      NEXT_PUBLIC_API_URL: http://localhost:1337/api
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    depends_on:
+      strapi:
+        condition: service_started
+        
+volumes:
+  strapi_db_data:

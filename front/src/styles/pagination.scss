@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+
+  &_fixed {
+    position: fixed;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #5dfb85;
+    right: 50px;
+    top: 200px;
+    z-index: 9;
+    border: 1px solid #ddd;
+
+    .pagination-numbers {
+      flex-direction: column;
+    }
+  }
+
+  &-numbers {
+    display: flex;
+    gap: 4px;
+
+    &-item {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #dce5f5;
+      }
+
+      &_active {
+        background-color: #b5d0fc;
+      }
+    }
+  }
+}

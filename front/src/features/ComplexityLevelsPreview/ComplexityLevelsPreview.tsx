@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { Complexity, COMPLEXITY_LEVEL, ROUTES } from "@constants";
+import { getClassList } from "@utils";
 
 type ComplexityLevel = {
   complexity: Complexity;
@@ -28,11 +29,13 @@ const complexityLevels: ComplexityLevel[] = [
   },
 ];
 
+const sectionClassList = getClassList(["main-section", styles.complexityLevels]);
+
 export function ComplexityLevelsPreview() {
   return (
-    <section className={styles.complexityLevels}>
-      <div className={styles.complexityLevelsContent}>
-        <h2 className={styles.complexityLevelsTitle}>Выберите свой уровень знаний</h2>
+    <section className={sectionClassList}>
+      <div className="main-section-content">
+        <h2 className={"main-section-title"}>Выберите свой уровень знаний</h2>
         <div className={styles.complexityLevelsContainer}>
           {complexityLevels.map((level) => {
             return (
@@ -43,7 +46,7 @@ export function ComplexityLevelsPreview() {
               >
                 <h3 className={styles.cardTitle}>{level.title}</h3>
                 <p className={styles.cardText}>{level.description}</p>
-                  <div className={"button btnPrimary"}>Посмотреть курсы</div>
+                <div className={"button btnPrimary"}>Посмотреть курсы</div>
               </Link>
             );
           })}

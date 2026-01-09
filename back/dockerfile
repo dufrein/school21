@@ -1,0 +1,44 @@
+# 1. Этап сборки (build)
+FROM node:22-alpine AS build
+# Установка системных зависимостей для компиляции нативных модулей (например, sharp)
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /opt/
+# Копируем файлы зависимостей (используем package-lock.json вместо yarn.lock)
+COPY package.json package-lock.json ./
+# Устанавливаем node-gyp и зависимости через npm ci (чистая установка)
+RUN npm install -g node-gyp
+RUN npm ci --only=production
+
+ENV PATH=/opt/node_modules/.bin:$PATH
+
+WORKDIR /opt/app
+COPY . .
+# Собираем админ-панель Strapi
+RUN npm run build --debug
+
+# 2. Финальный продакшн-образ
+FROM node:22-alpine
+# vips-dev нужен для работы библиотеки sharp (обработка фото) в рантайме
+RUN apk add --no-cache vips-dev
+ENV NODE_ENV=production
+
+WORKDIR /opt/
+# Копируем готовые модули из этапа сборки
+COPY --from=build /opt/node_modules ./node_modules
+
+WORKDIR /opt/app
+# Копируем само приложение и собранную админку
+COPY --from=build /opt/app ./
+ENV PATH=/opt/node_modules/.bin:$PATH
+
+# Безопасность: работаем от пользователя node, а не от root
+RUN chown -R node:node /opt/app
+USER node
+
+EXPOSE 1337
+# Запуск приложения через npm
+CMD ["npm", "run", "start"]

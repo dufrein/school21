@@ -1,0 +1,38 @@
+@use "../../styles/helpers";
+
+.section {
+  background-color: #edeff7;
+}
+
+.steps {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  a {
+    color: #4444ff
+  }
+}
+
+.stepName {
+  font-size: 18px;
+  text-align: center;
+}
+
+.icon {
+  border-radius: 8px;
+  padding: 30px 34px;
+  background-color: #3344ff;
+  color: #fff;
+}

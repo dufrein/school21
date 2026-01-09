@@ -1,12 +1,7 @@
-.complexityLevels {
-  padding: 3rem 0;
-  background-color: #f9fafb;
-}
+@use "../../styles//helpers.scss";
 
-.complexityLevelsContent {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 16px;
+.complexityLevels {
+  background-color: #f9fafb;
 }
 
 .complexityLevelsTitle {
@@ -19,14 +14,19 @@
 .complexityLevelsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1rem;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .card {
   width: 28%;
   min-width: 300px;
-  padding: 0 20px 20px;
+  padding: 0px 20px 20px;
   margin: 10px 0;
   border-radius: 0.5rem;
   background-color: #ffffff;

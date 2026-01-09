@@ -12,6 +12,8 @@ export const doFetch = async (url: string, options: FetchOptions = {}) => {
       IS_SSR ? process.env.SERVER_SIDE_API_URL + url : process.env.NEXT_PUBLIC_API_URL + url
     }`;
 
+    console.log("fullUrl", fullUrl);
+
     if (params) {
       const searchParams = new URLSearchParams();
 
