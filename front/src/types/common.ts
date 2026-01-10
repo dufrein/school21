@@ -33,3 +33,11 @@ export interface StrapiImageFormatType {
   sizeInBytes: number;
   url: string;
 }
+
+
+export type LearningStat = {
+  progress: number;
+  remaining: number;
+  ready: number;
+  allLessonsCount: number;
+};

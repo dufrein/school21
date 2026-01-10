@@ -11,6 +11,7 @@ import { TableItemTitle } from "./components/TableItemTitle";
 import { checkLessonFinished } from "@helpers/checkLessonFinished";
 import { getCourseProgress } from "@helpers/getCourseProgress";
 import { checkTopicFinished } from "@helpers/checkTopicFinished";
+import { LevelIcon } from "@components/LevelIcon";
 
 /**
  * Вывод содержимого курсов в виде списка тем и уроков
@@ -28,12 +29,13 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
       <div className={styles.lessons}>
         {topics?.map((topicItem) => {
           const isTopicFinished = checkTopicFinished(topicItem, user);
+
           return (
             <Accordeon
               title={
                 <TableItemTitle
                   isCheckShown={isTopicFinished}
-                  name={topicItem.name}
+                  title={topicItem.name}
                   isActive={openedTopic?.documentId === topicItem.documentId}
                 />
               }
@@ -56,7 +58,7 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
           return (
             <LessonItem
               key={lessonItem.id}
-              title={<TableItemTitle name={lessonItem.title} isCheckShown={isLessonFinished} />}
+              title={<TableItemTitle title={lessonItem.title} isCheckShown={isLessonFinished} />}
               lessonItem={lessonItem}
               url={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topicId}/${ROUTES.LESSON}/${lessonItem.documentId}`}
             />
@@ -65,23 +67,31 @@ export const TableContent: React.FC<TableContentProps> = ({ userCourses }) => {
       </div>
     );
   };
+
   return (
     <>
       <h4>Структура курсов</h4>
       {userCourses?.map((courseItem) => {
         const isCourseFinished = getCourseProgress(courseItem, user).progress === 100;
 
+        const courseTitle = (
+          <>
+            <LevelIcon complexity={courseItem.complexity} />
+            <span>{courseItem.name}</span>
+          </>
+        );
+
         return (
           <Accordeon
             title={
               <TableItemTitle
-                name={courseItem.name}
+                title={courseTitle}
                 isCheckShown={isCourseFinished}
                 isActive={openedCourse?.documentId === courseItem.documentId}
               />
             }
             url={`${ROUTES.COURSE}/${courseItem.documentId}`}
-            content={getTopics(courseItem.topics, courseItem.documentId)}
+            content={getTopics(courseItem.topics || [], courseItem.documentId)}
             key={courseItem.id}
           />
         );

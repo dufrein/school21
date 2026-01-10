@@ -1,5 +1,5 @@
 import { getAllLessons, getLessonById } from "./lessons";
-import { getCourseById, getCourses, getFullCourse } from "./courses";
+import { getCourseById, getCourses, getCoursesFull, getFullCourse } from "./courses";
 import { getStudent, updateStudent } from "./student";
 import { getTopicById } from "./topics";
 import { getVideos, getVideoById } from "./videos";
@@ -10,6 +10,7 @@ export {
   getAllLessons,
   getCourseById,
   getCourses,
+  getCoursesFull,
   getStudent,
   getFullCourse,
   getLessonById,

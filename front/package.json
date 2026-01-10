@@ -8,8 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "eslint-fix": "npx eslint src --fix",
     "tsc": "tsc",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
@@ -39,6 +41,7 @@
     "eslint-config-next": "15.1.7",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^16.2.7",
     "react-test-renderer": "^19.2.1",
     "sass": "^1.85.1",
     "typescript": "^5",

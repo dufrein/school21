@@ -60,54 +60,6 @@ a:active {
   color: #6e18d1;
 }
 
-.button {
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 300px;
-}
-
-.btnPrimary {
-  background: #007bff;
-  color: white;
-}
-
-.btnPrimary:hover {
-  background: #0056b3;
-}
-
-.btnSecondary {
-  background: #4d7cad;
-  color: white;
-}
-
-.btnSecondary:hover {
-  background: #4486cc;
-}
-
-.btnDisabled {
-  background: #ddd;
-}
-
-.btnDisabled:hover {
-  background: #ddd;
-}
-
-.btnTetriary {
-  background: #636d6d;
-  color: white;
-}
-
-.btnTetriary:hover {
-  background: #848f8f;
-}
-
 .input-error {
   font-size: 12px;
   margin: 0;
@@ -145,7 +97,7 @@ h2 {
   margin: 10px 0;
 }
 
-.container {
+.pageContainer {
   padding: 40px var(--main-margin-X);
   display: flex;
   flex-direction: column;

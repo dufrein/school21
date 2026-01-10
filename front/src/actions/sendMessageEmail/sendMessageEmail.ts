@@ -13,8 +13,10 @@ export const sendMessageEmail = async ({ to, subject, html }: SendMessageEmailPa
     subject,
     html,
   };
+
   try {
     const mailer = await getMailer();
+
     mailer.sendMail(mailOptions, function (error: Error | null, response: { response: unknown }) {
       if (error) {
         console.log(error);

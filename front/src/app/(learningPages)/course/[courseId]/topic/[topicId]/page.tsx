@@ -9,6 +9,7 @@ export default async function Topic({
   const urlParams = await params;
 
   const topic = await getTopicById(urlParams.topicId);
+
   if (!topic) {
     return null;
   }

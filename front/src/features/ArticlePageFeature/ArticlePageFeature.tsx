@@ -8,5 +8,6 @@ export const ArticlePageFeature: React.FC<ArticlePageFeatureProps> = (props) => 
   if (!article) {
     return null;
   }
+
   return <Article article={article} />;
 };

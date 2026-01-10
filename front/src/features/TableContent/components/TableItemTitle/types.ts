@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export interface TableItemTitleProps {
-  name: string;
-  isCheckShown: boolean;
+  title: ReactNode;
+  isCheckShown?: boolean;
   isActive?: boolean;
 }

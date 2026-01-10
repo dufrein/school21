@@ -9,7 +9,6 @@ import { Modal } from "@components/Modal";
 import { useState, useContext } from "react";
 import { UserContext } from "@context/UserContext";
 import { Avatar } from "@components/Avatar/Avatar";
-import { AppContext } from "@context/AppContext";
 import { TableContent } from "@features/TableContent";
 
 /**
@@ -18,8 +17,7 @@ import { TableContent } from "@features/TableContent";
 export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCoursesOpened, setIsCoursesOpened] = useState(false);
-  const { user } = useContext(UserContext);
-  const { userCourses } = useContext(AppContext);
+  const { user, userCourses } = useContext(UserContext);
   const onToggle = () => setIsOpen(!isOpen);
   const onLinkClick = () => setIsOpen(false);
   const onDeleteHandler = () => {

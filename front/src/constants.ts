@@ -91,6 +91,7 @@ export const zodEnumOptions = {
     ) {
       return { message: "Выберите подходящее значение" };
     }
+
     return { message: ctx.defaultError };
   },
 };

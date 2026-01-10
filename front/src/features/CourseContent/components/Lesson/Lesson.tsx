@@ -6,7 +6,6 @@ import { ROUTES } from "@constants";
 import { CheckIcon } from "@components/CheckIcon";
 import { checkLessonFinished } from "@helpers/checkLessonFinished";
 import { UserContext } from "@context/UserContext";
-import { LevelIcon } from "@components/LevelIcon";
 
 export const Lesson: React.FC<LessonProps> = (props) => {
   const { user } = useContext(UserContext);
@@ -19,8 +18,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         href={`${ROUTES.COURSE}/${courseId}/${ROUTES.TOPIC}/${topicId}/${ROUTES.LESSON}/${lesson.documentId}`}
         className={styles.lessonLink}
       >
-        <LevelIcon complexity={lesson.complexity} /> {lesson.title}{" "}
-        {isLessonFinished && <CheckIcon />}
+        {lesson.title} {isLessonFinished && <CheckIcon />}
       </Link>
     </li>
   );

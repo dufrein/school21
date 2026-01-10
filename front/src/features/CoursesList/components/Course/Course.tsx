@@ -6,6 +6,7 @@ import { UserContext } from "@context/UserContext";
 import { useContext } from "react";
 import { ROUTES } from "@constants";
 import { getCourseProgress } from "@helpers/getCourseProgress";
+import { ProgressBar } from "@components/ProgressBar";
 
 /**
  * Компонент карточка списка курсов пользователя
@@ -14,7 +15,7 @@ export const Course: React.FC<CourseProps> = (props) => {
   const { course } = props;
   const { user } = useContext(UserContext);
 
-  const {progress, remaining, ready} = getCourseProgress(course, user) || 0;
+  const { progress, remaining, ready } = getCourseProgress(course, user) || 0;
 
   return (
     <Link
@@ -25,18 +26,11 @@ export const Course: React.FC<CourseProps> = (props) => {
       <div className={styles.courseHeader}>
         <h3 className={styles.courseTitle}>{course.name}</h3>
       </div>
-      {user && (
-        <>
-          <div className={styles.progressText}>{`Прогресс: ${progress}% (сделано ${ready}, осталось ${remaining})`}</div>
-          <div className={styles.progressBar}>
-            <div className={styles.progressFill} style={{ width: `${progress}%` }}></div>
-          </div>
-        </>
-      )}
+      {user && <ProgressBar progress={progress} remaining={remaining} ready={ready} />}
       <div className={styles.topicsSection}>
         <h4 className={styles.topicsTitle}>Темы</h4>
         <ul className={styles.topicsList}>
-          {course.topics.map((topicItem) => (
+          {course.topics?.map((topicItem) => (
             <li key={topicItem.name} className={styles.topicItem}>
               <svg
                 className={styles.clockIcon}

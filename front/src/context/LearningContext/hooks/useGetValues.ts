@@ -26,8 +26,10 @@ export const useGetValues = () => {
   useEffect(() => {
     if (params.courseId) {
       getCourseById(params.courseId).then((data) => setOpenedCourse(data));
+
       return;
     }
+
     setOpenedCourse(null);
   }, [params.courseId]);
 
@@ -37,8 +39,10 @@ export const useGetValues = () => {
       const nextElement = getNextElement({list:openedCourse?.topics,currentElementId: params.topicId})
 
       setNextTopic(nextElement);
+
       return;
     }
+
     setOpenedTopic(null);
   }, [params.topicId, openedCourse]);
 
@@ -48,8 +52,10 @@ export const useGetValues = () => {
       const nextElement = getNextElement({list:openedTopic?.lessons,currentElementId: params.lessonId})
 
       setNextLesson(nextElement);
+
       return;
     }
+
     setOpenedLesson(null);
   }, [openedTopic?.lessons, params.lessonId]);
 

@@ -3,6 +3,7 @@
 import styles from "./styles.module.scss";
 import { Course } from "@types";
 import { Topic as TopicItem } from "./components";
+import { LevelIcon } from "@components/LevelIcon";
 
 /**
  * Контент курса
@@ -16,7 +17,10 @@ export function CourseContent({ course }: { course: Course | null }) {
     <div className={styles.content}>
       <div className={styles.header}>
         <h2 className={styles.title}>{course.name}</h2>
-        <p className={styles.description}>{course.description}</p>
+        <p className={styles.description}>
+          {course.description}
+          <LevelIcon complexity={course.complexity} />
+        </p>
       </div>
 
       <div className={styles.topicsList}>

@@ -10,6 +10,7 @@ export const Questions: React.FC<QuestionsProps> = (props) => {
   const checkAnswer = (question: Question) => {
     const answer = selectedAnswers[question.id];
     const isCorrect = question.answers.find((answerItem) => answerItem.text === answer)?.isCorrect;
+
     return isCorrect;
   };
 

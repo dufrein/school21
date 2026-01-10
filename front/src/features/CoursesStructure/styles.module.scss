@@ -3,5 +3,7 @@
   flex-direction: column;
   padding: 20px;
   width: 300px;
+  max-width: 300px;
+  min-width: 300px;
   border-right: 1px solid #ddd;
 }

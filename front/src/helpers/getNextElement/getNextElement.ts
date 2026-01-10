@@ -8,6 +8,7 @@ export const getNextElement = <T extends Lesson | Topic>({
   if (!list || !list.length || !currentElementId) {
     return null;
   }
+
   const topicIndex = list.findIndex((item) => item.documentId === currentElementId);
 
   const nextTopicIndex = ~topicIndex && topicIndex === list?.length - 1 ? null : topicIndex + 1;

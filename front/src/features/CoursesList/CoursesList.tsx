@@ -3,13 +3,14 @@
 import { useContext } from "react";
 import styles from "./styles.module.scss";
 import { Course as CourseItem } from "./components";
-import { AppContext } from "@context/AppContext/AppContext";
+import { UserContext } from "@context/UserContext";
 
 /**
  * Список курсов
  */
 export function CoursesList() {
-  const { userCourses } = useContext(AppContext);
+  const { userCourses } = useContext(UserContext);
+
   return (
     <div className={styles.coursesSection}>
       <h2 className={styles.coursesTitle}>Мои курсы</h2>

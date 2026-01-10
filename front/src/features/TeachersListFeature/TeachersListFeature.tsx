@@ -5,6 +5,7 @@ import { TeacherItem } from "./components";
 
 export const TeachersListFeature: React.FC<TeachersListFeatureProps> = (props) => {
   const { teachers } = props;
+
   return (
     <>
       <h1 className={styles.title}>Учителя и репетиторы чувашского языка</h1>

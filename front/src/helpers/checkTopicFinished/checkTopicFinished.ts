@@ -4,6 +4,7 @@ export const checkTopicFinished = (topicItem?: Topic | null, user?: StudentType 
   if (!topicItem || !user) {
     return false;
   }
+
   const topicLessonIds = topicItem.lessons.map((lessonItem) => lessonItem.documentId);
 
   const isTopicFinished =

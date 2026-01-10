@@ -29,7 +29,7 @@ export const CoursePreviewItem: React.FC<CoursePreviewItemProps> = (props) => {
     <div className={styles.topics}>
       <h3 className={styles.topicsTitle}>Темы курса:</h3>
       <ul className={styles.topicsList}>
-        {fullCourse.topics.map((topic) => {
+        {fullCourse.topics?.map((topic) => {
           return (
             <li key={topic.id} className={styles.topicItem}>
               <h3 className={styles.topicName}>{topic.name}</h3>

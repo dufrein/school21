@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
               className={styles.logo}
               style={{ display: "flex", alignItems: "center", gap: "10px" }}
             >
-              <img src="book.svg" width={24} height={24} alt="книга иконка" />
+              <img src="/book.svg" width={24} height={24} alt="книга иконка" />
               {SCHOOL_NAME}
             </NavLink>
           </div>
@@ -49,12 +49,11 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
               </>
             ) : (
               <NavLink
+                className="button btnTetriary"
                 href={ROUTES.LOGIN}
                 style={{
-                  padding: "8px 12px",
                   backgroundColor: "blue",
                   color: "#fff",
-                  borderRadius: 8,
                 }}
               >
                 Войти

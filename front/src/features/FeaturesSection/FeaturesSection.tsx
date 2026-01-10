@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 
 export function FeaturesSection() {
   const contentClassList = getClassList(["main-section-content", styles.features]);
+
   return (
     <section className={"main-section"}>
       <div className={contentClassList}>
@@ -12,7 +13,7 @@ export function FeaturesSection() {
         <div className={styles.featuresGrid}>
           <div className={styles.card}>
             <img
-              src="bookBlue.svg"
+              src="/bookBlue.svg"
               width={24}
               className={styles["card-icon"]}
               alt="иконка разговор"
@@ -23,13 +24,13 @@ export function FeaturesSection() {
             </p>
           </div>
           <div className={styles.card}>
-            <img src="lamp.svg" width={24} className={styles["card-icon"]} alt="иконка лампочка" />
+            <img src="/lamp.svg" width={24} className={styles["card-icon"]} alt="иконка лампочка" />
             <h3 className={styles.cardTitle}>Интерактивные уроки</h3>
             <p className={styles.cardText}>Увлекательные уроки с интерактивными упражнениями</p>
           </div>
 
           <div className={styles.card}>
-            <img src="timer.svg" width={24} className={styles["card-icon"]} alt="иконка часы" />
+            <img src="/timer.svg" width={24} className={styles["card-icon"]} alt="иконка часы" />
             <h3 className={styles.cardTitle}>Гибкое обучение</h3>
             <p className={styles.cardText}>
               Учитесь в своем темпе с круглосуточным доступом ко всем материалам
@@ -37,7 +38,7 @@ export function FeaturesSection() {
           </div>
           <div className={styles.card}>
             <img
-              src="progress.svg"
+              src="/progress.svg"
               width={24}
               className={styles["card-icon"]}
               alt="иконка диаграмма прогресса"
@@ -49,7 +50,7 @@ export function FeaturesSection() {
           </div>
           <div className={styles.card}>
             <img
-              src="listen.svg"
+              src="/listen.svg"
               width={24}
               className={styles["card-icon"]}
               alt="иконка наушники"
@@ -58,7 +59,7 @@ export function FeaturesSection() {
             <p className={styles.cardText}>Слушайте и смотрите аудио и видео уроки на чувашском</p>
           </div>
           <div className={styles.card}>
-            <img src="talk.svg" width={24} className={styles["card-icon"]} alt="иконка разговор" />
+            <img src="/talk.svg" width={24} className={styles["card-icon"]} alt="иконка разговор" />
             <h3 className={styles.cardTitle}>Разговорная практика</h3>
             <p className={styles.cardText}>
               Вы можете записаться на дополнительные занятия к преподавателям

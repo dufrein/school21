@@ -5,7 +5,7 @@ export default async function Page() {
   const { data: teachers } = await getTeachers({ populate: "*" });
 
   return (
-    <div className="container">
+    <div className="pageContainer">
       <TeachersListFeature teachers={teachers || []} />
     </div>
   );

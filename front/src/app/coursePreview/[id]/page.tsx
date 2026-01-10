@@ -9,5 +9,5 @@ export default async function Preview({ params }: { params: Promise<{ id: string
     return null;
   }
 
-  return <CoursePreview course={course} />;
+  return <div className="pageContainer"><CoursePreview course={course} /></div>;
 }

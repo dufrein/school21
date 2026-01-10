@@ -9,6 +9,7 @@ export const sendVerifyLink = async (student?: StudentType) => {
   }
 
   const finishSignupLink = `${process.env.NEXT_PUBLIC_HOST}/verify?id=${student.documentId}&email=${student.email}`;
+
   try {
     sendMessageEmail({
       to: student.email,

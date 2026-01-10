@@ -1,6 +1,7 @@
 // Helper functions for localStorage operations
 export const getItem = <T>(key: string): T | null => {
   const item = localStorage.getItem(key);
+
   return item ? JSON.parse(item) : null;
 };
 

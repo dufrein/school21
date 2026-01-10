@@ -3,15 +3,15 @@
 import React, { useContext } from "react";
 import { useScreenSize } from "@hooks";
 import styles from "./styles.module.scss";
-import { AppContext } from "@context/AppContext";
 import { TableContent } from "@features/TableContent";
+import { UserContext } from "@context/UserContext";
 
 /**
  * Панель левой колонки с содержанием курсов
  */
 export const CoursesStructure: React.FC = () => {
   const { isMobile, isTabletPortrait } = useScreenSize();
-  const { userCourses } = useContext(AppContext);
+  const { userCourses } = useContext(UserContext);
 
   if (isMobile || isTabletPortrait) {
     return null;

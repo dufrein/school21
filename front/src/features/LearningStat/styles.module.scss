@@ -1,0 +1,11 @@
+.statPart {
+  padding: 20px;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.statCourseName {
+  font-weight: 700;
+}

@@ -33,6 +33,7 @@ export const doFetch = async (url: string, options: FetchOptions = {}) => {
         ...fetchOptions.headers,
       },
     });
+
     return response;
   } catch (error) {
     console.error(chalk.redBright("error="));
@@ -48,6 +49,7 @@ export const fetchApi = async <T>(url: string, options: FetchOptions = {}): Prom
   try {
     const response = await doFetch(url, options);
     const data = await response.json();
+
     return data.data;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
@@ -65,6 +67,7 @@ export const fetchApiWithMeta = async <T>(
   try {
     const response = await doFetch(url, options);
     const data = await response.json();
+
     return data;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
@@ -83,6 +86,7 @@ export const fetchApiWithError = async <T>(
   try {
     const response = await doFetch(url, options);
     const data = await response.json();
+
     return data;
   } catch (error) {
     console.log(error);

@@ -19,5 +19,6 @@ export const getSiblingNumbers = ({ activePageNumber, pagesCount }: GetSiblingNu
   for (let i = activePageNumber + 1; i <= lastSibling; i++) {
     siblingNumbers.push(i);
   }
+
   return siblingNumbers;
 };

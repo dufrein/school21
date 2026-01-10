@@ -7,12 +7,13 @@ import { NavLink } from "@components";
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.column}>
           <div className={styles.icon}>
-            <img src="book.svg" width="20" height="20" alt="иконка книга" />
+            <img src="/book.svg" width="20" height="20" alt="иконка книга" />
           </div>
           © {year} Чувашская языковая школа &quot;{SCHOOL_NAME}&quot;.
           <br />
@@ -29,14 +30,14 @@ export const Footer: React.FC = () => {
         <div className={styles.column}>
           <h4>Связаться с нами:</h4>
           <div className={styles.socLinks}>
-            <NavLink href={"https://t.me/shcul21"} className={styles.socIcon}>
-              <img src="tg.svg" alt="иконка телеграмм" width={30} height={30}/>
+            <NavLink href={"https://t.me/shcul21"} className={styles.socIcon} target="_blank">
+              <img src="/tg.svg" alt="иконка телеграмм" width={30} height={30} />
             </NavLink>
-            <NavLink href={"https://vk.com/shcul21"} className={styles.socIcon}>
-              <img src="vk.svg" alt="иконка вконтакте"  width={30} height={30}/>
+            <NavLink href={"https://vk.com/shcul21"} className={styles.socIcon} target="_blank">
+              <img src="/vk.svg" alt="иконка вконтакте" width={30} height={30} />
             </NavLink>
-            <NavLink href="mailto:ed.dufrein@yandex.ru" className={styles.socIcon}>
-              <img src="email.svg" alt="иконка емейл"  width={30} height={30}/>
+            <NavLink href="mailto:ed.dufrein@yandex.ru" className={styles.socIcon} target="_blank">
+              <img src="/email.svg" alt="иконка емейл" width={30} height={30} />
             </NavLink>
           </div>
         </div>

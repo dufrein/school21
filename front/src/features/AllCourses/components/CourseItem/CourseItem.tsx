@@ -31,7 +31,7 @@ export const CourseItem: React.FC<CourseItemProps> = ({ course, isExpanded, onTo
       </div>
       {isExpanded && (
         <div className={styles.topicsContainer}>
-          {course.topics.map((topic) => (
+          {course.topics?.map((topic) => (
             <div key={topic.id} className={styles.topicCard}>
               <h4 className={styles.topicTitle}>{topic.name}</h4>
               <BlocksRenderer content={topic.description} />

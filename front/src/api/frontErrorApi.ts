@@ -11,5 +11,6 @@ export const frontErrorApi = async (error: { error: Error }) => {
     body: JSON.stringify({ frontError: error.error.stack }),
   });
   const data: unknown = await res.json();
+
   return data as { ok?: string; err?: string };
 };

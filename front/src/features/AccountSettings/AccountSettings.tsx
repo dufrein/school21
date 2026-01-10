@@ -59,6 +59,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
 
     if (!validationResult.success) {
       setErrors(validationResult.error.flatten().fieldErrors);
+
       return;
     }
 
@@ -76,14 +77,13 @@ export const AccountSettings = (props: AccountSettingsProps) => {
   ]);
 
   return (
-    <div className={styles.settingsCard}>
+    <div className={'accountCard'}>
       <h2 className={styles.settingsTitle}>Настройки аккаунта</h2>
       <div className={styles.settingsForm}>
         <div className={styles.formGroup}>
           <label className={styles.label}>Уровень знаний</label>
           <select
-            value={userSettings.level || ""}
-            defaultValue={Complexity.BASIC}
+            value={userSettings.level ||Complexity.BASIC}
             onChange={(e) =>
               setUserSettings({ ...userSettings, level: (e.target.value as Complexity) || null })
             }
@@ -128,8 +128,7 @@ export const AccountSettings = (props: AccountSettingsProps) => {
         <div className={styles.formGroup}>
           <label className={styles.label}>Пол</label>
           <select
-            value={userSettings.sex || ""}
-            defaultValue={"x"}
+            value={userSettings.sex || "x"}
             onChange={(e) => setUserSettings({ ...userSettings, sex: e.target.value as SexEnum })}
             className={styles.sexSelect}
           >

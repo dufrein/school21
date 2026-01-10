@@ -13,7 +13,7 @@ export function HeroSection() {
       <div className={styles.content}>
         <div className={styles.left}>
           <Badge>
-            <img src="book.svg" width={14} height={14} alt="книга иконка" /> чӑвашла вӗрентӗр
+            <img src="/book.svg" width={14} height={14} alt="книга иконка" /> чӑвашла вӗрентӗр
           </Badge>
           <h1 className={styles.title}>
             Изучайте чувашский язык в школе &quot;{SCHOOL_NAME}&quot;
@@ -31,9 +31,9 @@ export function HeroSection() {
         </div>
         <div className={styles.right}>
           <div className={styles["right-plate"]}>
-            <img className={styles.iconBook} src="book.svg" width={150} height={150} alt="книга" />
+            <img className={styles.iconBook} src="/book.svg" width={150} height={150} alt="книга" />
             <div className={styles.success}>
-              <img src="icon_ready.svg" width={24} height={24} alt="книга" />
+              <img src="/icon_ready.svg" width={24} height={24} alt="книга" />
               Урок завершен!
               <br />
               Тема освоена!

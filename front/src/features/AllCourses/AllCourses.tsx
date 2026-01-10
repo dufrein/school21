@@ -13,11 +13,13 @@ export const AllCourses: React.FC<AllCoursesProps> = ({ courses, complexityLevel
 
   const toggleCourse = (courseId: string) => {
     const newExpandedCourses = new Set(expandedCourses);
+
     if (newExpandedCourses.has(courseId)) {
       newExpandedCourses.delete(courseId);
     } else {
       newExpandedCourses.add(courseId);
     }
+
     setExpandedCourses(newExpandedCourses);
   };
 

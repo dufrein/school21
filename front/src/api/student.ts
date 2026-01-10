@@ -64,9 +64,11 @@ export const updateStudent = async (
       },
       { populate: "*" }
     );
+
     return response.data as unknown as StudentType;
   } catch (err) {
     console.error(err);
+
     return undefined;
   }
 };

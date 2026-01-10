@@ -1,5 +1,5 @@
-import { Course } from "@types";
+import { CourseFull } from "@types";
 
 export interface TableContentProps {
-  userCourses: Course[] | null;
+  userCourses: CourseFull[] | null;
 }

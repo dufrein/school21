@@ -12,6 +12,7 @@ import { StrapiImage } from "@components/StrapiImage";
  */
 export const VideosList: React.FC = () => {
   const { videos, meta, activePageNumber, activePageNumberHandler } = useContext(VideosListContext);
+
   return (
     <div className={styles.videosPage}>
       <h2>Видеолекции</h2>

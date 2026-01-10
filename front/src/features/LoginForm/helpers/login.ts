@@ -54,5 +54,6 @@ export const login = async (state: unknown, formData: FormData) => {
   } catch (err) {
     console.error(err);
   }
+
   redirect("/learning");
 };

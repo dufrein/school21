@@ -15,12 +15,15 @@ export const Accordeon: React.FC<AccordeonProps> = (props) => {
   return (
     <details className={classList} style={styles}>
       <summary>
-        <span>{title}</span>
-        {url && (
-          <NavLink href={url} className={stylesModule.link}>
-            <img src={linkIcon.src} alt="icon link" />
-          </NavLink>
-        )}
+        <span>
+          {title}
+          {"\u00A0"}
+          {url && (
+            <NavLink href={url} className={stylesModule.link}>
+              <img src={linkIcon.src} alt="icon link" />
+            </NavLink>
+          )}
+        </span>
       </summary>
       <div>{content}</div>
     </details>

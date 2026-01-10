@@ -15,6 +15,7 @@ export default async function LearningPagesLayout({ children }: { children: Reac
   if (!session?.isAuth) {
     redirect("/login");
   }
+
   const user = await getUser();
  
   if (!user) {

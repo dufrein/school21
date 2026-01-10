@@ -6,7 +6,7 @@ export default async function Page() {
   const articlesData = await getArticlesHelper({ start: 0 });
 
   return (
-    <div className="container">
+    <div className="pageContainer">
       <ArticlesListContextProvider
         articlesData={articlesData}
       >

@@ -1,4 +1,4 @@
-import { Course } from "@types";
+import { Course, CourseFull } from "@types";
 import { fetchApi } from "@utils/fetchApi";
 import { ENDPOINTS } from "./constants";
 import { StrapiPagination } from "@types";
@@ -28,6 +28,19 @@ export type GetCoursesParams = {
  */
 export const getCourses = async ({ populate, pagination, searchParams }: GetCoursesParams) => {
   return await fetchStrapiDocsList<Course>({
+    url: ENDPOINTS.Courses,
+    populate,
+    pagination,
+    searchParams,
+  });
+};
+
+/**
+ * Хелпер получения списка курсов
+ * @param populate - флаг для получения связанных данных
+ */
+export const getCoursesFull = async ({ populate, pagination, searchParams }: GetCoursesParams) => {
+  return await fetchStrapiDocsList<CourseFull>({
     url: ENDPOINTS.CoursesFull,
     populate,
     pagination,

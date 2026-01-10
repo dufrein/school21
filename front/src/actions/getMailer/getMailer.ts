@@ -10,5 +10,6 @@ export const getMailer = async () => {
       pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
     },
   });
+
   return mailer;
 };

@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 export const serverFetchAction = async (url: string, options: RequestInit)=> {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.toString();
+
   return fetch(url, {
     ...options,
     headers: {

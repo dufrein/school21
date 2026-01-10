@@ -1,4 +1,4 @@
-import { getCourses } from "@api";
+import { getCoursesFull } from "@api";
 import { AllCourses } from "@features/AllCourses";
 import { Complexity } from "@constants";
 
@@ -8,7 +8,7 @@ type AllCoursesPageProps = {
 
 export default async function AllCoursesPage({ searchParams }: AllCoursesPageProps) {
   const params = await searchParams;
-  const { data: allCourses } = await getCourses({});
+  const { data: allCourses } = await getCoursesFull({});
 
   let courses = allCourses || [];
   let complexityLevel: Complexity | undefined;
@@ -18,5 +18,9 @@ export default async function AllCoursesPage({ searchParams }: AllCoursesPagePro
     courses = courses.filter((course) => course.complexity === complexityLevel);
   }
 
-  return <AllCourses courses={courses} complexityLevel={complexityLevel} />;
+  return (
+    <div className="pageContainer">
+      <AllCourses courses={courses} complexityLevel={complexityLevel} />
+    </div>
+  );
 }

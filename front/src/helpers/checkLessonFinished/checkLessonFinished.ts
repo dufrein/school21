@@ -4,5 +4,6 @@ export const checkLessonFinished = (user?: StudentType | null, lessonId?: string
   if (!user || !lessonId) {
     return false;
   }
+
   return !!user?.finishedLessonsIds.includes(lessonId);
 };

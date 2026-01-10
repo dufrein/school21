@@ -16,7 +16,10 @@
 }
 
 .description {
+  display: flex;
+  align-items: center;
   font-size: 1.1rem;
+  gap: 6px;
   color: #666;
   line-height: 1.6;
 }
