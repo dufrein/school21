@@ -53,7 +53,7 @@ export const getCoursesFull = async ({ populate, pagination, searchParams }: Get
  * @param courseId - идентификатор курса
  */
 export const getFullCourse = async (courseId: string) => {
-  return await fetchApi<Course>(ENDPOINTS.CourseFullById(courseId), {
+  return await fetchApi<CourseFull>(ENDPOINTS.CourseFullById(courseId), {
     params: { populate: "topics" },
   });
 };

@@ -41,7 +41,11 @@ export const Header: React.FC<HeaderProps> = ({ userId }) => {
             {userId ? (
               <>
                 <NavLink href={ROUTES.DASHBOARD}>
-                  <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
+                  <Avatar
+                    avatarId={user?.avatarId}
+                    sex={user?.sex}
+                    fio={user?.surname + " " + user?.name}
+                  />
                 </NavLink>
                 <button onClick={deleteSession} className="button btnTetriary">
                   Выйти

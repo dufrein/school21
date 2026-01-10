@@ -1,0 +1,1 @@
+export { CongrateModal } from './CongrateModal';

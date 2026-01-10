@@ -30,7 +30,9 @@ export const Topic: React.FC<TopicProps> = (props) => {
           {topic.name} {isTopicFinished && <CheckIcon />}
         </h4>
       </NavLink>
-      <p>Уроки</p>
+      <div className={styles.lessonsTitle}>
+        <b>Уроки:</b>
+      </div>
       <ul className={styles.lessonsList}>
         {lessons?.map((lessonItem) => (
           <LessonItem

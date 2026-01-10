@@ -1,16 +1,16 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Course, Lesson, Topic } from "@types";
+import {  CourseFull, Lesson, Topic } from "@types";
 import { useEffect, useState } from "react";
-import { getCourseById, getTopicById, getLessonById } from "@api";
+import { getFullCourse, getTopicById, getLessonById } from "@api";
 import { getNextElement } from "@helpers/getNextElement";
 
 /**
  * Хук для получения данных открытого курса, темы и урока
  */
 export const useGetValues = () => {
-  const [openedCourse, setOpenedCourse] = useState<Course | null>(null);
+  const [openedCourse, setOpenedCourse] = useState<CourseFull | null>(null);
   const [openedTopic, setOpenedTopic] = useState<Topic | null>(null);
   const [openedLesson, setOpenedLesson] = useState<Lesson | null>(null);
   const [nextTopic, setNextTopic] = useState<Topic | null>(null);
@@ -25,7 +25,7 @@ export const useGetValues = () => {
 
   useEffect(() => {
     if (params.courseId) {
-      getCourseById(params.courseId).then((data) => setOpenedCourse(data));
+      getFullCourse(params.courseId).then((data) => setOpenedCourse(data));
 
       return;
     }

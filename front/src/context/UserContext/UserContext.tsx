@@ -19,8 +19,22 @@ export const UserContextProvider: React.FC<UserContextProps> = (props) => {
 
   const [user, setUser] = useState<StudentType | null>(initialUser);
   const [isLoading, setIsLoading] = useState(false);
-
   const [userCourses, setUserCourses] = useState(userCoursesInitial);
+
+  const saveStudent = async (newStudentSettings: Partial<StudentType>) => {
+    if (!user || !newStudentSettings) {
+      return;
+    }
+    setIsLoading(true);
+    const updatedStudent = await updateStudent(user?.documentId, { ...user, ...newStudentSettings })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+    if (updatedStudent) {
+      setUser(updatedStudent);
+    }
+  };
 
   useEffect(() => {
     getCoursesForUserContext(user).then(({ data }) => {
@@ -31,22 +45,6 @@ export const UserContextProvider: React.FC<UserContextProps> = (props) => {
       setUserCourses(data);
     });
   }, [user?.level]);
-
-  const saveStudent = async (newStudentSettings: Partial<StudentType>) => {
-    if (!user) {
-      return;
-    }
-
-    const updatedStudent = await updateStudent(user?.documentId, { ...user, ...newStudentSettings })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setIsLoading(false);
-      });
-
-    if (updatedStudent) {
-      setUser(updatedStudent);
-    }
-  };
 
   useEffect(() => {
     if (initialUser) {

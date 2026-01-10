@@ -21,6 +21,7 @@ export function LessonContent({ lesson }: { lesson: Lesson | null }) {
   const contentBlockRef = useRef<HTMLDivElement>(null);
 
   useAddTargetBlank(contentBlockRef);
+  
   if (!lesson || !user) {
     return null;
   }

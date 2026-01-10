@@ -6,5 +6,5 @@ export const countProgress = (finishedLessonsCount: number, allLessonsCount: num
     return 0;
   }
 
-  return Math.ceil((100 * finishedLessonsCount) / allLessonsCount);
+  return Math.floor((100 * finishedLessonsCount) / allLessonsCount);
 };

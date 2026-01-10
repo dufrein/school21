@@ -11,14 +11,9 @@ import { StrapiImage } from "@types";
 
 /**
  * Avatar component
- * @param sex?: SexEnum;
- * @param email?: string;
- * @param avatarId?: string;
- * @param className?: string;
- * @returns FC<AvatarProps>
  */
 export const Avatar: FC<AvatarProps> = (props) => {
-  const { avatarId, className, sex, email } = props;
+  const { avatarId, className, sex, fio } = props;
   const [avatar, setAvatar] = useState<StrapiImage | null>(null);
 
   useEffect(() => {
@@ -38,7 +33,7 @@ export const Avatar: FC<AvatarProps> = (props) => {
 
   return (
     <div className={`${styles.avatar} ${className || ""}`}>
-      <img src={avatarUrl} alt="User avatar" className={styles.avatarImage} title={email} />
+      <img src={avatarUrl} alt="User avatar" className={styles.avatarImage} title={fio} />
     </div>
   );
 };

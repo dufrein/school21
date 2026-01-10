@@ -1,6 +1,6 @@
 import React from "react";
 import { PopupProps } from "./types";
-import IconBurger from "public/icon_cross.svg";
+import IconCross from "public/icon_cross.svg";
 import styles from "./styles.module.scss";
 import { getClassList } from "@utils";
 import { useScrollLock } from "@hooks/useScrollLock/useScrollLock";
@@ -29,7 +29,7 @@ export const Popup: React.FC<PopupProps> = (props) => {
       {children}
       {onClose && !hideCloseButton && (
         <img
-          src={IconBurger.src}
+          src={IconCross.src}
           className={`${styles["popup-cross"] + " icon"}`}
           onClick={onClose}
           alt="cross"

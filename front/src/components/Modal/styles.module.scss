@@ -4,13 +4,17 @@
   justify-content: center;
   align-items: center;
   display: flex;
+
+  dialog {
+    top: 20%;
+  }
 }
 
 .popup {
   border: none;
   overflow: auto;
   top: 30dvh;
-  
+
   button {
     font-size: 14px;
   }
