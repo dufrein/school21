@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { QuestionsListProps } from "./types";
 import styles from "./styles.module.scss";
 import type { QuestionType } from "@types";
 import { Question } from "../Question";
 import { OnAnswerSelectParams } from "../Question/types";
-import { getQestionsFull } from "@api/questions";
-import { getFilterParamsByListIds } from "@helpers/getFilterParamsByListIds/getFilterParamsByListIds";
 
 export const QuestionsList: React.FC<QuestionsListProps> = (props) => {
   const {
-    questions: questionsInitial,
+    questions,
     selectedAnswers,
     results,
     isShownResults,
     changeSelectedAnswers,
     changeResults,
   } = props;
-
-  const [questions, setQuestions] = useState<QuestionType[]>([]);
-
-  useEffect(() => {
-    const questionsIds = questionsInitial.map((questionItem) => questionItem.documentId);
-
-    getQestionsFull({ searchParams: getFilterParamsByListIds(questionsIds) }).then(
-      (questionsFull) => {
-        setQuestions(questionsFull?.data || []);
-      }
-    );
-  }, []);
-
+ 
   const checkAnswer = (question: QuestionType) => {
     const answer = selectedAnswers[question.documentId];
     const isCorrect = question.answers.find((answerItem) => answerItem.text === answer)?.isCorrect;

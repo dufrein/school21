@@ -1,4 +1,4 @@
-import { getAllLessons, getLessonById } from "./lessons";
+import { getAllLessons, getLessonById, getLessonByIdWithAnswers } from "./lessons";
 import { getCourseById, getCourses, getCoursesFull, getFullCourse } from "./courses";
 import { getStudent, updateStudent } from "./student";
 import { getTopicById } from "./topics";
@@ -20,4 +20,5 @@ export {
   getVideoById,
   getAvatars,
   frontErrorApi,
+  getLessonByIdWithAnswers,
 };

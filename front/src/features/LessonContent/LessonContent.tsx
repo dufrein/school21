@@ -11,7 +11,8 @@ import { NextLessonButton } from "./components/NextLessonButton";
 import { LevelIcon } from "@components/LevelIcon";
 import { useAddTargetBlank } from "@hooks/useAddTargetBlank/useAddTargetBlank";
 
-export function LessonContent({ lesson }: LessonProps) {
+export const LessonContent: React.FC<LessonProps> = (props) => {
+  const { lesson } = props;
   const { user, saveStudent } = useContext(UserContext);
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [results, setResults] = useState<QuestionResults>({});
@@ -125,4 +126,4 @@ export function LessonContent({ lesson }: LessonProps) {
       <NextLessonButton isDisabled={!isShownResults || calculateScore() !== 100} />
     </div>
   );
-}
+};

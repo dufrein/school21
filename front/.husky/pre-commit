@@ -1,3 +1,10 @@
+cd front
+
+# 1. Сначала линтинг только измененных файлов
 npx lint-staged
+
+# 2. Затем полная проверка типов
 npm run tsc
-npm test
+
+# 3. Затем запуск тестов
+npx vitest run

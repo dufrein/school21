@@ -20,3 +20,11 @@ export const getLessonById = async (id: string) => {
     params: { populate: "*" },
   });
 };
+
+export const getLessonByIdWithAnswers = async (id: string) => {
+  return await fetchApi<Lesson>(ENDPOINTS.LessonById(id), {
+    params: {  
+      'populate[questions][populate][answers][populate]':'*'
+     },
+  });
+};

@@ -60,7 +60,11 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ userId }) => {
                 onClick={onLinkClick}
               >
                 <div className={styles.mobileMenuItemContent}>
-                  <Avatar avatarId={user?.avatarId} sex={user?.sex} email={user?.email} />
+                  <Avatar
+                    avatarId={user?.avatarId}
+                    sex={user?.sex}
+                    fio={user?.email}
+                  />
                 </div>
               </NavLink>
             )}

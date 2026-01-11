@@ -11,7 +11,7 @@
     "eslint-fix": "npx eslint src --fix",
     "tsc": "tsc",
     "test": "vitest",
-    "prepare": "husky"
+    "prepare": "cd .. && husky front/.husky"
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
@@ -47,5 +47,12 @@
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.9"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'npm run tsc'",
+      "npm test -- --findRelatedTests"
+    ]
   }
 }
