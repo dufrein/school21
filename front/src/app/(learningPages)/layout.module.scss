@@ -7,5 +7,6 @@
 
   @include helpers.deviceWidth(toTabletLandscape) {
     flex-direction: column;
+    padding: 0;
   }
 }

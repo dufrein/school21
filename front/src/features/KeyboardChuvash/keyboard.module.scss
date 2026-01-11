@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  overflow-x: auto;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  color: #2d3436;
+  background-color: #f9f9fb;
+  border: 2px solid #e0e0e6;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.25s ease-in-out;
+  box-sizing: border-box;
+}
+
+.input:hover {
+  border-color: #bdc3c7;
+}
+
+.input:focus {
+  border-color: #c2d421;  
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgba(212, 33, 45, 0.1);
+  transform: translateY(-1px);
+}
+
+.input::placeholder {
+  color: #a0a0a0;
+  font-weight: 300;
+}
+
+.keyboard {
+  min-width: fit-content;
+}

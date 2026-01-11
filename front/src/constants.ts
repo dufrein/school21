@@ -60,7 +60,8 @@ export const ROUTES = {
   VIDEO: "/video",
   ARTICLES: "/articles",
   TEACHERS: "/teachers",
-  ABOUT:'/about'
+  ABOUT: "/about",
+  KEYBOARD: "/keyboard",
 };
 
 export enum SexEnum {

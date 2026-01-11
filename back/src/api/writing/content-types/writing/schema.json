@@ -12,10 +12,20 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 100,
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "minLength": 10,
+      "maxLength": 500,
+      "required": true
+    },
+    "correctAnswer": {
+      "type": "string",
+      "required": true
     }
   }
 }

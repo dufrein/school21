@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -26,6 +27,7 @@
     },
     "complexity": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "basic",
         "medium",
@@ -48,6 +50,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::video.video"
+    },
+    "writings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::writing.writing"
     }
   }
 }

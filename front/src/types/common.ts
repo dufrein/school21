@@ -40,4 +40,8 @@ export type LearningStat = {
   remaining: number;
   ready: number;
   allLessonsCount: number;
+  /**
+   * DocumentId курса для котрого считали статистику
+   */
+  courseId?:string;
 };

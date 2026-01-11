@@ -12,6 +12,7 @@ export const getCourseProgress = (
       remaining: 0,
       ready: 0,
       allLessonsCount: 0,
+      courseId: course?.documentId,
     };
   }
 
@@ -30,6 +31,7 @@ export const getCourseProgress = (
     remaining: remainingLessonsCount,
     ready: userFinishedCourseLessonsCount,
     allLessonsCount,
+    courseId: course?.documentId,
   };
 
   return statistic;

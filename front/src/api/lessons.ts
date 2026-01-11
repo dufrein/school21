@@ -23,8 +23,9 @@ export const getLessonById = async (id: string) => {
 
 export const getLessonByIdWithAnswers = async (id: string) => {
   return await fetchApi<Lesson>(ENDPOINTS.LessonById(id), {
-    params: {  
-      'populate[questions][populate][answers][populate]':'*'
-     },
+    params: {
+      "populate[questions][populate][answers][populate]": "*",
+      "populate[video][populate]": "*",
+    },
   });
 };

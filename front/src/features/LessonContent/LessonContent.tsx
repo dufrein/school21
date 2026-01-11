@@ -10,6 +10,7 @@ import { UserContext } from "@context/UserContext";
 import { NextLessonButton } from "./components/NextLessonButton";
 import { LevelIcon } from "@components/LevelIcon";
 import { useAddTargetBlank } from "@hooks/useAddTargetBlank/useAddTargetBlank";
+import { VideoComponent } from "@components/VideoComponent";
 
 export const LessonContent: React.FC<LessonProps> = (props) => {
   const { lesson } = props;
@@ -81,10 +82,16 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
             alt={"изображение урока"}
           />
         )}
-        {/* {lesson.video && <VideoList videos={[lesson.video]}/>} */}
         <div className={styles.theoryContent} ref={contentBlockRef}>
           <BlocksRenderer content={lesson.theory} />
         </div>
+
+        {lesson.video && (
+          <div>
+            <p>Посмотрите видеоурок:</p>
+            <VideoComponent video={lesson.video} className={styles.video} />
+          </div>
+        )}
       </div>
 
       {/* Questions Section */}

@@ -25,6 +25,7 @@ export const Footer: React.FC = () => {
             <NavLink href={ROUTES.ABOUT}>О нас</NavLink>
             <NavLink href={ROUTES.TEACHERS}>Учителя</NavLink>
             <NavLink href={ROUTES.ALL_COURSES}>Все курсы</NavLink>
+            <NavLink href={ROUTES.KEYBOARD}>Чувашская клавиатура</NavLink>
           </div>
         </div>
         <div className={styles.column}>

@@ -19,17 +19,32 @@ export const LearningContext = createContext<LearningContextType>(initialValues)
 
 export const LearningContextProvider: React.FC<LearningContextProps> = (props) => {
   const { children } = props;
-  const { openedCourse, openedTopic, openedLesson, nextLesson, nextTopic } = useGetValues();
   const { user } = useContext(UserContext);
+  const { openedCourse, openedTopic, openedLesson, nextLesson, nextTopic } = useGetValues();
+  const [initialCountFinishedLessons, setInitialCountFinishedLessons] = useState(
+    user?.finishedLessonsIds.length || null
+  );
+
   const [isCongratsOpened, setIsCongratsOpened] = useState(false);
 
   useEffect(() => {
-    const { progress } = getCourseProgress(openedCourse, user);
+    if (!user?.finishedLessonsIds) {
+      return;
+    }
 
-    if (progress === 100) {
+    const { progress, courseId } = getCourseProgress(openedCourse, user);
+
+    if (
+      progress === 100 &&
+      initialCountFinishedLessons !== null &&
+      initialCountFinishedLessons < user?.finishedLessonsIds.length &&
+      courseId === openedCourse?.documentId
+    ) {
       setIsCongratsOpened(true);
     }
-  }, [user?.finishedLessonsIds]);
+
+    setInitialCountFinishedLessons(user?.finishedLessonsIds.length);
+  }, [user?.finishedLessonsIds, user, openedCourse, initialCountFinishedLessons]);
 
   return (
     <LearningContext.Provider
