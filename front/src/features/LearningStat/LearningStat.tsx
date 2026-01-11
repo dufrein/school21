@@ -21,7 +21,6 @@ export const LearningStat: React.FC<LearningStatProps> = (props) => {
     [Complexity.ADVANCED]: null,
   });
 
-console.log('courses',courses);
   useEffect(() => {
     const newCouresStat = { ...coursesStat };
 

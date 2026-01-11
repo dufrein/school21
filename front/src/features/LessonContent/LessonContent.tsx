@@ -2,17 +2,16 @@
 
 import { useState, useContext, useRef } from "react";
 import styles from "./styles.module.scss";
-import { Lesson } from "@types";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { QuestionResults, SelectedAnswers } from "./types";
-import { Questions } from "./components";
+import { LessonProps, QuestionResults, SelectedAnswers } from "./types";
+import { QuestionsList } from "./components";
 import { BreadCrumbs } from "@components/BreadCrumbs";
 import { UserContext } from "@context/UserContext";
 import { NextLessonButton } from "./components/NextLessonButton";
 import { LevelIcon } from "@components/LevelIcon";
 import { useAddTargetBlank } from "@hooks/useAddTargetBlank/useAddTargetBlank";
 
-export function LessonContent({ lesson }: { lesson: Lesson | null }) {
+export function LessonContent({ lesson }: LessonProps) {
   const { user, saveStudent } = useContext(UserContext);
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [results, setResults] = useState<QuestionResults>({});
@@ -21,7 +20,7 @@ export function LessonContent({ lesson }: { lesson: Lesson | null }) {
   const contentBlockRef = useRef<HTMLDivElement>(null);
 
   useAddTargetBlank(contentBlockRef);
-  
+
   if (!lesson || !user) {
     return null;
   }
@@ -89,7 +88,7 @@ export function LessonContent({ lesson }: { lesson: Lesson | null }) {
 
       {/* Questions Section */}
       <div className={styles.card}>
-        <Questions
+        <QuestionsList
           questions={lesson.questions}
           selectedAnswers={selectedAnswers}
           results={results}

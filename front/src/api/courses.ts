@@ -1,9 +1,8 @@
 import { Course, CourseFull } from "@types";
 import { fetchApi } from "@utils/fetchApi";
 import { ENDPOINTS } from "./constants";
-import { StrapiPagination } from "@types";
 import { fetchStrapiDocsList } from "@utils";
-import { FetchStrapiDocsListParams } from "@utils/fetchStrapiDocsList/types";
+import { GetDocsParams } from "./types";
 
 /**
  * Хелпер получения курса по id
@@ -16,17 +15,11 @@ export const getCourseById = async (courseId: string) => {
   });
 };
 
-export type GetCoursesParams = {
-  pagination?: StrapiPagination;
-  populate?: FetchStrapiDocsListParams["populate"];
-  searchParams?: FetchStrapiDocsListParams["searchParams"];
-};
-
 /**
  * Хелпер получения списка курсов
  * @param populate - флаг для получения связанных данных
  */
-export const getCourses = async ({ populate, pagination, searchParams }: GetCoursesParams) => {
+export const getCourses = async ({ populate, pagination, searchParams }: GetDocsParams) => {
   return await fetchStrapiDocsList<Course>({
     url: ENDPOINTS.Courses,
     populate,
@@ -39,7 +32,7 @@ export const getCourses = async ({ populate, pagination, searchParams }: GetCour
  * Хелпер получения списка курсов
  * @param populate - флаг для получения связанных данных
  */
-export const getCoursesFull = async ({ populate, pagination, searchParams }: GetCoursesParams) => {
+export const getCoursesFull = async ({ populate, pagination, searchParams }: GetDocsParams) => {
   return await fetchStrapiDocsList<CourseFull>({
     url: ENDPOINTS.CoursesFull,
     populate,

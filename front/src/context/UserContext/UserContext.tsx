@@ -25,12 +25,14 @@ export const UserContextProvider: React.FC<UserContextProps> = (props) => {
     if (!user || !newStudentSettings) {
       return;
     }
+
     setIsLoading(true);
     const updatedStudent = await updateStudent(user?.documentId, { ...user, ...newStudentSettings })
       .catch((error) => console.error(error))
       .finally(() => {
         setIsLoading(false);
       });
+
     if (updatedStudent) {
       setUser(updatedStudent);
     }

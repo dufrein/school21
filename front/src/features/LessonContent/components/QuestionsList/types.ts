@@ -1,8 +1,8 @@
 import { QuestionResults, SelectedAnswers } from "@features/LessonContent/types";
-import { Question } from "@types";
+import { QuestionType } from "@types";
 
-export interface QuestionsProps {
-  questions: Question[];
+export interface QuestionsListProps {
+  questions: QuestionType[];
   selectedAnswers: SelectedAnswers;
   results: QuestionResults;
   isShownResults: boolean;

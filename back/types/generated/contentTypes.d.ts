@@ -581,7 +581,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    answers: Schema.Attribute.JSON & Schema.Attribute.Required;
+    answers: Schema.Attribute.Component<'answers.answer', true>;
     complexity: Schema.Attribute.Enumeration<
       ['basic', 'medium', 'advanced', 'professional']
     >;
@@ -759,6 +759,35 @@ export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiWritingWriting extends Struct.CollectionTypeSchema {
+  collectionName: 'writings';
+  info: {
+    displayName: 'Writing';
+    pluralName: 'writings';
+    singularName: 'writing';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::writing.writing'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1280,6 +1309,7 @@ declare module '@strapi/strapi' {
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::topic.topic': ApiTopicTopic;
       'api::video.video': ApiVideoVideo;
+      'api::writing.writing': ApiWritingWriting;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

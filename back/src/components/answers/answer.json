@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_answers_answers",
+  "info": {
+    "displayName": "Answer"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "isCorrect": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

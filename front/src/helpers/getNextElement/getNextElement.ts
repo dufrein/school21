@@ -1,6 +1,9 @@
 import { Lesson, Topic } from "@types";
 import { GetNextElementParams } from "./types";
 
+/**
+ * Хелпер для получения следующего урока или темы
+ */
 export const getNextElement = <T extends Lesson | Topic>({
   list,
   currentElementId,

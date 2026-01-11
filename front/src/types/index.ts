@@ -1,7 +1,7 @@
 export type { Course,CourseFull } from "./course";
 export type { Lesson } from "./lesson";
 export type { Topic } from "./topic";
-export type { Question, Answer } from "./question";
+export type { QuestionType, AnswerType } from "./question";
 export type { StudentType, SignupFormType, NewStudentType } from "./student";
 export type { CommonComponentProps, StrapiImage, LearningStat } from "./common";
 export type { VideoLesson } from "./video";

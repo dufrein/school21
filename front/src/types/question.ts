@@ -1,12 +1,13 @@
-export interface Question {
+export interface QuestionType {
   id: string;
   name: string;
   text: string;
-  answers: Answer[];
+  answers: AnswerType[];
   documentId: string;
 }
 
-export interface Answer {
+export interface AnswerType {
   text: string;
   isCorrect: boolean;
+  id: string;
 }

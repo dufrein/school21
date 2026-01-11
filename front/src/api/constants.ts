@@ -21,6 +21,9 @@ export const ENDPOINTS = {
   Articles: "/articles",
   ArticleById: (id: string) => `/articles/${id}`,
 
+  Questions: '/questions',
+  QuestionById: (id: string) => `/questions/${id}`,
+
   Avatars: "/avatar",
 
   Teachers: "/teachers",

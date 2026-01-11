@@ -24,14 +24,9 @@ export const LearningContextProvider: React.FC<LearningContextProps> = (props) =
   const [isCongratsOpened, setIsCongratsOpened] = useState(false);
 
   useEffect(() => {
-    console.log("mount");
-  }, []);
-
-  useEffect(() => {
     const { progress } = getCourseProgress(openedCourse, user);
-    console.log("progress", progress);
+
     if (progress === 100) {
-      console.log("modal");
       setIsCongratsOpened(true);
     }
   }, [user?.finishedLessonsIds]);
