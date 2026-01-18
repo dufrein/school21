@@ -55,6 +55,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::writing.writing"
+    },
+    "builders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::builder.builder"
     }
   }
 }

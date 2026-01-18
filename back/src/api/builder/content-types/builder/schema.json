@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "writings",
+  "collectionName": "builders",
   "info": {
-    "singularName": "writing",
-    "pluralName": "writings",
-    "displayName": "Writing"
+    "singularName": "builder",
+    "pluralName": "builders",
+    "displayName": "Builder"
   },
   "options": {
     "draftAndPublish": true

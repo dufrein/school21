@@ -16,3 +16,5 @@ export type {
 } from "./fetcher";
 export type { Article } from "./article";
 export type { Teacher } from "./teacher";
+export type {BuilderExcerciseType} from './builder';
+export type {WritingExcerciseType} from './writing';

@@ -1,0 +1,53 @@
+.words {
+  display: flex;
+  gap: 10px;
+}
+
+.wordItem {
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: rgb(137, 217, 252);
+  cursor: grab;
+
+  &_result {
+    background-color: rgb(137, 252, 143);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  // когда слово является целью на замену перетаскиваемым словом
+  &_aim {
+    transform: translateY(-10px);
+  }
+}
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 50px;
+  margin: 20px 0 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.beforeWordsPlace {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 4px 18px;
+  height: fit-content;
+  // color: transparent;
+  // background-color: transparent;
+  visibility: hidden;
+
+  &_active {
+    border: 1px dotted #ddd;
+    background-color: #ccc;
+    visibility: inherit;
+  }
+}

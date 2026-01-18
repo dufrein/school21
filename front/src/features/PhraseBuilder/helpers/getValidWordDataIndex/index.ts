@@ -1,0 +1,1 @@
+export { getValidWordDataIndex } from "./getValidWordDataIndex";

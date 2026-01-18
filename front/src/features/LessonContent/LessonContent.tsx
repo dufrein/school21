@@ -11,6 +11,7 @@ import { NextLessonButton } from "./components/NextLessonButton";
 import { LevelIcon } from "@components/LevelIcon";
 import { useAddTargetBlank } from "@hooks/useAddTargetBlank/useAddTargetBlank";
 import { VideoComponent } from "@components/VideoComponent";
+import { BuilderExcercisesList } from "./components/BuilderExcercisesList";
 
 export const LessonContent: React.FC<LessonProps> = (props) => {
   const { lesson } = props;
@@ -26,6 +27,8 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
   if (!lesson || !user) {
     return null;
   }
+
+  console.log("lesson", lesson);
 
   const handleSubmit = async () => {
     setIsShownResults(true);
@@ -51,6 +54,12 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
     return Math.round((resultArray.length / lesson.questions.length) * 100);
   };
 
+  const onRetryClick = () => {
+    setSelectedAnswers({});
+    setResults({});
+    setIsShownResults(false);
+  };
+
   const date = lesson.updatedAt || lesson.createdAt;
   const updatedDate = date ? `Дата обновления: ${new Date(date).toLocaleDateString()}` : "";
 
@@ -74,8 +83,8 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
       <LevelIcon complexity={lesson.complexity} withText />
 
       <div>{updatedDate}</div>
-      <div className={styles.card}>
-        <h3 className={styles.cardTitle}>Теория</h3>
+      <div className={"lessonCard"}>
+        <h3 className={'lessonCardTitle'}>Теория</h3>
         {lesson.image && (
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${lesson.image?.formats.small?.url}`}
@@ -95,7 +104,7 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
       </div>
 
       {/* Questions Section */}
-      <div className={styles.card}>
+      <div className={"lessonCard"}>
         <QuestionsList
           questions={lesson.questions}
           selectedAnswers={selectedAnswers}
@@ -111,17 +120,13 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
               className={styles.btnPrimary}
               disabled={Object.keys(selectedAnswers).length !== lesson.questions.length}
             >
-              Отправить ответы
+              Проверить
             </button>
           ) : (
             <div className={styles.results}>
               <p className={styles.score}>Ваш результат: {calculateScore()}%</p>
               <button
-                onClick={() => {
-                  setSelectedAnswers({});
-                  setResults({});
-                  setIsShownResults(false);
-                }}
+                onClick={onRetryClick}
                 className={`${styles.btnSecondary} ${styles.tryAgain}`}
               >
                 Попробовать снова
@@ -130,6 +135,8 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
           )}
         </div>
       </div>
+        <BuilderExcercisesList builders={lesson.builders} />
+
       <NextLessonButton isDisabled={!isShownResults || calculateScore() !== 100} />
     </div>
   );

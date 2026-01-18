@@ -9,32 +9,41 @@ export const StepsSection: React.FC = () => {
 
   return (
     <section className={sectionClassList}>
-      <div  className={"main-section-content"}>
+      <div className={"main-section-content"}>
         <h1 className={"main-section-title"}>С чего начать?</h1>
         <div className={styles.steps}>
           <div className={styles.step}>
-            <div className={styles.icon}>1</div>
+            <NavLink href={ROUTES.LOGIN}>
+              <div className={styles.icon}>1</div>
+            </NavLink>
             <div className={styles.stepName}>
               <NavLink href={ROUTES.LOGIN}>Зарегистрируйтесь</NavLink> на сайте
             </div>
           </div>
           <div className={styles.step}>
-            <div className={styles.icon}>2</div>
+            <NavLink href={ROUTES.DASHBOARD}>
+              <div className={styles.icon}>2</div>
+            </NavLink>
             <div className={styles.stepName}>
               Укажите в <NavLink href={ROUTES.DASHBOARD}>личном кабинете</NavLink> свой уровень
               знаний
             </div>
           </div>
           <div className={styles.step}>
-            <div className={styles.icon}>3</div>
+            <NavLink href={ROUTES.LEARNING}>
+              <div className={styles.icon}>3</div>
+            </NavLink>
             <div className={styles.stepName}>
               Переходите в раздел <NavLink href={ROUTES.LEARNING}>учиться</NavLink>
             </div>
           </div>
           <div className={styles.step}>
-            <div className={styles.icon}>4</div>
+            <NavLink href={ROUTES.TEACHERS}>
+              <div className={styles.icon}>4</div>
+            </NavLink>
             <div className={styles.stepName}>
-              Проходите курсы своего уровня и переходите на уровни выше
+              Обращайтесь к нашим <NavLink href={ROUTES.TEACHERS}>учителям</NavLink> за доп.
+              занятиями
             </div>
           </div>
         </div>
