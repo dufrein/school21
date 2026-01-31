@@ -1,4 +1,4 @@
-export type { Course,CourseFull } from "./course";
+export type { Course, CourseFull } from "./course";
 export type { Lesson } from "./lesson";
 export type { Topic } from "./topic";
 export type { QuestionType, AnswerType } from "./question";
@@ -16,5 +16,5 @@ export type {
 } from "./fetcher";
 export type { Article } from "./article";
 export type { Teacher } from "./teacher";
-export type {BuilderExcerciseType} from './builder';
-export type {WritingExcerciseType} from './writing';
+export type { BuilderExcerciseType, WordInfo } from "./builder";
+export type { WritingExcerciseType } from "./writing";

@@ -1,178 +1,129 @@
-import React, { useId, useState } from "react";
-import { PhraseBuilderProps, WordInfo } from "./types";
+import React, { useId, useRef } from "react";
+import { PhraseBuilderProps } from "./types";
 import styles from "./builder.module.scss";
-import { getClassList } from "@utils";
-import { checkWordElement, getValidWordDataIndex } from "./helpers";
-import { outputWordDataAttrNameFull } from "./constants";
+import { checkOutputWordElement } from "./helpers";
+import { InputWord } from "./components/InputWord";
+import { OutputItem } from "./components/OutputItem";
+import { BeforeWords } from "./components/BeforeWords";
+import { WorkField } from "./components/WorkField";
 
 /**
  * Построитель слов в фразу для упражнений
  */
 export const PhraseBuilder: React.FC<PhraseBuilderProps> = (props) => {
-  const { answer } = props;
+  const { inputWordsArray, resultWordsArray, handleSetInputWordsArray, handleSetResultWordsArray } =
+    props;
   const dropId = useId();
-  const wordsArray = answer
-    .trim()
-    .split(" ")
-    .filter((item) => item);
 
-  const [isPasteBeforeActive, setIsPasteBeforeActive] = useState(false);
+  const beforeWordsElementRef = useRef<HTMLDivElement | null>(null);
+  const workFieldRef = useRef<HTMLDivElement | null>(null);
 
-  const [mixedWordsArray] = useState(wordsArray.toSorted(() => Math.random() - 0.5));
-  const [resultWordsArray, setResultWordsArray] = useState<WordInfo[]>([]);
+  // Обработчик dragEnd кейса, когда вынесли слово из рабочей области = выкинули
+  const moveWordOutWorkField = (draggableElement: HTMLElement) => {
+    const outputWordDataIndexString = draggableElement.dataset["output_index"];
 
-  const handleInputWordDragStart = (e: React.DragEvent<HTMLDivElement>, index: string) => {
-    e.dataTransfer?.setData("dragWord", JSON.stringify({ index, type: "input", dropId })); // Сохраняем ID элемента
-  };
-
-  const handleOutputWordDragStart = (e: React.DragEvent<HTMLDivElement>, index: string) => {
-    e.dataTransfer?.setData("dragWord", JSON.stringify({ index, type: "output", dropId })); // Сохраняем ID элемента
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Обязательно для разрешения drop
-    // const wordBoundingRects = e.currentTarget.getBoundingClientRect();
-    if (e.target instanceof HTMLElement) {
-      const isCursorOnWord = checkWordElement(e.target);
-      const isCursorClassAlreadyHasAimClass = e.target.classList.contains(styles["wordItem_aim"]);
-
-      if (isCursorOnWord && !isCursorClassAlreadyHasAimClass) {
-        e.target.classList.add(styles["wordItem_aim"]);
-
-        return;
-      }
+    if (!outputWordDataIndexString) {
+      return;
     }
+
+    const outputWordDataIndex = parseInt(outputWordDataIndexString);
+
+    if (isNaN(outputWordDataIndex)) {
+      return;
+    }
+
+    const newResultWordsArray = [...resultWordsArray];
+    const newInputWordsArray = [...inputWordsArray];
+    const [removed] = newResultWordsArray.splice(outputWordDataIndex, 1);
+
+    newInputWordsArray.push(removed.text);
+    handleSetInputWordsArray(newInputWordsArray);
+    handleSetResultWordsArray(newResultWordsArray);
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    setIsPasteBeforeActive(false);
-    e.preventDefault();
-
+  // Обработчик окончания перетаскивания слова, что входного, что из рабочей области
+  const handleWordDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
     if (!(e.target instanceof HTMLElement)) {
       return;
     }
 
-    e.target.classList.remove(styles["wordItem_aim"]);
+    e.target.classList.remove(styles.wordItem_drugging);
 
-    const dragWord = JSON.parse(e.dataTransfer.getData("dragWord"));
+    beforeWordsElementRemoveDragOverClass();
+    workFieldRemoveDropActiveClass();
 
-    // если перетащили элемент на дропзону в другом компоненте то запретим переноc
-    if (dragWord.dropId !== dropId) {
-      return;
+    const isOutputWord = checkOutputWordElement(e.target);
+
+    if (!isOutputWord) {
+      return null;
     }
 
-    const isCursorOnWord = checkWordElement(e.target);
-    const newResultWordsArray = [...resultWordsArray];
-    const dragWordIndex = parseInt(dragWord.index);
+    const dropTarget = document.elementFromPoint(e.clientX, e.clientY);
 
-    if (isNaN(dragWordIndex)) {
+    // Проверяем что отпустили не над рабочим полем, т.е. слово выкинули
+    const isDropedOutOfWorkField = !workFieldRef.current?.contains(dropTarget);
+
+    if (isDropedOutOfWorkField) {
+      moveWordOutWorkField(e.target);
+
       return;
-    }
-
-    const draggerWordInfo = {
-      text: mixedWordsArray[dragWordIndex],
-      index: dragWordIndex,
-    };
-
-    // если перетащили на ранее перенесенное слово
-    if (isCursorOnWord) {
-      const wordDataIndex = e.target.dataset["output_index"];
-
-      const { isValid, wordIndex } = getValidWordDataIndex(wordDataIndex);
-
-      if (!isValid) {
-        return;
-      }
-
-      newResultWordsArray[wordIndex] = draggerWordInfo;
-      setResultWordsArray(newResultWordsArray);
-    } else {
-      // берем элемент на gap пикселей правее, чтобы вставить элемент перед ним
-      const elementsRightFromPoint = document.elementsFromPoint(
-        e.clientX + outputGapSize,
-        e.clientY,
-      );
-
-      const elementRightFromPoint = elementsRightFromPoint[0];
-
-      if (!(elementRightFromPoint instanceof HTMLElement)) {
-        return;
-      }
-
-      const isWordOnCursorRight = checkWordElement(elementRightFromPoint);
-
-      // если справа от курсора есть слово
-      if (isWordOnCursorRight) {
-        const outputWordDataIndex = elementRightFromPoint.dataset["output_index"];
-
-        const { isValid, wordIndex: outputWordIndex } = getValidWordDataIndex(outputWordDataIndex);
-
-        if (!isValid) {
-          return;
-        }
-
-        newResultWordsArray.splice(outputWordIndex, 0, draggerWordInfo);
-        setResultWordsArray(newResultWordsArray);
-      } else {
-        newResultWordsArray.push(draggerWordInfo);
-        setResultWordsArray(newResultWordsArray);
-      }
     }
   };
 
-  const handleWordDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    if (e.target instanceof HTMLElement) {
-      e.target.classList.remove(styles["wordItem_aim"]);
-    }
+  const workFieldRemoveDropActiveClass = () => {
+    workFieldRef.current?.classList.remove(styles.workField_dropActive);
   };
 
-  const outputWordClassList = getClassList([styles.wordItem, styles.wordItem_result]);
-  const pasteBeforeClassList = getClassList([
-    styles.beforeWordsPlace,
-    isPasteBeforeActive && styles.beforeWordsPlace_active,
-  ]);
-
-  const outputGapSize = 20;
+  const beforeWordsElementRemoveDragOverClass = () => {
+    beforeWordsElementRef.current?.classList.remove(styles.beforeWordsPlace_dragOver);
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.words}>
-        {mixedWordsArray.map((item, index) => (
-          <div
-            className={styles.wordItem}
+        {inputWordsArray.map((item, index) => (
+          <InputWord
             key={item + index}
-            draggable
-            onDragStart={(e) => handleInputWordDragStart(e, `${index}`)}
-            data-is_input={true}
-          >
-            {item}
-          </div>
+            item={item}
+            index={index}
+            dropId={dropId}
+            handleWordDragEnd={handleWordDragEnd}
+          />
         ))}
       </div>
-      <div style={{ position: "relative" }}>
-        <div
-          className={styles.result}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          data-dropid={dropId}
-          style={{ gap: outputGapSize }}
+      <div>
+        {/* Поля куда перетаскивают слова - рабочее поле */}
+        <WorkField
+          dropId={dropId}
+          workFieldRef={workFieldRef}
+          inputWordsArray={inputWordsArray}
+          resultWordsArray={resultWordsArray}
+          handleSetInputWordsArray={handleSetInputWordsArray}
+          handleSetResultWordsArray={handleSetResultWordsArray}
+          workFieldRemoveDropActiveClass={workFieldRemoveDropActiveClass}
+          beforeWordsElementRemoveDragOverClass={beforeWordsElementRemoveDragOverClass}
         >
-          <div className={pasteBeforeClassList}>{"<"}</div>
+          {/* Элемент указывающий на возможность вставки перед первым словом */}
+          {!!resultWordsArray.length && (
+            <BeforeWords
+              beforeWordsElementRef={beforeWordsElementRef}
+              beforeWordsElementRemoveDragOverClass={beforeWordsElementRemoveDragOverClass}
+            />
+          )}
           {resultWordsArray?.map((item, index) => (
-            <div
-              className={outputWordClassList}
+            <OutputItem
               key={item.text + index}
-              draggable
-              onDragStart={(e) => handleOutputWordDragStart(e, `${item.index}`)}
-              onDragLeave={handleWordDragLeave}
-              {...{ [outputWordDataAttrNameFull]: true }}
-              // индекс = порядковый номер слова из фразы-ответа
-              data-output_index={index}
-            >
-              {item.text}
-            </div>
+              item={item}
+              index={index}
+              dropId={dropId}
+              handleWordDragEnd={handleWordDragEnd}
+              inputWordsArray={inputWordsArray}
+              resultWordsArray={resultWordsArray}
+              handleSetResultWordsArray={handleSetResultWordsArray}
+              handleSetInputWordsArray={handleSetInputWordsArray}
+            />
           ))}
-        </div>
+        </WorkField>
       </div>
     </div>
   );

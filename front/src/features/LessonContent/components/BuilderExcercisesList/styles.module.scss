@@ -1,3 +1,29 @@
 .containerTitle {
   font-size: 12px;
 }
+
+.instruction {
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+details[open].instruction {
+  .helpIcon {
+    background-color: #eee;
+  }
+}
+
+.helpIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 4px 8px;
+  margin-left: 10px;
+}
+
+.excercisesList {
+  margin-top: 20px;
+}

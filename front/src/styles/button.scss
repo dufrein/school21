@@ -32,6 +32,7 @@
 
 .btnDisabled {
   background: #ddd;
+  pointer-events: none;
 }
 
 .btnDisabled:hover {

@@ -3,7 +3,7 @@
 import { useState, useContext, useRef } from "react";
 import styles from "./styles.module.scss";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { LessonProps, QuestionResults, SelectedAnswers } from "./types";
+import { LessonProps } from "./types";
 import { QuestionsList } from "./components";
 import { BreadCrumbs } from "@components/BreadCrumbs";
 import { UserContext } from "@context/UserContext";
@@ -16,9 +16,12 @@ import { BuilderExcercisesList } from "./components/BuilderExcercisesList";
 export const LessonContent: React.FC<LessonProps> = (props) => {
   const { lesson } = props;
   const { user, saveStudent } = useContext(UserContext);
-  const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
-  const [results, setResults] = useState<QuestionResults>({});
-  const [isShownResults, setIsShownResults] = useState(false);
+  const [isQuestionsFinished, setQuestionsFinished] = useState(
+    lesson?.questions.length ? false : true,
+  );
+  const [isExcercisesFinished, setExcercisesFinished] = useState(
+    lesson?.builders?.length ? false : true,
+  );
 
   const contentBlockRef = useRef<HTMLDivElement>(null);
 
@@ -28,10 +31,8 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
     return null;
   }
 
-  console.log("lesson", lesson);
-
   const handleSubmit = async () => {
-    setIsShownResults(true);
+    console.log('handleSubmit');
     if (!user.finishedLessonsIds.includes(lesson.documentId)) {
       await saveStudent({
         ...user,
@@ -40,28 +41,19 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
     }
   };
 
-  const changeResults = (results: QuestionResults) => {
-    setResults(results);
+  const handleSetQuestionsFinished = (isFinished: boolean) => {
+    setQuestionsFinished(isFinished);
   };
 
-  const changeSelectedAnswers = (answers: SelectedAnswers) => {
-    setSelectedAnswers(answers);
-  };
-
-  const calculateScore = () => {
-    const resultArray = Object.values(results).filter((resultItem) => resultItem === true);
-
-    return Math.round((resultArray.length / lesson.questions.length) * 100);
-  };
-
-  const onRetryClick = () => {
-    setSelectedAnswers({});
-    setResults({});
-    setIsShownResults(false);
+  const handleSetExcercisesFinished = (isFinished: boolean) => {
+    setExcercisesFinished(isFinished);
   };
 
   const date = lesson.updatedAt || lesson.createdAt;
+
   const updatedDate = date ? `Дата обновления: ${new Date(date).toLocaleDateString()}` : "";
+
+  const isLessonComplete = isQuestionsFinished && isExcercisesFinished;
 
   return (
     <div className={styles.content}>
@@ -84,7 +76,7 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
 
       <div>{updatedDate}</div>
       <div className={"lessonCard"}>
-        <h3 className={'lessonCardTitle'}>Теория</h3>
+        <h3 className={"lessonCardTitle"}>Теория</h3>
         {lesson.image && (
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${lesson.image?.formats.small?.url}`}
@@ -103,41 +95,13 @@ export const LessonContent: React.FC<LessonProps> = (props) => {
         )}
       </div>
 
-      {/* Questions Section */}
-      <div className={"lessonCard"}>
-        <QuestionsList
-          questions={lesson.questions}
-          selectedAnswers={selectedAnswers}
-          results={results}
-          isShownResults={isShownResults}
-          changeResults={changeResults}
-          changeSelectedAnswers={changeSelectedAnswers}
-        />
-        <div className={styles.actions}>
-          {!isShownResults ? (
-            <button
-              onClick={handleSubmit}
-              className={styles.btnPrimary}
-              disabled={Object.keys(selectedAnswers).length !== lesson.questions.length}
-            >
-              Проверить
-            </button>
-          ) : (
-            <div className={styles.results}>
-              <p className={styles.score}>Ваш результат: {calculateScore()}%</p>
-              <button
-                onClick={onRetryClick}
-                className={`${styles.btnSecondary} ${styles.tryAgain}`}
-              >
-                Попробовать снова
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-        <BuilderExcercisesList builders={lesson.builders} />
+      <QuestionsList questions={lesson.questions} setFinished={handleSetQuestionsFinished} />
+      <BuilderExcercisesList
+        builders={lesson.builders || []}
+        setFinished={handleSetExcercisesFinished}
+      />
 
-      <NextLessonButton isDisabled={!isShownResults || calculateScore() !== 100} />
+      <NextLessonButton isDisabled={!isLessonComplete} onClickHandler={handleSubmit} />
     </div>
   );
 };

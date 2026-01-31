@@ -7,13 +7,14 @@ import { getClassList } from "@utils";
 import { NextLessonButtonProps } from "./types";
 
 export const NextLessonButton: React.FC<NextLessonButtonProps> = (props) => {
-  const { isDisabled } = props;
+  const { isDisabled, onClickHandler } = props;
   const { openedCourse, openedTopic, nextLesson, nextTopic } = useContext(LearningContext);
   const classList = getClassList([styles.button, isDisabled && styles["button_disabled"]]);
 
   if (nextLesson) {
     return (
       <Link
+        onClick={onClickHandler}
         className={classList}
         href={`${ROUTES.COURSE}/${openedCourse?.documentId}/${ROUTES.TOPIC}/${openedTopic?.documentId}/${ROUTES.LESSON}/${nextLesson?.documentId}`}
       >
@@ -25,6 +26,7 @@ export const NextLessonButton: React.FC<NextLessonButtonProps> = (props) => {
   if (!nextLesson && nextTopic) {
     return (
       <Link
+        onClick={onClickHandler}
         className={classList}
         href={`${ROUTES.COURSE}/${openedCourse?.documentId}/${ROUTES.TOPIC}/${nextTopic?.documentId}`}
       >
@@ -32,6 +34,19 @@ export const NextLessonButton: React.FC<NextLessonButtonProps> = (props) => {
       </Link>
     );
   }
+
+    if (!nextLesson && !nextTopic) {
+    return (
+      <Link
+        onClick={onClickHandler}
+        className={classList}
+        href={`${ROUTES.LEARNING}`}
+      >
+        Закрыть курс
+      </Link>
+    );
+  }
+
 
   return null;
 };

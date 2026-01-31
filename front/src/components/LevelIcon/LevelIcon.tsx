@@ -9,7 +9,7 @@ export const LevelIcon: React.FC<LevelIconProps> = ({ complexity, withText }) =>
   }
 
   return (
-    <span className={styles.icon}>
+    <span className={styles.level}>
       <img
         src={`/icon_complexity_${complexity}.png`}
         alt="уровень сложности"
@@ -18,7 +18,7 @@ export const LevelIcon: React.FC<LevelIconProps> = ({ complexity, withText }) =>
         title={`Уровень сложности ${COMPLEXITY_LEVEL[complexity]}`}
       />
       {withText && (
-        <span>
+        <span className={styles["level-text"]}>
           Уровень сложности: <i>{COMPLEXITY_LEVEL[complexity]}</i>
         </span>
       )}

@@ -1,0 +1,1 @@
+export { BeforeWords } from './BeforeWords';

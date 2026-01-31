@@ -1,0 +1,1 @@
+export { checkBeforeElement } from "./checkBeforeElement";

@@ -1,0 +1,1 @@
+export { checkInputWordElement } from "./checkInputWordElement";

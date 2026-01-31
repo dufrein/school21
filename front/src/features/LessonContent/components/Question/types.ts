@@ -1,14 +1,11 @@
-export interface QuestionProps {
-  text: string;
-  isCorrect: boolean;
-  isChecked: boolean;
-  isShownResults: boolean;
-  questionId: string;
-  onAnswerSelect: (params: OnAnswerSelectParams) => void;
-}
+import { QuestionType } from "@types";
+import { OnAnswerSelectParams } from "../QuestionAnswer/types";
+import { SelectedAnswers } from "@features/LessonContent/types";
 
-export type OnAnswerSelectParams = {
-  value: string;
-  questionId: string;
-  isCorrect: boolean;
+export type QuestionProps = {
+  questionItem: QuestionType;
+  isShownResult: boolean;
+  onAnswerSelect: (params: OnAnswerSelectParams) => void;
+  selectedAnswers: SelectedAnswers;
+  checkAnswer: (questions: QuestionType) => boolean;
 };

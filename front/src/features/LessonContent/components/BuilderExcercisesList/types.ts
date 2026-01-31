@@ -1,5 +1,6 @@
 import { BuilderExcerciseType } from "@types";
 
 export interface BuilderExcercisesListProps {
-  builders?: BuilderExcerciseType[] | null;
+  setFinished: (isFinished: boolean) => void;
+  builders: BuilderExcerciseType[];
 }

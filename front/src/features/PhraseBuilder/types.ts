@@ -1,9 +1,8 @@
-export type PhraseBuilderProps = {
-  answer: string;
-};
+import { WordInfo } from "@types";
 
-export type WordInfo = {
-  text: string;
-  // индекс - порядковый номер слова как он должен идти в ответе
-  index: number;
+export type PhraseBuilderProps = {
+  inputWordsArray: string[];
+  resultWordsArray: WordInfo[];
+  handleSetInputWordsArray: (textWords: string[]) => void;
+  handleSetResultWordsArray: (words: WordInfo[]) => void;
 };

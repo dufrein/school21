@@ -1,23 +1,5 @@
-.option {
+.optionsList {
   display: flex;
-  align-items: center;
-}
-
-.radio {
-  width: 1rem;
-  height: 1rem;
-  color: var(--link-active-color);
-  border-color: #d1d5db;
-  border-radius: 9999px;
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  }
-}
-
-.optionText {
-  margin-left: 0.5rem;
-  color: var(--text-color);
+  flex-direction: column;
+  gap: 0.5rem;
 }
