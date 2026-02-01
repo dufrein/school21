@@ -18,12 +18,12 @@ export default async function Dashboard() {
   const courses = allCourses || [];
 
   return (
-    <div className={"pageContainer"}>
+    <main>
       <h2>Личный кабинет</h2>
       <div className={styles.container}>
         <AccountSettings avatarsWoman={avatars?.avatarsWoman} avatarsMan={avatars?.avatarsMan} />
         <LearningStat courses={courses} />
       </div>
-    </div>
+    </main>
   );
 }

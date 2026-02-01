@@ -42,9 +42,9 @@
       "@styles/*": ["src/styles/*"],
       "@constants": ["src/constants"],
       "@actions": ["src/actions"],
-      "@actions/*": ["src/actions/*"],
+      "@actions/*": ["src/actions/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/utils/session"],
-  "exclude": ["node_modules/"]
+  "exclude": ["node_modules/", ".next"]
 }

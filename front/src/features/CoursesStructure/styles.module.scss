@@ -1,3 +1,5 @@
+@use "../../styles/helpers";
+
 .tabel {
   display: flex;
   flex-direction: column;
@@ -6,4 +8,11 @@
   max-width: 300px;
   min-width: 300px;
   border-right: 1px solid #ddd;
+
+  @include helpers.deviceWidth(toDesktop) {
+    width: 220px;
+    max-width: 220px;
+    min-width: 220px;
+    font-size: 14px;
+  }
 }

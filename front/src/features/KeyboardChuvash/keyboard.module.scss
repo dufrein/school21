@@ -10,7 +10,9 @@
 .input {
   width: 100%;
   margin-bottom: 20px;
-  padding: 14px 20px;
+  padding: 14px 40px 14px 20px;
+  box-sizing: border-box;
+  position: relative;
   font-size: 1.1rem;
   color: #2d3436;
   background-color: #f9f9fb;
@@ -18,7 +20,6 @@
   border-radius: 12px;
   outline: none;
   transition: all 0.25s ease-in-out;
-  box-sizing: border-box;
 }
 
 .input:hover {
@@ -26,7 +27,7 @@
 }
 
 .input:focus {
-  border-color: #c2d421;  
+  border-color: #c2d421;
   background-color: #fff;
   box-shadow: 0 0 0 5px rgba(212, 33, 45, 0.1);
   transform: translateY(-1px);
@@ -39,4 +40,19 @@
 
 .keyboard {
   min-width: fit-content;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.iconCopy {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.6;
+  }
 }

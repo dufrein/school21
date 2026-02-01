@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import Keyboard, { SimpleKeyboard } from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import styles from "./keyboard.module.scss";
+import iconCopy from "public/icon_copy.svg";
 
 export const KeyboardChuvash = () => {
   const [input, setInput] = useState("");
@@ -32,9 +33,24 @@ export const KeyboardChuvash = () => {
     }
   };
 
+  const copyToClipboard = async () => {
+    await navigator.clipboard.writeText(input);
+  };
+
   return (
     <div className={styles.container}>
-      <input value={input} className={styles.input} onChange={onChangePhysical} />
+      <div className={styles.inputWrapper}>
+        <input value={input} className={styles.input} onChange={onChangePhysical} />
+
+        <img
+          src={iconCopy.src}
+          className={styles.iconCopy}
+          alt="иконка скопировать"
+          width={24}
+          height={24}
+          onClick={copyToClipboard}
+        />
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.keyboard}>
           <Keyboard

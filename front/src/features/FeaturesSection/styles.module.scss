@@ -1,15 +1,11 @@
-.features {
-}
-
-.featuresContent {
-}
+@use "../../styles/helpers.scss";
 
 .featuresGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 
-  @media (min-width: 768px) {
+  @include helpers.deviceWidth(fromTabletPortrait) {
     grid-template-columns: repeat(3, 1fr);
   }
 }

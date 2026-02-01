@@ -1,0 +1,29 @@
+@use "../../styles/helpers";
+
+.twoColumn {
+  display: flex;
+  flex-grow: 2;
+  width: 100%;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1;
+  padding: 40px 40px 40px var(--main-margin-X);
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    flex-direction: column;
+    padding: var(--main-mobile-margin-X);
+  }
+
+  :where(h2:first-of-type, h3:first-of-type) {
+    margin-top: 0;
+  }
+}

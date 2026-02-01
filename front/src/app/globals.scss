@@ -1,4 +1,5 @@
 @use "../styles";
+@use "../styles/helpers";
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -28,6 +29,22 @@ body {
 .main-section {
   > .main-section-content {
     margin: 80px var(--main-margin-X);
+
+    @include helpers.deviceWidth(toTabletLandscape) {
+      margin: 60px var(--main-mobile-margin-X);
+    }
+  }
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  gap: 20px;
+  border-left: 1px solid #ddd;
+
+  @include helpers.deviceWidth(toTabletLandscape) {
+    display: none;
   }
 }
 
@@ -98,7 +115,7 @@ h2 {
 }
 
 .pageContainer {
-  padding: 40px var(--main-margin-X);
+  padding: 40px var(--main-mobile-margin-X);
   display: flex;
   flex-direction: column;
   gap: 20px;

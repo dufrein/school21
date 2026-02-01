@@ -51,7 +51,7 @@ export const LearningStat: React.FC<LearningStatProps> = (props) => {
 
   return (
     <div className={"accountCard"}>
-      <h4>Статистика по прохождению уроков по курсам сложности :</h4>
+      <h4>Статистика прохождения уроков по сложности:</h4>
       {coursesStatList.map((complexityLevel) => {
         if (!complexityLevel) {
           return null;

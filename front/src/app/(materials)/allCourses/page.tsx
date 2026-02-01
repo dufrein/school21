@@ -18,9 +18,5 @@ export default async function AllCoursesPage({ searchParams }: AllCoursesPagePro
     courses = courses.filter((course) => course.complexity === complexityLevel);
   }
 
-  return (
-    <div className="pageContainer">
-      <AllCourses courses={courses} complexityLevel={complexityLevel} />
-    </div>
-  );
+  return <AllCourses courses={courses} complexityLevel={complexityLevel} />;
 }

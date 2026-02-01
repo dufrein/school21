@@ -1,4 +1,5 @@
 $mobileMin: 0;
+$onlyMobileMax: 580px;
 $mobileMax: 767px;
 $tabletPortraitMin: 768px;
 $tabletPortraitMax: 1023px;
@@ -37,6 +38,10 @@ $desktopMin: 1280px;
     }
   } @else if $size == mobile {
     @media (min-width: $mobileMin) and (max-width: $mobileMax) {
+      @content;
+    }
+  } @else if $size == onlyMobile {
+    @media (min-width: $mobileMin) and (max-width: $onlyMobileMax) {
       @content;
     }
   } @else if $size == tabletPortrait {

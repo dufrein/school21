@@ -1,6 +1,6 @@
 export default async function AboutPage() {
   return (
-    <div className="pageContainer">
+    <main>
       <h1>О нас:</h1>
       <p>
         Наша языковая школа посвящена сохранению и развитию чувашского языка — уникального
@@ -23,6 +23,6 @@ export default async function AboutPage() {
         уважения. Присоединяйтесь к нам — вместе мы сохраним и приумножим богатство чувашского
         языка!
       </p>
-    </div>
+    </main>
   );
 }

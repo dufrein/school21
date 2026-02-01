@@ -3,10 +3,16 @@
 .twoColumn {
   display: flex;
   min-height: calc(100vh - var(--header-height));
-  padding: 0px var(--main-margin-X);
+  width: 100%;
 
   @include helpers.deviceWidth(toTabletLandscape) {
-    flex-direction: column;
     padding: 0;
+  }
+}
+
+.rightColumn {
+  @include helpers.deviceWidth(tabletPortrait) {
+    width: 200px;
+    display: flex;
   }
 }

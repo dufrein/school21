@@ -6,12 +6,8 @@ export default async function Page() {
   const articlesData = await getArticlesHelper({ start: 0 });
 
   return (
-    <div className="pageContainer">
-      <ArticlesListContextProvider
-        articlesData={articlesData}
-      >
-        <ArticlesList />
-      </ArticlesListContextProvider>
-    </div>
+    <ArticlesListContextProvider articlesData={articlesData}>
+      <ArticlesList />
+    </ArticlesListContextProvider>
   );
 }
