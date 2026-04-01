@@ -78,6 +78,12 @@ export const OutputItem: React.FC<OutputItemProps> = (props) => {
     styles.betweenWordsPlace,
   ]);
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>)=>{
+    if (e.target instanceof HTMLElement) {
+      e.target.classList.remove(styles["wordItem_aim"]);
+    }
+  }
+
   const outputWordClassList = getClassList([styles.wordItem, styles.wordItem_result]);
 
   return (
@@ -93,6 +99,7 @@ export const OutputItem: React.FC<OutputItemProps> = (props) => {
         onDragEnd={handleWordDragEnd}
         onDragEnter={handleWordDragEnter}
         onDragLeave={handleWordDragLeave}
+        onDrop={handleDrop}
         {...{ ["data-" + outputWordDataAttrName]: true }}
         // индекс = порядковый номер слова из фразы-ответа
         data-output_index={index}

@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import { BadgeProps } from "./types";
 import styles from "./styles.module.scss";
 
-// Описываем ваши переменные
+// Описываем переменные
 interface CustomStyles extends CSSProperties {
   "--bgColor"?: string;
   "--color"?: string;

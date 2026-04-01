@@ -84,7 +84,16 @@ export const WorkField: React.FC<WorkFieldProps> = (props) => {
       return;
     }
 
-    const dragWord = JSON.parse(e.dataTransfer.getData("dragWord"));
+    let dragWord;
+
+    try {
+      console.log('e.dataTransfer',e.dataTransfer);
+      dragWord = JSON.parse(e.dataTransfer.getData("dragWord"));
+    } catch (err) {
+      console.error(err);
+
+      return;
+    }
 
     // если перетащили элемент на дропзону в другом компоненте то запретим переноc
     if (dragWord.dropId !== dropId) {
