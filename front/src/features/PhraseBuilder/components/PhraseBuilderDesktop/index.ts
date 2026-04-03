@@ -1,0 +1,1 @@
+export { PhraseBuilderDesktop } from './PhraseBuilderDesktop';

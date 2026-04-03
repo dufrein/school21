@@ -6,9 +6,11 @@ import { getClassList } from "@utils";
 import styles from "./builderExcercise.module.scss";
 import { QuestionResult } from "../QuestionResult";
 
+/**
+ * Компонент упражнения на построение фразы
+ */
 export const BuilderExcercise: React.FC<BuilderExcerciseProps> = (props) => {
   const { builderExcercise, onCheckResult } = props;
-
   const wordsArray = builderExcercise.answer
     .trim()
     .split(" ")

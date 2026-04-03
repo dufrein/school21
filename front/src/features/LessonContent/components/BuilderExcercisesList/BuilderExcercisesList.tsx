@@ -3,13 +3,21 @@ import { BuilderExcercisesListProps } from "./types";
 import { BuilderExcercise } from "../BuilderExcercise";
 import styles from "./styles.module.scss";
 import { BuilderExcerciseType } from "@types";
+import { useIsTouchScreen } from "@hooks/useIsTouchScreen/useIsTouchScreen";
+
+const desktopInstructionText =
+  "В этих управжнениях вам надо составить из слов фразы, для этого перетащите слова в нужном порядке в поле в рамках. Можно перетащить слово на другое слово или в область между словами или в область перед первым словом.";
+  
+const touchScreenInstructionText =
+  "В этих упражнениях вам надо составить из слов фразы, для этого нажимайте на слова в нужном порядке, для удаления слова из рабочей области тоже нажмите на него";
 
 /**
- * Компонент списка упражнений 
+ * Компонент списка упражнений
  */
 export const BuilderExcercisesList: React.FC<BuilderExcercisesListProps> = (props) => {
   const { builders, setFinished } = props;
   const buildersReults: Record<string, boolean> = {};
+  const { isTouchScreen } = useIsTouchScreen();
 
   (builders || []).forEach((builderItem) => {
     buildersReults[builderItem.documentId] = false;
@@ -46,12 +54,7 @@ export const BuilderExcercisesList: React.FC<BuilderExcercisesListProps> = (prop
             </span>
           </summary>
           <p className={styles.containerTitle}>
-            В этих управжнениях вам надо составить из слов фразы, для этого перетащите слова в
-            нужном порядке в поле в рамках. Можно перетащить слово на другое слово или в область
-            между словами или в область перед первым словом, всякий раз при этом вы увидите
-            выделение рамками цели перетаскивания - серый квадрат с оранжевой рамкой. При наведении
-            на него во время перетаскивания слова вы увидите как эти рамки увеличатся в размере -
-            это значит вы целитесь в данное место.
+            {isTouchScreen ? touchScreenInstructionText : desktopInstructionText}
           </p>
         </details>
         <div className={styles.excercisesList}>
